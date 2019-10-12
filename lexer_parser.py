@@ -18,6 +18,7 @@ reserved = {
     'INT' : 'REGLA_INT',
     'FLOAT' : 'REGLA_FLOAT',
     'CHAR' : 'REGLA_CHAR',
+    'BOOL' : 'REGLA_BOOL',
     'AND' : 'REGLA_AND',
     'OR' : 'REGLA_OR',
     'NOT' : 'REGLA_NOT',
@@ -84,12 +85,8 @@ t_CTE_F = r'[0-9]+\.[0-9]+'
 
 t_CTE_CHAR = r'\"([^\\\n]|(\\.))*?\"'
 t_CTE_BOOL = r'\TRUE|FALSE'
-t_CTE_D = r'\"([A-Za-z]|[0-9]| . | / | :)"'
+t_CTE_D = r'\"([^\\\n]|(\\.))*?\"'
 
-t_IF = r'\IF'
-t_ELSE = r'\ELSE'
-t_FUNC = r'\FUNC'
-t_MAIN = r'\MAIN'
 
 tokens = tokens + list(reserved.values())
 
@@ -121,6 +118,19 @@ def p_programa(p):
 
 def p_vars(p):
     ''' vars : VAR declaracionVar'''
+
+def p_tipo(p):
+    '''tipo : REGLA_INT
+        | REGLA_FLOAT
+        | REGLA_CHAR
+        | REGLA_DATASET
+        | REGLA_BOOL '''
+
+def p_tipo_func(p):
+    '''tipo_func : REGLA_INT
+        | REGLA_FLOAT
+        | REGLA_CHAR
+        | REGLA_BOOL '''
 
 def p_declaracionVar(p):
     ''' declaracionVar : var_id DOSPUNTOS tipo PUNTOYCOMA'''
