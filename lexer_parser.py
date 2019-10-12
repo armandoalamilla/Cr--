@@ -11,8 +11,8 @@ reserved = {
     'MAIN' : 'REGLA_MAIN',
     'IF' : 'REGLA_IF',
     'ELSE' : 'REGLA_ELSE',
-    'PRINT' : 'REGLA_PRINT'
-    'READ' : 'REGLA_READ'
+    'PRINT' : 'REGLA_PRINT',
+    'READ' : 'REGLA_READ',
     'VAR' : 'REGLA_VAR',
     'WHILE' : 'REGLA_WHILE',
     'INT' : 'REGLA_INT',
@@ -113,17 +113,24 @@ def t_error(t):
 lex.lex()
 
 def p_programa(p):
-    '''programa : PROGRAMA ID PUNTOYCOMA MAIN bloque END 
-                | PROGRAMA ID PUNTOYCOMA vars MAIN bloque END
-                | PROGRAMA ID PUNTOYCOMA modulos MAIN bloque END
-                | PROGRAMA ID PUNTOYCOMA vars modulos MAIN bloque END  
+    '''programa : REGLA_PROGRAMA ID PUNTOYCOMA REGLA_MAIN bloque REGLA_END 
+                | REGLA_PROGRAMA ID PUNTOYCOMA vars REGLA_MAIN bloque REGLA_END
+                | REGLA_PROGRAMA ID PUNTOYCOMA modulos REGLA_MAIN bloque REGLA_END
+                | REGLA_PROGRAMA ID PUNTOYCOMA vars modulos REGLA_MAIN bloque REGLA_END  
     '''
 
 def p_vars(p):
     ''' vars : VAR declaracionVar'''
 
 def p_declaracionVar(p):
-    ''' declaracionVar : var_id DOSPUNTOS tipo PUNTOYCOMA'''
+    ''' declaracionVar : var_id DOSPUNTOS tipo PUNTOYCOMA
+                        | var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+                        | var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+                        | var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+                        | var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_INT PUNTOYCOMA
+                        | var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_FLOAT PUNTOYCOMA
+                        | | var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_CHAR PUNTOYCOMA
+                        '''
 
 def p_var_id(p):
     ''' var_id : ID
@@ -139,7 +146,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-archivo = "prueba.txt"
+"""archivo = "prueba.txt"
 f = open(archivo, 'r')
 s = f.read()
 
@@ -150,7 +157,7 @@ if aprobado == True:
     sys.exit()
 else:
     print("Archivo :(")
-    sys.exit()
+    sys.exit()"""
 
 
 
