@@ -7,41 +7,89 @@ aprobado = True
 
 reserved = {
     'PROGRAM' : 'REGLA_PROGRAMA',
-    'VAR' : 'REGLA_VAR',
+    'FUNC' : 'REGLA_FUNCION',
+    'MAIN' : 'REGLA_MAIN',
     'IF' : 'REGLA_IF',
     'ELSE' : 'REGLA_ELSE',
+    'PRINT' : 'REGLA_PRINT'
+    'READ' : 'REGLA_READ'
+    'VAR' : 'REGLA_VAR',
+    'WHILE' : 'REGLA_WHILE',
     'INT' : 'REGLA_INT',
     'FLOAT' : 'REGLA_FLOAT',
-    'PRINT' : 'REGLA_PRINT'
+    'CHAR' : 'REGLA_CHAR',
+    'AND' : 'REGLA_AND',
+    'OR' : 'REGLA_OR',
+    'NOT' : 'REGLA_NOT',
+    'END' : 'REGLA_END',
+    'AVERAGE' : 'REGLA_AVERAGE',
+    'MEDIAN' : 'REGLA_MEDIAN',
+    'MODE' : 'REGLA_MODE',
+    'DATASET' : 'REGLA_DATASET',
+    'PLOT' : 'REGLA_PLOT',
+    'PIECHART' : 'REGLA_PIECHART',
+    'VARIANZA' : 'REGLA_VARIANZA',
+    'DESV_T' : 'REGLA_DESV_T',
+    'DIST_T' : 'REGLA_DIST_T',
+    'BASIC_V_P' : 'REGLA_BASIC_V_P'
 }
 
 
 tokens = [
-    'SUMA','RESTA','DIVISION','MULTIPLICACION','MAYORQUE','MENORQUE','DIFDE',
-    'ABREPAR','CIERRAPAR','ABRECOR','CIERRACOR','COMA','PUNTOYCOMA','ID','CTE_I',
-    'CTE_F','CTE_S','DOSPUNTOS','IGUAL'
+    'SUMA','RESTA','MULTIPLICACION','DIVISION','RESIDUO'
+          'MENORQUE', 'MENORQUEIGUAL'
+          'MAYORQUE', 'MAYORQUEIGUAL',
+          'IGUALIGUAL','DIFDE',
+          'AND','OR','NOT'
+          'ABREPAR','CIERRAPAR',
+          'ABRECOR','CIERRACOR',
+          'ABREBRACK','CIERRABRACK',
+          'COMA','PUNTOYCOMA','DOSPUNTOS','IGUAL',
+          'CTE_I','CTE_F','CTE_CHAR','CTE_BOOL','CTE_D',
+          'ID',
+          'IF',
+          'ELSE',
+          'FUNC',
+          'MAIN
 ]
 
 #tokens
 
 t_SUMA = r'\+'
 t_RESTA = r'\-'
-t_DIVISION = r'\/'
 t_MULTIPLICACION = r'\*'
-t_IGUAL = r'\='
+t_DIVISION = r'\/'
+t_RESIDUO = r'\%'
 t_MAYORQUE = r'\>'
+t_MAYORQUEIGUAL = r'\>='
 t_MENORQUE = r'\<'
-t_DIFDE = r'\<>'
+t_MENORQUE = r'\<='
+t_IGUALIGUAL = r'\=='
+t_DIFDE = r'\!='
+t_AND = r'\AND'
+t_OR = r'\OR'
+t_NOT = r'\NOT'
 t_ABREPAR = r'\('
 t_CIERRAPAR = r'\)'
 t_ABRECOR = r'\{'
 t_CIERRACOR = r'\}'
+t_ABREBRACK = r'\['
+t_CIERRABRACK = r'\]'
 t_COMA = r'\,'
 t_PUNTOYCOMA = r'\;'
 t_DOSPUNTOS = r'\:'
+t_IGUAL = r'\='
 t_CTE_I = r'[0-9]+'
 t_CTE_F = r'[0-9]+\.[0-9]+'
-t_CTE_S = r'\"([^\\\n]|(\\.))*?\"'
+
+t_CTE_CHAR = r'\"([^\\\n]|(\\.))*?\"'
+t_CTE_BOOL = r'\TRUE|FALSE'
+t_CTE_D = r'\"([A-Za-z]|[0-9]| . | / | :)"'
+
+t_IF = r'\IF'
+t_ELSE = r'\ELSE'
+t_FUNC = r'\FUNC'
+t_MAIN = r'\MAIN'
 
 tokens = tokens + list(reserved.values())
 
