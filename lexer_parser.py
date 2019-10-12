@@ -31,7 +31,7 @@ reserved = {
     'PIECHART' : 'REGLA_PIECHART',
     'VARIANZA' : 'REGLA_VARIANZA',
     'DESV_T' : 'REGLA_DESV_T',
-    'DIST_T' : 'REGLA_DIST_T',
+    'DIST_N' : 'REGLA_DIST_N',
     'BASIC_V_P' : 'REGLA_BASIC_V_P'
 }
 
@@ -41,7 +41,6 @@ tokens = [
           'MENORQUE', 'MENORQUEIGUAL',
           'MAYORQUE', 'MAYORQUEIGUAL',
           'IGUALIGUAL','DIFDE',
-          'AND','OR','NOT',
           'ABREPAR','CIERRAPAR',
           'ABRECOR','CIERRACOR',
           'ABREBRACK','CIERRABRACK',
@@ -124,6 +123,63 @@ def p_tipo_func(p):
         | REGLA_FLOAT
         | REGLA_CHAR
         | REGLA_BOOL '''
+
+def p_expresion(p):
+    '''expresion : exp MAYORQUE exp
+                   | exp MENORQUE exp
+                   | exp MAYORQUEIGUAL exp
+                   | exp MENORQUEIGUAL exp
+                   | exp IGUALIGUAL exp
+                   | exp DIFDE exp '''
+
+def p_logical_expresion(p):
+    '''logical_expresion : REGLA_NOT expresion
+        | expresion REGLA_AND expresion
+        | expresion REGLA_OR expresion '''
+
+def p_estatuto(p):
+    '''estatuto : llamada_funcion
+        | asignacion
+        | condicion
+        | escritura
+        | ciclo
+        | func_pred
+        | lectura '''
+
+def p_condicion(p):
+    '''condicion : REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+        |  REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
+        '''
+
+def p_asignacion(p):
+    '''asignacion : ID IGUAL logical_expresion PUNTOYCOMA
+        | ID array IGUAL logical_expresion PUNTOYCOMA
+        '''
+
+def p_ciclo(p):
+    '''ciclo : REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+        '''
+
+def p_func_pred(p):
+    ''' func_pred : REGLA_AVERAGE ABREPAR CTE_D COMA CTE_I CIERRAPAR
+        | REGLA_MEDIAN ABREPAR CTE_D COMA CTE_I CIERRAPAR
+        | REGLA_MODE ABREPAR CTE_D COMA CTE_I CIERRAPAR
+        | REGLA_PLOT ABREPAR CTE_D COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+        | REGLA_PIECHART ABREPAR CTE_D CIERRAPAR
+        | REGLA_VARIANZA ABREPAR CTE_D COMA CTE_I CIERRAPAR
+        | REGLA_DESV_T ABREPAR CTE_D COMA CTE_I CIERRAPAR
+        | REGLA_DIST_N ABREPAR CTE_D COMA CTE_I CIERRAPAR
+        | REGLA_BASIC_V_P ABREPAR CTE_D COMA CTE_CHAR CIERRAPAR
+        '''
+
+def p_lectura(p):
+    ''' lectura : read ABREPAR ID CIERRAPAR PUNTOYCOMA
+        | read ABREPAR ID array CIERRAPAR PUNTOYCOMA
+        '''
+def p_array(p):
+    ''' array : ABREBRACK exp CIERRABRACK
+        | ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK
+        '''
 
 def p_declaracionVar(p):
     ''' declaracionVar : var_id DOSPUNTOS tipo PUNTOYCOMA

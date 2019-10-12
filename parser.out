@@ -2,48 +2,19 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    ABRECOR
-    ABREPAR
-    AND
     CIERRACOR
-    CIERRAPAR
-    CTE_BOOL
-    CTE_CHAR
-    CTE_D
-    CTE_F
-    DIFDE
-    DIVISION
-    IGUAL
-    IGUALIGUAL
-    MAYORQUE
-    MAYORQUEIGUAL
-    MENORQUE
-    MENORQUEIGUAL
-    MULTIPLICACION
-    NOT
-    OR
-    REGLA_AND
-    REGLA_AVERAGE
-    REGLA_BASIC_V_P
-    REGLA_DESV_T
-    REGLA_DIST_T
-    REGLA_ELSE
-    REGLA_FUNCION
-    REGLA_IF
-    REGLA_MEDIAN
-    REGLA_MODE
-    REGLA_NOT
-    REGLA_OR
-    REGLA_PIECHART
-    REGLA_PLOT
-    REGLA_PRINT
-    REGLA_READ
     REGLA_VAR
-    REGLA_VARIANZA
-    REGLA_WHILE
     RESIDUO
+    ABRECOR
     RESTA
+    REGLA_FUNCION
     SUMA
+    CTE_F
+    DIVISION
+    REGLA_READ
+    MULTIPLICACION
+    CTE_BOOL
+    REGLA_PRINT
 
 Grammar
 
@@ -62,72 +33,103 @@ Rule 11    tipo_func -> REGLA_INT
 Rule 12    tipo_func -> REGLA_FLOAT
 Rule 13    tipo_func -> REGLA_CHAR
 Rule 14    tipo_func -> REGLA_BOOL
-Rule 15    declaracionVar -> var_id DOSPUNTOS tipo PUNTOYCOMA
-Rule 16    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
-Rule 17    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
-Rule 18    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
-Rule 19    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_INT PUNTOYCOMA
-Rule 20    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_FLOAT PUNTOYCOMA
-Rule 21    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_CHAR PUNTOYCOMA
-Rule 22    var_id -> ID
-Rule 23    var_id -> ID COMA var_id
+Rule 15    expresion -> exp MAYORQUE exp
+Rule 16    expresion -> exp MENORQUE exp
+Rule 17    expresion -> exp MAYORQUEIGUAL exp
+Rule 18    expresion -> exp MENORQUEIGUAL exp
+Rule 19    expresion -> exp IGUALIGUAL exp
+Rule 20    expresion -> exp DIFDE exp
+Rule 21    logical_expresion -> REGLA_NOT expresion
+Rule 22    logical_expresion -> expresion REGLA_AND expresion
+Rule 23    logical_expresion -> expresion REGLA_OR expresion
+Rule 24    estatuto -> llamada_funcion
+Rule 25    estatuto -> asignacion
+Rule 26    estatuto -> condicion
+Rule 27    estatuto -> escritura
+Rule 28    estatuto -> ciclo
+Rule 29    estatuto -> func_pred
+Rule 30    estatuto -> lectura
+Rule 31    condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+Rule 32    condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
+Rule 33    asignacion -> ID IGUAL logical_expresion PUNTOYCOMA
+Rule 34    asignacion -> ID array IGUAL logical_expresion PUNTOYCOMA
+Rule 35    ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+Rule 36    func_pred -> REGLA_AVERAGE ABREPAR CTE_D COMA CTE_I CIERRAPAR
+Rule 37    func_pred -> REGLA_MEDIAN ABREPAR CTE_D COMA CTE_I CIERRAPAR
+Rule 38    func_pred -> REGLA_MODE ABREPAR CTE_D COMA CTE_I CIERRAPAR
+Rule 39    func_pred -> REGLA_PLOT ABREPAR CTE_D COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+Rule 40    func_pred -> REGLA_PIECHART ABREPAR CTE_D CIERRAPAR
+Rule 41    func_pred -> REGLA_VARIANZA ABREPAR CTE_D COMA CTE_I CIERRAPAR
+Rule 42    func_pred -> REGLA_DESV_T ABREPAR CTE_D COMA CTE_I CIERRAPAR
+Rule 43    func_pred -> REGLA_DIST_N ABREPAR CTE_D COMA CTE_I CIERRAPAR
+Rule 44    func_pred -> REGLA_BASIC_V_P ABREPAR CTE_D COMA CTE_CHAR CIERRAPAR
+Rule 45    lectura -> read ABREPAR ID CIERRAPAR PUNTOYCOMA
+Rule 46    lectura -> read ABREPAR ID array CIERRAPAR PUNTOYCOMA
+Rule 47    array -> ABREBRACK exp CIERRABRACK
+Rule 48    array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK
+Rule 49    declaracionVar -> var_id DOSPUNTOS tipo PUNTOYCOMA
+Rule 50    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+Rule 51    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+Rule 52    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+Rule 53    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_INT PUNTOYCOMA
+Rule 54    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_FLOAT PUNTOYCOMA
+Rule 55    declaracionVar -> var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_CHAR PUNTOYCOMA
+Rule 56    var_id -> ID
+Rule 57    var_id -> ID COMA var_id
 
 Terminals, with rules where they appear
 
-ABREBRACK            : 16 17 18 19 19 20 20 21 21
+ABREBRACK            : 47 48 48 50 51 52 53 53 54 54 55 55
 ABRECOR              : 
-ABREPAR              : 
-AND                  : 
-CIERRABRACK          : 16 17 18 19 19 20 20 21 21
+ABREPAR              : 31 32 35 36 37 38 39 40 41 42 43 44 45 46
+CIERRABRACK          : 47 48 48 50 51 52 53 53 54 54 55 55
 CIERRACOR            : 
-CIERRAPAR            : 
-COMA                 : 23
+CIERRAPAR            : 31 32 35 36 37 38 39 40 41 42 43 44 45 46
+COMA                 : 36 37 38 39 39 41 42 43 44 57
 CTE_BOOL             : 
-CTE_CHAR             : 
-CTE_D                : 
+CTE_CHAR             : 39 39 44
+CTE_D                : 36 37 38 39 40 41 42 43 44
 CTE_F                : 
-CTE_I                : 16 17 18 19 19 20 20 21 21
-DIFDE                : 
+CTE_I                : 36 37 38 41 42 43 50 51 52 53 53 54 54 55 55
+DIFDE                : 20
 DIVISION             : 
-DOSPUNTOS            : 15 16 17 18
-ID                   : 1 2 3 4 16 17 18 19 20 21 22 23
-IGUAL                : 
-IGUALIGUAL           : 
-MAYORQUE             : 
-MAYORQUEIGUAL        : 
-MENORQUE             : 
-MENORQUEIGUAL        : 
+DOSPUNTOS            : 49 50 51 52
+ID                   : 1 2 3 4 33 34 45 46 50 51 52 53 54 55 56 57
+IGUAL                : 33 34
+IGUALIGUAL           : 19
+MAYORQUE             : 15
+MAYORQUEIGUAL        : 17
+MENORQUE             : 16
+MENORQUEIGUAL        : 18
 MULTIPLICACION       : 
-NOT                  : 
-OR                   : 
-PUNTOYCOMA           : 1 2 3 4 15 16 17 18 19 20 21
-REGLA_AND            : 
-REGLA_AVERAGE        : 
-REGLA_BASIC_V_P      : 
+PUNTOYCOMA           : 1 2 3 4 31 32 33 34 35 45 46 49 50 51 52 53 54 55
+REGLA_AND            : 22
+REGLA_AVERAGE        : 36
+REGLA_BASIC_V_P      : 44
 REGLA_BOOL           : 10 14
-REGLA_CHAR           : 8 13 18 21
+REGLA_CHAR           : 8 13 52 55
 REGLA_DATASET        : 9
-REGLA_DESV_T         : 
-REGLA_DIST_T         : 
-REGLA_ELSE           : 
+REGLA_DESV_T         : 42
+REGLA_DIST_N         : 43
+REGLA_ELSE           : 32
 REGLA_END            : 1 2 3 4
-REGLA_FLOAT          : 7 12 17 20
+REGLA_FLOAT          : 7 12 51 54
 REGLA_FUNCION        : 
-REGLA_IF             : 
-REGLA_INT            : 6 11 16 19
+REGLA_IF             : 31 32
+REGLA_INT            : 6 11 50 53
 REGLA_MAIN           : 1 2 3 4
-REGLA_MEDIAN         : 
-REGLA_MODE           : 
-REGLA_NOT            : 
-REGLA_OR             : 
-REGLA_PIECHART       : 
-REGLA_PLOT           : 
+REGLA_MEDIAN         : 37
+REGLA_MODE           : 38
+REGLA_NOT            : 21
+REGLA_OR             : 23
+REGLA_PIECHART       : 40
+REGLA_PLOT           : 39
 REGLA_PRINT          : 
 REGLA_PROGRAMA       : 1 2 3 4
 REGLA_READ           : 
 REGLA_VAR            : 
-REGLA_VARIANZA       : 
-REGLA_WHILE          : 
+REGLA_VARIANZA       : 41
+REGLA_WHILE          : 35
 RESIDUO              : 
 RESTA                : 
 SUMA                 : 
@@ -136,13 +138,26 @@ error                :
 Nonterminals, with rules where they appear
 
 VAR                  : 5
-bloque               : 1 2 3 4
+array                : 34 46
+asignacion           : 25
+bloque               : 1 2 3 4 31 32 32 35
+ciclo                : 28
+condicion            : 26
 declaracionVar       : 5
+escritura            : 27
+estatuto             : 
+exp                  : 15 15 16 16 17 17 18 18 19 19 20 20 47 48 48
+expresion            : 21 22 22 23 23
+func_pred            : 29
+lectura              : 30
+llamada_funcion      : 24
+logical_expresion    : 31 32 33 34 35
 modulos              : 3 4
 programa             : 0
-tipo                 : 15
+read                 : 45 46
+tipo                 : 49
 tipo_func            : 
-var                  : 16 17 18 19 20 21
-var_id               : 15 23
+var                  : 50 51 52 53 54 55
+var_id               : 49 57
 vars                 : 2 4
 
