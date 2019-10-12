@@ -37,21 +37,17 @@ reserved = {
 
 
 tokens = [
-    'SUMA','RESTA','MULTIPLICACION','DIVISION','RESIDUO'
-          'MENORQUE', 'MENORQUEIGUAL'
+    'SUMA','RESTA','MULTIPLICACION','DIVISION','RESIDUO',
+          'MENORQUE', 'MENORQUEIGUAL',
           'MAYORQUE', 'MAYORQUEIGUAL',
           'IGUALIGUAL','DIFDE',
-          'AND','OR','NOT'
+          'AND','OR','NOT',
           'ABREPAR','CIERRAPAR',
           'ABRECOR','CIERRACOR',
           'ABREBRACK','CIERRABRACK',
           'COMA','PUNTOYCOMA','DOSPUNTOS','IGUAL',
           'CTE_I','CTE_F','CTE_CHAR','CTE_BOOL','CTE_D',
-          'ID',
-          'IF',
-          'ELSE',
-          'FUNC',
-          'MAIN
+          'ID'
 ]
 
 #tokens
@@ -64,12 +60,9 @@ t_RESIDUO = r'\%'
 t_MAYORQUE = r'\>'
 t_MAYORQUEIGUAL = r'\>='
 t_MENORQUE = r'\<'
-t_MENORQUE = r'\<='
-t_IGUALIGUAL = r'\=='
-t_DIFDE = r'\!='
-t_AND = r'\AND'
-t_OR = r'\OR'
-t_NOT = r'\NOT'
+t_MENORQUEIGUAL = r'\<\='
+t_IGUALIGUAL = r'\=\='
+t_DIFDE = r'\!\='
 t_ABREPAR = r'\('
 t_CIERRAPAR = r'\)'
 t_ABRECOR = r'\{'
@@ -84,7 +77,7 @@ t_CTE_I = r'[0-9]+'
 t_CTE_F = r'[0-9]+\.[0-9]+'
 
 t_CTE_CHAR = r'\"([^\\\n]|(\\.))*?\"'
-t_CTE_BOOL = r'\TRUE|FALSE'
+
 t_CTE_D = r'\"([^\\\n]|(\\.))*?\"'
 
 
@@ -139,7 +132,7 @@ def p_declaracionVar(p):
                         | var ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
                         | var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_INT PUNTOYCOMA
                         | var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_FLOAT PUNTOYCOMA
-                        | | var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_CHAR PUNTOYCOMA
+                        | var ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_CHAR PUNTOYCOMA
                         '''
 
 def p_var_id(p):
