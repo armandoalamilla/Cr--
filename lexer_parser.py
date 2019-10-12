@@ -65,80 +65,23 @@ def t_error(t):
 lex.lex()
 
 def p_programa(p):
-    '''programa : REGLA_PROGRAMA ID DOSPUNTOS vars bloque
-                | REGLA_PROGRAMA ID DOSPUNTOS bloque    
+    '''programa : PROGRAMA ID PUNTOYCOMA MAIN bloque END 
+                | PROGRAMA ID PUNTOYCOMA vars MAIN bloque END
+                | PROGRAMA ID PUNTOYCOMA modulos MAIN bloque END
+                | PROGRAMA ID PUNTOYCOMA vars modulos MAIN bloque END  
     '''
 
 def p_vars(p):
-    '''vars : REGLA_VAR declaracionVar'''
+    ''' vars : VAR declaracionVar'''
 
 def p_declaracionVar(p):
-    '''declaracionVar : var_id DOSPUNTOS tipo PUNTOYCOMA'''
+    ''' declaracionVar : var_id DOSPUNTOS tipo PUNTOYCOMA'''
 
-def p_var_id(p):    
-    '''var_id : ID 
-                | ID COMA var_id'''
-
-def p_tipo(p):
-    '''tipo : REGLA_INT 
-            | REGLA_FLOAT'''
-
-def p_bloque(p):
-    '''bloque : ABRECOR CIERRACOR 
-                | ABRECOR varios_estatutos CIERRACOR'''
-
-def p_varios_estatutos(p):
-    '''varios_estatutos : estatuto 
-                            | estatuto varios_estatutos'''
-
-def p_estatuto(p):
-    '''estatuto : asignacion 
-                | condicion 
-                | escritura'''
-
-def p_asignacion(p):
-    '''asignacion : ID IGUAL expresion PUNTOYCOMA'''
-
-def p_condicion(p):
-    '''condicion : REGLA_IF ABREPAR expresion CIERRAPAR bloque PUNTOYCOMA
-                    | REGLA_IF ABREPAR expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA'''
-
-def p_escritura(p):
-    '''escritura : REGLA_PRINT ABREPAR imprime CIERRAPAR PUNTOYCOMA'''
-
-def p_imprime(p):
-    '''imprime : expresion 
-                | CTE_S
-                | expresion COMA imprime
-                | CTE_S COMA imprime'''
-
-def p_expresion(p):
-    '''expresion : exp
-                | exp MAYORQUE exp
-                | exp MENORQUE exp
-                | exp DIFDE exp'''
-
-def p_exp(p):
-    '''exp : termino
-            | termino SUMA exp
-            | termino RESTA exp'''
+def p_var_id(p):
+    ''' var_id : ID
+                | ID COMA var_id  '''
 
 
-def p_termino(p):
-    '''termino : factor
-                | factor MULTIPLICACION termino
-                | factor DIVISION termino'''
-
-def p_factor(p):
-    '''factor : ABREPAR expresion CIERRAPAR
-                | SUMA var_cte
-                | RESTA var_cte
-                | var_cte'''
-
-def p_var_cte(p):
-    '''var_cte : ID
-                | CTE_I
-                | CTE_F'''
 
 def p_error(p):
     global aprobado
