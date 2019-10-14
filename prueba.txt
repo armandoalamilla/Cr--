@@ -1,0 +1,63 @@
+PROGRAM algo:
+
+VAR ent1,nose:INT;
+VAR lala,equis1:FLOAT;
+VAR array[3]:INT;
+VAR array[3]:FLOAT;
+VAR array[3][4]:INT;
+VAR noseC[5]:CHAR;
+VAR d:DATASET;
+
+FUNC VOID primerFuncion(INT nose, FLOAT jeje)
+VAR ent1:INT;
+VAR ent1:INT;
+{
+   a= b + a;
+
+   b=a;
+}
+
+FUNC INT segundaFuncion(INT nose, FLOAT jeje)
+VAR ent1:INT;
+VAR ent1:INT;
+{
+   a= b + a;
+
+   b=a;
+}
+
+
+
+MAIN 
+{
+   noseC = 'X://carpeta/algo.txt';
+   d = noseC;
+   a=a + b;
+   a=a + b;
+   primerFuncion(a,b);
+   segundaFuncion(b,a);
+
+   IF ((a < b) OR (b>a) )
+   {
+       a=a;
+   };
+
+   WHILE (a < b)
+   {
+        IF ((a < b) OR (b>a) )
+            {
+       a=a;
+             };
+
+       a=a+b;
+   };
+
+   PRINT(A,B);
+   READ(a);
+   READ(A[3][5]);
+
+   PIECHART(d)
+
+}
+
+END

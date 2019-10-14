@@ -2,3 +2,4 @@
 *.out
 parser.out
 *.out
+parsetab.py

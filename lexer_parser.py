@@ -32,7 +32,8 @@ reserved = {
     'VARIANZA' : 'REGLA_VARIANZA',
     'DESV_T' : 'REGLA_DESV_T',
     'DIST_N' : 'REGLA_DIST_N',
-    'BASIC_V_P' : 'REGLA_BASIC_V_P'
+    'BASIC_V_P' : 'REGLA_BASIC_V_P',
+    'VOID' : 'REGLA_VOID'
 }
 
 
@@ -75,9 +76,9 @@ t_IGUAL = r'\='
 t_CTE_I = r'[0-9]+'
 t_CTE_F = r'[0-9]+\.[0-9]+'
 
-t_CTE_CHAR = r'\"([^\\\n]|(\\.))*?\"'
 
-t_CTE_D = r'\"([^\\\n]|(\\.))*?\"'
+t_CTE_CHAR = r'\'' + r'([a-zA-Z_][a-zA-Z0-9_]*|.*|/*)' + r'\''
+
 
 
 tokens = tokens + list(reserved.values())
@@ -102,14 +103,28 @@ def t_error(t):
 lex.lex()
 
 def p_programa(p):
-    '''programa : REGLA_PROGRAMA ID PUNTOYCOMA REGLA_MAIN bloque REGLA_END 
-                | REGLA_PROGRAMA ID PUNTOYCOMA vars REGLA_MAIN bloque REGLA_END
-                | REGLA_PROGRAMA ID PUNTOYCOMA modulos REGLA_MAIN bloque REGLA_END
-                | REGLA_PROGRAMA ID PUNTOYCOMA vars modulos REGLA_MAIN bloque REGLA_END  
+    '''programa : REGLA_PROGRAMA ID DOSPUNTOS REGLA_MAIN bloque REGLA_END 
+                | REGLA_PROGRAMA ID DOSPUNTOS vars REGLA_MAIN bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS programa_modulos_aux REGLA_MAIN bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS vars programa_modulos_aux REGLA_MAIN bloque REGLA_END  
     '''
 
+def p_programa_modulos_aux(p):
+    ''' programa_modulos_aux : modulos
+                            | modulos programa_modulos_aux'''
+
+def p_modulos(p):
+    ''' modulos : REGLA_FUNCION tipo_func ID ABREPAR modulos_aux CIERRAPAR vars bloque
+                | REGLA_FUNCION REGLA_VOID ID ABREPAR modulos_aux CIERRAPAR vars bloque '''
+
+def p_modulos_aux(p):
+    ''' modulos_aux : tipo ID 
+                    | tipo ID COMA modulos_aux '''
+    
+
 def p_vars(p):
-    ''' vars : REGLA_VAR declaracionVar'''
+    ''' vars : REGLA_VAR declaracionVar
+                | REGLA_VAR declaracionVar vars'''
 
 def p_tipo(p):
     '''tipo : REGLA_INT
@@ -130,12 +145,14 @@ def p_expresion(p):
                    | exp MAYORQUEIGUAL exp
                    | exp MENORQUEIGUAL exp
                    | exp IGUALIGUAL exp
-                   | exp DIFDE exp '''
+                   | exp DIFDE exp
+                   | exp '''
 
 def p_logical_expresion(p):
     '''logical_expresion : REGLA_NOT expresion
         | expresion REGLA_AND expresion
-        | expresion REGLA_OR expresion '''
+        | expresion REGLA_OR expresion 
+        | expresion '''
 
 def p_estatuto(p):
     '''estatuto : llamada_funcion
@@ -145,6 +162,20 @@ def p_estatuto(p):
         | ciclo
         | func_pred
         | lectura '''
+
+def p_llamada_funcion(p):
+    ''' llamada_funcion : ID ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA'''
+
+def p_llamada_funcion_aux(p):
+    ''' llamada_funcion_aux : exp
+                            | exp COMA llamada_funcion_aux'''
+
+def p_escritura(p):
+    ''' escritura : REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA '''
+
+def p_escritura_aux(p):
+    ''' escritura_aux : expresion 
+                        | expresion COMA escritura_aux '''
 
 def p_condicion(p):
     '''condicion : REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
@@ -161,15 +192,15 @@ def p_ciclo(p):
         '''
 
 def p_func_pred(p):
-    ''' func_pred : REGLA_AVERAGE ABREPAR CTE_D COMA CTE_I CIERRAPAR
-        | REGLA_MEDIAN ABREPAR CTE_D COMA CTE_I CIERRAPAR
-        | REGLA_MODE ABREPAR CTE_D COMA CTE_I CIERRAPAR
-        | REGLA_PLOT ABREPAR CTE_D COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
-        | REGLA_PIECHART ABREPAR CTE_D CIERRAPAR
-        | REGLA_VARIANZA ABREPAR CTE_D COMA CTE_I CIERRAPAR
-        | REGLA_DESV_T ABREPAR CTE_D COMA CTE_I CIERRAPAR
-        | REGLA_DIST_N ABREPAR CTE_D COMA CTE_I CIERRAPAR
-        | REGLA_BASIC_V_P ABREPAR CTE_D COMA CTE_CHAR CIERRAPAR
+    ''' func_pred : REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR
+        | REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR
+        | REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR
+        | REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+        | REGLA_PIECHART ABREPAR ID CIERRAPAR
+        | REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR
+        | REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR
+        | REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR
+        | REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR
         '''
 
 def p_lectura(p):
@@ -186,10 +217,9 @@ def p_declaracionVar(p):
                         | ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
                         | ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
                         | ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
-                        | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_INT PUNTOYCOMA
-                        | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_FLOAT PUNTOYCOMA
-                        | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK REGLA_CHAR PUNTOYCOMA
-                        | declaracionVar
+                        | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+                        | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS  REGLA_FLOAT PUNTOYCOMA
+                        | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
                         '''
 
 def p_var_id(p):
@@ -213,12 +243,12 @@ def p_var_cte_aux(p):
 
 def p_bloque(p):
     ''' bloque : ABRECOR estatuto_aux CIERRACOR
-                | ABRECOR CIERRACOR
+                
     '''
 
 def p_estatuo_aux(p):
     ''' estatuto_aux : estatuto 
-                    | estatuto_aux '''
+                    | estatuto estatuto_aux '''
 
 def p_exp(p):
     ''' exp : termino 
@@ -239,12 +269,6 @@ def p_factor(p):
 
 
 
-
-
-        
-
-
-
 def p_error(p):
     global aprobado
     aprobado = False
@@ -253,18 +277,18 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-"""archivo = "prueba.txt"
+archivo = "prueba.txt"
 f = open(archivo, 'r')
 s = f.read()
 
 parser.parse(s)
 
 if aprobado == True:
-    print("Archivo :)")
+    print("Archivo APROBADO")
     sys.exit()
 else:
     print("Archivo :(")
-    sys.exit()"""
+    sys.exit()
 
 
 
