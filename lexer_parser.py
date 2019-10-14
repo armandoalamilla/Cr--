@@ -173,8 +173,8 @@ def p_func_pred(p):
         '''
 
 def p_lectura(p):
-    ''' lectura : read ABREPAR ID CIERRAPAR PUNTOYCOMA
-        | read ABREPAR ID array CIERRAPAR PUNTOYCOMA
+    ''' lectura : REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA
+        | REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA
         '''
 def p_array(p):
     ''' array : ABREBRACK exp CIERRABRACK
@@ -212,7 +212,7 @@ def p_var_cte_aux(p):
                     | exp COMA var_cte_aux '''
 
 def p_bloque(p):
-    ''' bloque : ABRECOR estauto_aux CIERRACOR
+    ''' bloque : ABRECOR estatuto_aux CIERRACOR
                 | ABRECOR CIERRACOR
     '''
 
@@ -223,12 +223,19 @@ def p_estatuo_aux(p):
 def p_exp(p):
     ''' exp : termino 
             | termino SUMA exp 
-            | termino resta exp '''
+            | termino RESTA exp '''
 
 def p_termino(p):
     ''' termino : factor 
                 | factor MULTIPLICACION termino
                 | factor DIVISION termino '''
+
+def p_factor(p):
+    ''' factor : ABREPAR logical_expresion CIERRAPAR 
+                | var_cte 
+                | SUMA var_cte 
+                | RESTA var_cte '''
+
 
 
 
