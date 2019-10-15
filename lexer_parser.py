@@ -1,6 +1,6 @@
 import ply.lex as lex
 import ply.yacc as yacc
-import ayudantes.varTable as variableTabla
+import varTable as variableTabla
 import sys
 
 aprobado = True
