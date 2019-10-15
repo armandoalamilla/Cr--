@@ -1,8 +1,17 @@
 import ply.lex as lex
 import ply.yacc as yacc
+import ayudantes.varTable as variableTabla
 import sys
 
 aprobado = True
+global varNombreTemp
+
+varNombreTemp = []
+
+global varTipoActual
+
+
+
 
 
 reserved = {
@@ -49,6 +58,10 @@ tokens = [
           'CTE_I','CTE_F','CTE_CHAR','CTE_BOOL','CTE_D',
           'ID'
 ]
+
+
+
+
 
 #tokens
 
@@ -114,12 +127,17 @@ def p_programa_modulos_aux(p):
                             | modulos programa_modulos_aux'''
 
 def p_modulos(p):
-    ''' modulos : REGLA_FUNCION tipo_func ID ABREPAR modulos_aux CIERRAPAR vars bloque
-                | REGLA_FUNCION REGLA_VOID ID ABREPAR modulos_aux CIERRAPAR vars bloque '''
+    ''' modulos : REGLA_FUNCION tipo_func DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR vars bloque
+                | REGLA_FUNCION REGLA_VOID DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR vars bloque '''
+    
+   
 
 def p_modulos_aux(p):
-    ''' modulos_aux : tipo ID 
-                    | tipo ID COMA modulos_aux '''
+    ''' modulos_aux : ID tipo 
+                    | ID tipo COMA modulos_aux '''
+    variableTabla.addVariable(p[1],p[2])
+    
+    
     
 
 def p_vars(p):
@@ -132,12 +150,23 @@ def p_tipo(p):
         | REGLA_CHAR
         | REGLA_DATASET
         | REGLA_BOOL '''
+    global varNombreTemp
+   
+    for x in varNombreTemp:        
+        variableTabla.addVariable(x,p[1])
+        
+
+    varNombreTemp = []
+   
+
+    
 
 def p_tipo_func(p):
     '''tipo_func : REGLA_INT
         | REGLA_FLOAT
         | REGLA_CHAR
         | REGLA_BOOL '''
+    
 
 def p_expresion(p):
     '''expresion : exp MAYORQUE exp
@@ -186,6 +215,9 @@ def p_asignacion(p):
     '''asignacion : ID IGUAL logical_expresion PUNTOYCOMA
         | ID array IGUAL logical_expresion PUNTOYCOMA
         '''
+    
+
+    
 
 def p_ciclo(p):
     '''ciclo : REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
@@ -220,11 +252,17 @@ def p_declaracionVar(p):
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS  REGLA_FLOAT PUNTOYCOMA
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
-                        '''
+                        '''    
+    
+    
 
-def p_var_id(p):
+def p_var_id(p):    
     ''' var_id : ID
-                | ID COMA var_id  '''
+                | ID COMA var_id
+                '''
+    global varNombreTemp
+    varNombreTemp.append(p[1]) 
+    
 
 def p_var_cte(p):
     ''' var_cte : ID 
@@ -254,6 +292,7 @@ def p_exp(p):
     ''' exp : termino 
             | termino SUMA exp 
             | termino RESTA exp '''
+    
 
 def p_termino(p):
     ''' termino : factor 
@@ -282,6 +321,9 @@ f = open(archivo, 'r')
 s = f.read()
 
 parser.parse(s)
+
+#imprimir dir de variables
+print(variableTabla.lista_variables)
 
 if aprobado == True:
     print("Archivo APROBADO")

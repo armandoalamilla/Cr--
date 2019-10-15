@@ -1,38 +1,22 @@
 PROGRAM algo:
 
-VAR ent1,nose:INT;
-VAR lala,equis1:FLOAT;
-VAR array[3]:INT;
-VAR array[3]:FLOAT;
-VAR array[3][4]:INT;
-VAR noseC[5]:CHAR;
-VAR d:DATASET;
+VAR entero,entero2:INT;
+VAR flota,flota2:FLOAT;
+VAR d,flota:DATASET;
+VAR lala:CHAR;
 
-FUNC VOID primerFuncion(INT nose, FLOAT jeje)
-VAR ent1:INT;
-VAR ent1:INT;
+FUNC VOID:prueba (entrada INT, entrada2 FLOAT)
+VAR algo:INT;
+VAR algo2:FLOAT;
 {
-   a= b + a;
-
-   b=a;
+  a=b;
 }
-
-FUNC INT segundaFuncion(INT nose, FLOAT jeje)
-VAR ent1:INT;
-VAR ent1:INT;
-{
-   a= b + a;
-
-   b=a;
-}
-
 
 
 MAIN 
 {
    noseC = 'X://carpeta/algo.txt';
-   d = noseC;
-   a=a + b;
+   arrayDE[2]= f;
    a=a + b;
    primerFuncion(a,b);
    segundaFuncion(b,a);
