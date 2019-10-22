@@ -252,7 +252,11 @@ def p_declaracionVar(p):
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS  REGLA_FLOAT PUNTOYCOMA
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
-                        '''    
+                        '''
+    if p[1] != None :
+        print("nombre: " + p[1] + " " + "tipo: " + p[6])
+
+
     
     
 
