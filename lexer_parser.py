@@ -8,7 +8,11 @@ global varNombreTemp
 
 varNombreTemp = []
 
-global varTipoActual
+global varTipoActual, tipoTemp
+
+global NombreFuncActual, scopeActual, tipoActual, tempNombreFunc
+
+#variables que determinan el manejo de las funciones
 
 NombreFuncActual = 'MAIN'
 scopeActual = 'global'
@@ -125,6 +129,10 @@ def p_programa(p):
                 | REGLA_PROGRAMA ID DOSPUNTOS programa_modulos_aux REGLA_MAIN bloque REGLA_END
                 | REGLA_PROGRAMA ID DOSPUNTOS vars programa_modulos_aux REGLA_MAIN bloque REGLA_END  
     '''
+    global NombreFuncActual, scopeActual, tipoActual
+    NombreFuncActual = 'MAIN'
+    scopeActual = 'global'
+    tipoActual = 'VOID'
 
 def p_programa_modulos_aux(p):
     ''' programa_modulos_aux : modulos
@@ -133,6 +141,19 @@ def p_programa_modulos_aux(p):
 def p_modulos(p):
     ''' modulos : REGLA_FUNCION tipo_func DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR vars bloque
                 | REGLA_FUNCION REGLA_VOID DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR vars bloque '''
+    global tempNombreFunc,tipoActual,scopeActual,tipoTemp
+    
+    #validar regla void
+    if p[2] != None:
+        NombreFuncActual = p[4]        
+        scopeActual = 'LOCAL'
+        tipoActual = p[2]
+        directorio.almacenaFuncion(NombreFuncActual,scopeActual,tipoActual)
+    else:
+        tempNombreFunc = p[4]
+        #print(tempNombreFunc,scopeActual,tipoTemp)
+        directorio.almacenaFuncion(tempNombreFunc,scopeActual,tipoTemp)
+
     
    
 
@@ -140,7 +161,7 @@ def p_modulos_aux(p):
     ''' modulos_aux : ID tipo 
                     | ID tipo COMA modulos_aux '''
     #variableTabla.addVariable(p[1],p[2])
-    directorio.almacenaVarsEnFunc(NombreFuncActual,p[1],p[2])
+    #directorio.almacenaVarsEnFunc(NombreFuncActual,p[1],p[2])
     
     
     
@@ -171,6 +192,11 @@ def p_tipo_func(p):
         | REGLA_FLOAT
         | REGLA_CHAR
         | REGLA_BOOL '''
+    global tipoTemp    
+    tipoTemp=p[1]
+    scopeActual='LOCAL'
+    #directorio.almacenaFuncion(NombreFuncActual,scopeActual,tipoActual)
+    
     
 
 def p_expresion(p):
@@ -337,7 +363,7 @@ s = f.read()
 parser.parse(s)
 
 #imprimir dir de funciones
-print(directorio.funcionLista[NombreFuncActual])
+print(directorio.funcionLista)
 
 if aprobado == True:
     print("Archivo APROBADO")
