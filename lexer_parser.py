@@ -259,7 +259,12 @@ def p_declaracionVar(p):
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
                         '''
     if p[1] != None :
-        print("nombre: " + p[1] + " " + "tipo: " + p[6])
+        if p[5] != ':' :
+            directorio.almacenaVarsEnFunc(NombreFuncActual,p[1],p[9])
+        else:
+            directorio.almacenaVarsEnFunc(NombreFuncActual,p[1],p[6])
+
+        
 
 
     
@@ -331,8 +336,8 @@ s = f.read()
 
 parser.parse(s)
 
-#imprimir dir de variables
-print(directorio.funcionLista)
+#imprimir dir de funciones
+print(directorio.funcionLista[NombreFuncActual])
 
 if aprobado == True:
     print("Archivo APROBADO")

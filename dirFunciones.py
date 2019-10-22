@@ -1,8 +1,4 @@
-
-
-
 funcionLista = {}
-
 
 
 def cambiaScope(scopeTemp):    
