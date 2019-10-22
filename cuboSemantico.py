@@ -1,5 +1,5 @@
 
-    def cuboSemantico:
+    def cuboSemantico():
         sem_cubo = {
             "INT" : {
                 "INT" : {
