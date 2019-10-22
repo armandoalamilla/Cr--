@@ -1,6 +1,6 @@
 import ply.lex as lex
 import ply.yacc as yacc
-import varTable as variableTabla
+import dirFunciones as directorio
 import sys
 
 aprobado = True
@@ -10,7 +10,11 @@ varNombreTemp = []
 
 global varTipoActual
 
+NombreFuncActual = 'MAIN'
+scopeActual = 'global'
+tipoActual = 'VOID'
 
+directorio.almacenaFuncion(NombreFuncActual,scopeActual,tipoActual)
 
 
 
@@ -135,7 +139,8 @@ def p_modulos(p):
 def p_modulos_aux(p):
     ''' modulos_aux : ID tipo 
                     | ID tipo COMA modulos_aux '''
-    variableTabla.addVariable(p[1],p[2])
+    #variableTabla.addVariable(p[1],p[2])
+    directorio.almacenaVarsEnFunc(NombreFuncActual,p[1],p[2])
     
     
     
@@ -153,8 +158,8 @@ def p_tipo(p):
     global varNombreTemp
    
     for x in varNombreTemp:        
-        variableTabla.addVariable(x,p[1])
-        
+        #variableTabla.addVariable(x,p[1])
+        directorio.almacenaVarsEnFunc(NombreFuncActual,x,p[1])        
 
     varNombreTemp = []
    
@@ -327,7 +332,7 @@ s = f.read()
 parser.parse(s)
 
 #imprimir dir de variables
-print(variableTabla.lista_variables)
+print(directorio.funcionLista)
 
 if aprobado == True:
     print("Archivo APROBADO")

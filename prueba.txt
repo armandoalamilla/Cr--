@@ -6,7 +6,8 @@ VAR d,flota:DATASET;
 VAR lala:CHAR;
 VAR arrP[5]:INT;
 VAR arrP2[5]:FLOAT;
-VAR arrP3[6]:CHAR;
+VAR arrP3[6][7]:CHAR;
+VAR matrix4[6][7]:INT;
 
 FUNC VOID:prueba (entrada INT, entrada2 FLOAT)
 VAR algo:INT;
