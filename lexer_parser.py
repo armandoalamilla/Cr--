@@ -1,7 +1,7 @@
 import ply.lex as lex
 import ply.yacc as yacc
 import dirFunciones as directorio
-import sys
+import sys, json
 
 aprobado = True
 global varNombreTemp
@@ -151,6 +151,7 @@ def p_modulos(p):
         directorio.almacenaFuncion(NombreFuncActual,scopeActual,tipoActual)
     else:
         tempNombreFunc = p[4]
+        scopeActual = 'LOCAL'
         #print(tempNombreFunc,scopeActual,tipoTemp)
         directorio.almacenaFuncion(tempNombreFunc,scopeActual,tipoTemp)
 
@@ -363,7 +364,10 @@ s = f.read()
 parser.parse(s)
 
 #imprimir dir de funciones
-print(directorio.funcionLista)
+app_json = json.dumps(directorio.funcionLista, indent=4)
+f = open("lalala.json", "w")
+f.write(app_json)
+f.close()
 
 if aprobado == True:
     print("Archivo APROBADO")

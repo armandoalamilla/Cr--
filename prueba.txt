@@ -10,29 +10,29 @@ VAR arrP3[6][7]:CHAR;
 VAR matrix4[6][7]:INT;
 
 FUNC VOID:prueba (entrada INT, entrada2 FLOAT)
-VAR algo:INT;
-VAR algo2:FLOAT;
+VAR prueba1:INT;
+VAR prueba2:FLOAT;
 {
   a=b;
 }
 
 FUNC INT:CACA (entrada INT, entrada2 FLOAT)
-VAR algo3:INT;
-VAR algo4:FLOAT;
+VAR CACA1:INT;
+VAR CACA2:FLOAT;
 {
   a=b;
 }
 
 FUNC FLOAT:CACA2 (entrada INT, entrada2 FLOAT)
-VAR algo3:INT;
-VAR algo4:FLOAT;
+VAR CACA21:INT;
+VAR CACA22:FLOAT;
 {
   a=b;
 }
 
 FUNC CHAR:CACA3 (entrada INT, entrada2 FLOAT)
-VAR algo3:INT;
-VAR algo4:FLOAT;
+VAR CACA31:INT;
+VAR CACA32:FLOAT;
 {
   a=b;
 }
