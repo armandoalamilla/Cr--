@@ -2,7 +2,7 @@ PROGRAM algo:
 
 VAR entero,entero2:INT;
 VAR flota,flota2:FLOAT;
-VAR d,flota:DATASET;
+VAR d,DATAalgo:DATASET;
 VAR lala:CHAR;
 VAR arrP[5]:INT;
 VAR arrP2[5]:FLOAT;

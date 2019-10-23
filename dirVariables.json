@@ -1,0 +1,52 @@
+{
+    "entero2": {
+        "name": "entero2",
+        "tipo": "INT",
+        "func": "MAIN"
+    },
+    "flota2": {
+        "name": "flota2",
+        "tipo": "FLOAT",
+        "func": "MAIN"
+    },
+    "DATAalgo": {
+        "name": "DATAalgo",
+        "tipo": "DATASET",
+        "func": "MAIN"
+    },
+    "lala": {
+        "name": "lala",
+        "tipo": "CHAR",
+        "func": "MAIN"
+    },
+    "arrP": {
+        "name": "arrP",
+        "tipo": "INT",
+        "func": "MAIN"
+    },
+    "arrP2": {
+        "name": "arrP2",
+        "tipo": "FLOAT",
+        "func": "MAIN"
+    },
+    "arrP3": {
+        "name": "arrP3",
+        "tipo": "CHAR",
+        "func": "MAIN"
+    },
+    "matrix4": {
+        "name": "matrix4",
+        "tipo": "INT",
+        "func": "MAIN"
+    },
+    "prueba1": {
+        "name": "prueba1",
+        "tipo": "INT",
+        "func": "MAIN"
+    },
+    "prueba2": {
+        "name": "prueba2",
+        "tipo": "FLOAT",
+        "func": "MAIN"
+    }
+}

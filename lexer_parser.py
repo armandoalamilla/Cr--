@@ -4,7 +4,7 @@ import dirFunciones as directorio
 import sys, json
 
 aprobado = True
-global varNombreTemp
+
 
 varNombreTemp = []
 
@@ -12,13 +12,17 @@ global varTipoActual, tipoTemp
 
 global NombreFuncActual, scopeActual, tipoActual, tempNombreFunc
 
+arrayNombreFunc = [99]
+
+contadorScope = 0
+
 #variables que determinan el manejo de las funciones
 
 NombreFuncActual = 'MAIN'
 scopeActual = 'global'
 tipoActual = 'VOID'
 
-directorio.almacenaFuncion(NombreFuncActual,scopeActual,tipoActual)
+#directorio.almacenaFuncion(NombreFuncActual,scopeActual,tipoActual)
 
 
 
@@ -129,11 +133,8 @@ def p_programa(p):
                 | REGLA_PROGRAMA ID DOSPUNTOS programa_modulos_aux REGLA_MAIN bloque REGLA_END
                 | REGLA_PROGRAMA ID DOSPUNTOS vars programa_modulos_aux REGLA_MAIN bloque REGLA_END  
     '''
-    global NombreFuncActual, scopeActual, tipoActual
-    NombreFuncActual = 'MAIN'
-    scopeActual = 'global'
-    tipoActual = 'VOID'
-
+    
+  
 def p_programa_modulos_aux(p):
     ''' programa_modulos_aux : modulos
                             | modulos programa_modulos_aux'''
@@ -141,19 +142,29 @@ def p_programa_modulos_aux(p):
 def p_modulos(p):
     ''' modulos : REGLA_FUNCION tipo_func DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR vars bloque
                 | REGLA_FUNCION REGLA_VOID DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR vars bloque '''
-    global tempNombreFunc,tipoActual,scopeActual,tipoTemp
+    global tempNombreFunc,tipoActual,scopeActual,tipoTemp,contadorScope
     
+
     #validar regla void
     if p[2] != None:
-        NombreFuncActual = p[4]        
+        contadorScope = contadorScope + 1
+        NombreFuncActual = p[4]
+        print(contadorScope, p[4])
+        arrayNombreFunc.append(p[4])       
         scopeActual = 'LOCAL'
         tipoActual = p[2]
-        directorio.almacenaFuncion(NombreFuncActual,scopeActual,tipoActual)
+        directorio.almacenaFuncion(arrayNombreFunc[contadorScope],scopeActual,tipoActual)
+        
+        
     else:
+        contadorScope = contadorScope + 1
+        print(contadorScope, p[4])
         tempNombreFunc = p[4]
+        arrayNombreFunc.append(p[4])
         scopeActual = 'LOCAL'
-        #print(tempNombreFunc,scopeActual,tipoTemp)
-        directorio.almacenaFuncion(tempNombreFunc,scopeActual,tipoTemp)
+        #print(tempNombreFunc,scopeActual,tipoTemp)        
+        directorio.almacenaFuncion(arrayNombreFunc[contadorScope],scopeActual,tipoTemp)
+        
 
     
    
@@ -171,19 +182,35 @@ def p_vars(p):
     ''' vars : REGLA_VAR declaracionVar
                 | REGLA_VAR declaracionVar vars'''
 
+        
+
+
 def p_tipo(p):
     '''tipo : REGLA_INT
         | REGLA_FLOAT
         | REGLA_CHAR
         | REGLA_DATASET
         | REGLA_BOOL '''
-    global varNombreTemp
-   
-    for x in varNombreTemp:        
-        #variableTabla.addVariable(x,p[1])
-        directorio.almacenaVarsEnFunc(NombreFuncActual,x,p[1])        
+    global varNombreTemp, contadorScope, arrayNombreFunc, contadorScope
 
-    varNombreTemp = []
+
+
+    if contadorScope == 0:  
+        #arrayNombreFunc.append('MAIN')
+        arrayNombreFunc[0] = NombreFuncActual
+        directorio.almacenaFuncion(arrayNombreFunc[0],scopeActual,tipoActual)
+        #print(contadorScope, arrayNombreFunc)        
+        #print(contadorScope, arrayNombreFunc)
+        for x in varNombreTemp:        
+            directorio.almacenaVarsEnFunc(arrayNombreFunc[contadorScope],x,p[1])        
+            varNombreTemp.clear()
+
+
+       
+    
+    
+      
+    
    
 
     
@@ -285,11 +312,17 @@ def p_declaracionVar(p):
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS  REGLA_FLOAT PUNTOYCOMA
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
                         '''
+    global contadorScope, arrayNombreFunc
+    
+        
+
     if p[1] != None :
         if p[5] != ':' :
-            directorio.almacenaVarsEnFunc(NombreFuncActual,p[1],p[9])
+            directorio.almacenaVarsEnFunc(arrayNombreFunc[contadorScope],p[1],p[9])
         else:
-            directorio.almacenaVarsEnFunc(NombreFuncActual,p[1],p[6])
+            directorio.almacenaVarsEnFunc(arrayNombreFunc[contadorScope],p[1],p[6])
+
+    
 
         
 
@@ -365,9 +398,16 @@ parser.parse(s)
 
 #imprimir dir de funciones
 app_json = json.dumps(directorio.funcionLista, indent=4)
-f = open("lalala.json", "w")
+app_json2 = json.dumps(directorio.lista_vars, indent=4)
+f = open("dirFunc.json", "w")
+g = open("dirVariables.json","w")
 f.write(app_json)
+g.write(app_json2)
 f.close()
+g.close()
+print(arrayNombreFunc)
+
+
 
 if aprobado == True:
     print("Archivo APROBADO")
