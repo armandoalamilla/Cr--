@@ -39,14 +39,9 @@
         "tipo": "INT",
         "func": "MAIN"
     },
-    "prueba1": {
-        "name": "prueba1",
+    "var11": {
+        "name": "var11",
         "tipo": "INT",
-        "func": "MAIN"
-    },
-    "prueba2": {
-        "name": "prueba2",
-        "tipo": "FLOAT",
         "func": "MAIN"
     }
 }

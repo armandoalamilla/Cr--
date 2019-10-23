@@ -12,7 +12,7 @@ global varTipoActual, tipoTemp
 
 global NombreFuncActual, scopeActual, tipoActual, tempNombreFunc
 
-arrayNombreFunc = [99]
+arrayNombreFunc = [0]
 
 contadorScope = 0
 
@@ -138,34 +138,47 @@ def p_programa(p):
 def p_programa_modulos_aux(p):
     ''' programa_modulos_aux : modulos
                             | modulos programa_modulos_aux'''
+    global contadorScope
+    contadorScope = contadorScope + 1
 
 def p_modulos(p):
-    ''' modulos : REGLA_FUNCION tipo_func DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR vars bloque
-                | REGLA_FUNCION REGLA_VOID DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR vars bloque '''
+    ''' modulos : REGLA_FUNCION tipo_func DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR cont modulos_vars
+                | REGLA_FUNCION REGLA_VOID DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR cont modulos_vars '''
     global tempNombreFunc,tipoActual,scopeActual,tipoTemp,contadorScope
     
 
     #validar regla void
     if p[2] != None:
-        contadorScope = contadorScope + 1
+        
         NombreFuncActual = p[4]
         print(contadorScope, p[4])
         arrayNombreFunc.append(p[4])       
         scopeActual = 'LOCAL'
         tipoActual = p[2]
         directorio.almacenaFuncion(arrayNombreFunc[contadorScope],scopeActual,tipoActual)
-        
-        
-    else:
         contadorScope = contadorScope + 1
+        
+        
+    else:        
         print(contadorScope, p[4])
         tempNombreFunc = p[4]
         arrayNombreFunc.append(p[4])
         scopeActual = 'LOCAL'
         #print(tempNombreFunc,scopeActual,tipoTemp)        
         directorio.almacenaFuncion(arrayNombreFunc[contadorScope],scopeActual,tipoTemp)
-        
+        contadorScope = contadorScope + 1
 
+def p_modulos_vars(p):
+    ''' modulos_vars : vars bloque '''
+
+        
+def p_cont(p):
+    ''' cont : '''
+    global contadorScope 
+    if contadorScope == 0:
+        contadorScope = contadorScope + 1
+        
+    
     
    
 
@@ -194,7 +207,7 @@ def p_tipo(p):
     global varNombreTemp, contadorScope, arrayNombreFunc, contadorScope
 
 
-
+    
     if contadorScope == 0:  
         #arrayNombreFunc.append('MAIN')
         arrayNombreFunc[0] = NombreFuncActual
@@ -202,8 +215,19 @@ def p_tipo(p):
         #print(contadorScope, arrayNombreFunc)        
         #print(contadorScope, arrayNombreFunc)
         for x in varNombreTemp:        
-            directorio.almacenaVarsEnFunc(arrayNombreFunc[contadorScope],x,p[1])        
+            directorio.almacenaVarsEnFunc(arrayNombreFunc[0],x,p[1])        
             varNombreTemp.clear()
+
+    """if contadorScope > 0:
+        print(arrayNombreFunc[contadorScope])"""
+        
+
+    
+    """if contadorScope != 0:
+        for x in varNombreTemp:        
+            directorio.almacenaVarsEnFunc(arrayNombreFunc[contadorScope],x,p[1])        
+            varNombreTemp.clear()"""
+
 
 
        

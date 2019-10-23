@@ -8,6 +8,7 @@ VAR arrP[5]:INT;
 VAR arrP2[5]:FLOAT;
 VAR arrP3[6][7]:CHAR;
 VAR matrix4[6][7]:INT;
+VAR var11:INT;
 
 FUNC VOID:prueba (entrada INT, entrada2 FLOAT)
 VAR prueba1:INT;
