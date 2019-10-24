@@ -12,10 +12,14 @@ global varTipoActual, tipoTemp
 
 global NombreFuncActual, scopeActual, tipoActual, tempNombreFunc
 
-arrayNombreFunc = [0]
+nombreFunc = ''
+
+arrayNombreFunc = []
 
 contadorScope = 0
 
+tempTipo_modulos = ''
+idTemp_modulos = ''
 #variables que determinan el manejo de las funciones
 
 NombreFuncActual = 'MAIN'
@@ -81,7 +85,7 @@ t_SUMA = r'\+'
 t_RESTA = r'\-'
 t_MULTIPLICACION = r'\*'
 t_DIVISION = r'\/'
-t_RESIDUO = r'\%'
+#t_RESIDUO = r'\%'
 t_MAYORQUE = r'\>'
 t_MAYORQUEIGUAL = r'\>='
 t_MENORQUE = r'\<'
@@ -128,55 +132,59 @@ def t_error(t):
 lex.lex()
 
 def p_programa(p):
-    '''programa : REGLA_PROGRAMA ID DOSPUNTOS REGLA_MAIN bloque REGLA_END 
-                | REGLA_PROGRAMA ID DOSPUNTOS vars REGLA_MAIN bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS programa_modulos_aux REGLA_MAIN bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS vars programa_modulos_aux REGLA_MAIN bloque REGLA_END  
+    '''programa : REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN bloque REGLA_END 
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars  programa_modulos_aux REGLA_MAIN bloque REGLA_END  
     '''
+
+# pN1: almacena el main en el dir de funciones
+def p_pN1(p):
+    ''' pN1 :'''
+    global contadorScope, arrayNombreFunc, nombreFunc
+    nombreFunc = "MAIN"
+    directorio.almacenaFuncion('MAIN','GLOBAL','VOID')
+
+
     
   
 def p_programa_modulos_aux(p):
     ''' programa_modulos_aux : modulos
                             | modulos programa_modulos_aux'''
+
+
+def p_modulos(p):
+    ''' modulos : pN2 REGLA_FUNCION tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR vars bloque '''
+    global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
+   
+    
+
+#almacenar ID de modulo -- punto neuralgico 4
+def p_pN4(p):
+    ''' pN4 : ID '''
+    global nombreFunc
+    nombreFunc = p[1]
+
+
+
+  
+   
+
+#aumenta el cont del scope en modulos -- punto neuralgico     
+def p_pN2(p):
+    '''pN2 : '''
     global contadorScope
     contadorScope = contadorScope + 1
 
-def p_modulos(p):
-    ''' modulos : REGLA_FUNCION tipo_func DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR cont modulos_vars
-                | REGLA_FUNCION REGLA_VOID DOSPUNTOS ID ABREPAR modulos_aux CIERRAPAR cont modulos_vars '''
-    global tempNombreFunc,tipoActual,scopeActual,tipoTemp,contadorScope
-    
-
-    #validar regla void
-    if p[2] != None:
-        
-        NombreFuncActual = p[4]
-        print(contadorScope, p[4])
-        arrayNombreFunc.append(p[4])       
-        scopeActual = 'LOCAL'
-        tipoActual = p[2]
-        directorio.almacenaFuncion(arrayNombreFunc[contadorScope],scopeActual,tipoActual)
-        contadorScope = contadorScope + 1
-        
-        
-    else:        
-        print(contadorScope, p[4])
-        tempNombreFunc = p[4]
-        arrayNombreFunc.append(p[4])
-        scopeActual = 'LOCAL'
-        #print(tempNombreFunc,scopeActual,tipoTemp)        
-        directorio.almacenaFuncion(arrayNombreFunc[contadorScope],scopeActual,tipoTemp)
-        contadorScope = contadorScope + 1
-
-def p_modulos_vars(p):
-    ''' modulos_vars : vars bloque '''
-
-        
-def p_cont(p):
-    ''' cont : '''
-    global contadorScope 
-    if contadorScope == 0:
-        contadorScope = contadorScope + 1
+#agrega el modulo -- punto neuralgico
+def p_pN3(p):
+    '''pN3 : '''
+    global contadorScope, idTemp_modulos, tempTipo_modulos, arrayNombreFunc, nombreFunc
+    #print(contadorScope, p[4])
+    #arrayNombreFunc.append(idTemp_modulos)       
+    scopeActual = 'LOCAL'
+    #print(nombreFunc, tempTipo_modulos)
+    directorio.almacenaFuncion(nombreFunc,scopeActual,tempTipo_modulos)
         
     
     
@@ -204,29 +212,16 @@ def p_tipo(p):
         | REGLA_CHAR
         | REGLA_DATASET
         | REGLA_BOOL '''
-    global varNombreTemp, contadorScope, arrayNombreFunc, contadorScope
-
-
+    global varNombreTemp, contadorScope, arrayNombreFunc, contadorScope, nombreFunc
     
-    if contadorScope == 0:  
-        #arrayNombreFunc.append('MAIN')
-        arrayNombreFunc[0] = NombreFuncActual
-        directorio.almacenaFuncion(arrayNombreFunc[0],scopeActual,tipoActual)
-        #print(contadorScope, arrayNombreFunc)        
-        #print(contadorScope, arrayNombreFunc)
-        for x in varNombreTemp:        
-            directorio.almacenaVarsEnFunc(arrayNombreFunc[0],x,p[1])        
-            varNombreTemp.clear()
-
-    """if contadorScope > 0:
-        print(arrayNombreFunc[contadorScope])"""
-        
-
+    #print(contadorScope, arrayNombreFunc)
+    #print(arrayNombreFunc,contadorScope)
+    for x in varNombreTemp:        
+        directorio.almacenaVarsEnFunc(nombreFunc,x,p[1])        
+        varNombreTemp.clear()
     
-    """if contadorScope != 0:
-        for x in varNombreTemp:        
-            directorio.almacenaVarsEnFunc(arrayNombreFunc[contadorScope],x,p[1])        
-            varNombreTemp.clear()"""
+
+
 
 
 
@@ -243,10 +238,11 @@ def p_tipo_func(p):
     '''tipo_func : REGLA_INT
         | REGLA_FLOAT
         | REGLA_CHAR
-        | REGLA_BOOL '''
-    global tipoTemp    
-    tipoTemp=p[1]
-    scopeActual='LOCAL'
+        | REGLA_BOOL
+        | REGLA_VOID '''
+    global tempTipo_modulos   
+    tempTipo_modulos = p[1]
+    #print("tipo modulo",p[1])
     #directorio.almacenaFuncion(NombreFuncActual,scopeActual,tipoActual)
     
     
@@ -336,15 +332,15 @@ def p_declaracionVar(p):
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS  REGLA_FLOAT PUNTOYCOMA
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
                         '''
-    global contadorScope, arrayNombreFunc
+    global contadorScope, nombreFunc
     
         
 
     if p[1] != None :
         if p[5] != ':' :
-            directorio.almacenaVarsEnFunc(arrayNombreFunc[contadorScope],p[1],p[9])
+            directorio.almacenaVarsEnFunc(nombreFunc,p[1],p[9])
         else:
-            directorio.almacenaVarsEnFunc(arrayNombreFunc[contadorScope],p[1],p[6])
+            directorio.almacenaVarsEnFunc(nombreFunc,p[1],p[6])
 
     
 
@@ -429,7 +425,7 @@ f.write(app_json)
 g.write(app_json2)
 f.close()
 g.close()
-print(arrayNombreFunc)
+#print(arrayNombreFunc)
 
 
 

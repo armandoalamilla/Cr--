@@ -6,37 +6,36 @@ VAR d,DATAalgo:DATASET;
 VAR lala:CHAR;
 VAR arrP[5]:INT;
 VAR arrP2[5]:FLOAT;
-VAR arrP3[6][7]:CHAR;
-VAR matrix4[6][7]:INT;
+VAR arrP3[6]:CHAR;
+VAR matrix4[6]:INT;
 VAR var11:INT;
 
-FUNC VOID:prueba (entrada INT, entrada2 FLOAT)
-VAR prueba1:INT;
+FUNC VOID:func1(entrada2 FLOAT)
+VAR z:INT;
+{
+  a=b;
+}
+
+FUNC INT:func2(entrada FLOAT)
+VAR a:INT;
+VAR aa:INT;
+{
+  a=b;
+}
+
+FUNC CHAR:func3(entrada FLOAT)
+VAR b:INT;
+{
+  a=b;
+}
+
+FUNC FLOAT:func4(entrada2 FLOAT)
+VAR c:INT;
 VAR prueba2:FLOAT;
 {
   a=b;
 }
 
-FUNC INT:CACA (entrada INT, entrada2 FLOAT)
-VAR CACA1:INT;
-VAR CACA2:FLOAT;
-{
-  a=b;
-}
-
-FUNC FLOAT:CACA2 (entrada INT, entrada2 FLOAT)
-VAR CACA21:INT;
-VAR CACA22:FLOAT;
-{
-  a=b;
-}
-
-FUNC CHAR:CACA3 (entrada INT, entrada2 FLOAT)
-VAR CACA31:INT;
-VAR CACA32:FLOAT;
-{
-  a=b;
-}
 
 
 MAIN 

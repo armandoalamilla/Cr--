@@ -1,27 +1,27 @@
 {
     "MAIN": {
         "name": "MAIN",
-        "scope": "global",
+        "scope": "GLOBAL",
         "type": "VOID"
     },
-    "prueba": {
-        "name": "prueba",
+    "func1": {
+        "name": "func1",
         "scope": "LOCAL",
         "type": "VOID"
     },
-    "CACA": {
-        "name": "CACA",
+    "func2": {
+        "name": "func2",
         "scope": "LOCAL",
         "type": "INT"
     },
-    "CACA2": {
-        "name": "CACA2",
-        "scope": "LOCAL",
-        "type": "FLOAT"
-    },
-    "CACA3": {
-        "name": "CACA3",
+    "func3": {
+        "name": "func3",
         "scope": "LOCAL",
         "type": "CHAR"
+    },
+    "func4": {
+        "name": "func4",
+        "scope": "LOCAL",
+        "type": "FLOAT"
     }
 }

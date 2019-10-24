@@ -43,5 +43,35 @@
         "name": "var11",
         "tipo": "INT",
         "func": "MAIN"
+    },
+    "z": {
+        "name": "z",
+        "tipo": "INT",
+        "func": "func1"
+    },
+    "a": {
+        "name": "a",
+        "tipo": "INT",
+        "func": "func2"
+    },
+    "aa": {
+        "name": "aa",
+        "tipo": "INT",
+        "func": "func2"
+    },
+    "b": {
+        "name": "b",
+        "tipo": "INT",
+        "func": "func3"
+    },
+    "c": {
+        "name": "c",
+        "tipo": "INT",
+        "func": "func4"
+    },
+    "prueba2": {
+        "name": "prueba2",
+        "tipo": "FLOAT",
+        "func": "func4"
     }
 }
