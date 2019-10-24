@@ -156,8 +156,14 @@ def p_programa_modulos_aux(p):
 def p_modulos(p):
     ''' modulos : REGLA_FUNCION tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR vars bloque '''
     global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
-   
-    
+
+
+def p_modulos_aux(p):
+    ''' modulos_aux : ID tipo 
+                    | ID tipo COMA modulos_aux '''
+    global nombreFunc
+            
+    directorio.almacenaVarsEnFunc(nombreFunc,p[1],'PARAMETRO ENTRADA')
 
 #almacenar ID de modulo -- punto neuralgico 4
 def p_pN4(p):
@@ -184,11 +190,7 @@ def p_pN3(p):
     
    
 
-def p_modulos_aux(p):
-    ''' modulos_aux : ID tipo 
-                    | ID tipo COMA modulos_aux '''
-    #variableTabla.addVariable(p[1],p[2])
-    #directorio.almacenaVarsEnFunc(NombreFuncActual,p[1],p[2])
+
     
     
     

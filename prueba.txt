@@ -29,7 +29,7 @@ VAR a,aa:INT;
 }
 
 
-FUNC FLOAT:func4(entrada2 FLOAT)
+FUNC FLOAT:func4(entrada2 FLOAT, entrada1 INT)
 VAR c,mama:INT;
 VAR prueba2,pruebaCOMA:FLOAT;
 {

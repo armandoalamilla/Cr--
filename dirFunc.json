@@ -63,6 +63,10 @@
         "LOCAL": "LOCAL",
         "tipo": "VOID",
         "variables": {
+            "entrada2": {
+                "name": "entrada2",
+                "tipo": "PARAMETRO ENTRADA"
+            },
             "z": {
                 "name": "z",
                 "tipo": "INT"
@@ -74,6 +78,10 @@
         "LOCAL": "LOCAL",
         "tipo": "INT",
         "variables": {
+            "entrada": {
+                "name": "entrada",
+                "tipo": "PARAMETRO ENTRADA"
+            },
             "aa": {
                 "name": "aa",
                 "tipo": "INT"
@@ -89,6 +97,10 @@
         "LOCAL": "LOCAL",
         "tipo": "INT",
         "variables": {
+            "entrada": {
+                "name": "entrada",
+                "tipo": "PARAMETRO ENTRADA"
+            },
             "aa": {
                 "name": "aa",
                 "tipo": "INT"
@@ -104,6 +116,14 @@
         "LOCAL": "LOCAL",
         "tipo": "FLOAT",
         "variables": {
+            "entrada1": {
+                "name": "entrada1",
+                "tipo": "PARAMETRO ENTRADA"
+            },
+            "entrada2": {
+                "name": "entrada2",
+                "tipo": "PARAMETRO ENTRADA"
+            },
             "mama": {
                 "name": "mama",
                 "tipo": "INT"

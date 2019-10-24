@@ -15,10 +15,10 @@ Rule 5     pN1 -> <empty>
 Rule 6     programa_modulos_aux -> modulos
 Rule 7     programa_modulos_aux -> modulos programa_modulos_aux
 Rule 8     modulos -> REGLA_FUNCION tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR vars bloque
-Rule 9     pN4 -> ID
-Rule 10    pN3 -> <empty>
-Rule 11    modulos_aux -> ID tipo
-Rule 12    modulos_aux -> ID tipo COMA modulos_aux
+Rule 9     modulos_aux -> ID tipo
+Rule 10    modulos_aux -> ID tipo COMA modulos_aux
+Rule 11    pN4 -> ID
+Rule 12    pN3 -> <empty>
 Rule 13    vars -> REGLA_VAR declaracionVar
 Rule 14    vars -> REGLA_VAR declaracionVar vars
 Rule 15    tipo -> REGLA_INT
@@ -114,7 +114,7 @@ ABREPAR              : 8 43 46 49 50 53 54 55 56 57 58 59 60 61 62 63 64 78 95
 CIERRABRACK          : 65 66 66 68 69 70 71 71 72 72 73 73
 CIERRACOR            : 86
 CIERRAPAR            : 8 43 46 49 50 53 54 55 56 57 58 59 60 61 62 63 64 78 95
-COMA                 : 12 45 48 54 55 56 57 57 59 60 61 62 75 85
+COMA                 : 10 45 48 54 55 56 57 57 59 60 61 62 75 85
 CTE_BOOL             : 82
 CTE_CHAR             : 57 57 62 81
 CTE_D                : 83
@@ -123,7 +123,7 @@ CTE_I                : 54 55 56 59 60 61 68 69 70 71 71 72 72 73 73 79
 DIFDE                : 30
 DIVISION             : 94
 DOSPUNTOS            : 1 2 3 4 8 67 68 69 70 71 72 73
-ID                   : 1 2 3 4 9 11 12 43 51 52 54 55 56 57 58 59 60 61 62 63 64 68 69 70 71 72 73 74 75 76 77 78
+ID                   : 1 2 3 4 9 10 11 43 51 52 54 55 56 57 58 59 60 61 62 63 64 68 69 70 71 72 73 74 75 76 77 78
 IGUAL                : 51 52
 IGUALIGUAL           : 29
 MAYORQUE             : 25
@@ -186,14 +186,14 @@ llamada_funcion      : 36
 llamada_funcion_aux  : 43 45
 logical_expresion    : 49 50 51 52 53 95
 modulos              : 6 7
-modulos_aux          : 8 12
+modulos_aux          : 8 10
 pN1                  : 1 2 3 4
 pN3                  : 8
 pN4                  : 8
 programa             : 0
 programa_modulos_aux : 3 4 7
 termino              : 89 90 91 93 94
-tipo                 : 11 12 67
+tipo                 : 9 10 67
 tipo_func            : 8
 var_cte              : 96 97 98
 var_cte_aux          : 78 85
@@ -928,7 +928,7 @@ state 57
 state 58
 
     (8) modulos -> REGLA_FUNCION tipo_func DOSPUNTOS . pN4 pN3 ABREPAR modulos_aux CIERRAPAR vars bloque
-    (9) pN4 -> . ID
+    (11) pN4 -> . ID
 
     ID              shift and go to state 91
 
@@ -1414,17 +1414,17 @@ state 89
 state 90
 
     (8) modulos -> REGLA_FUNCION tipo_func DOSPUNTOS pN4 . pN3 ABREPAR modulos_aux CIERRAPAR vars bloque
-    (10) pN3 -> .
+    (12) pN3 -> .
 
-    ABREPAR         reduce using rule 10 (pN3 -> .)
+    ABREPAR         reduce using rule 12 (pN3 -> .)
 
     pN3                            shift and go to state 129
 
 state 91
 
-    (9) pN4 -> ID .
+    (11) pN4 -> ID .
 
-    ABREPAR         reduce using rule 9 (pN4 -> ID .)
+    ABREPAR         reduce using rule 11 (pN4 -> ID .)
 
 
 state 92
@@ -2893,8 +2893,8 @@ state 169
 state 170
 
     (8) modulos -> REGLA_FUNCION tipo_func DOSPUNTOS pN4 pN3 ABREPAR . modulos_aux CIERRAPAR vars bloque
-    (11) modulos_aux -> . ID tipo
-    (12) modulos_aux -> . ID tipo COMA modulos_aux
+    (9) modulos_aux -> . ID tipo
+    (10) modulos_aux -> . ID tipo COMA modulos_aux
 
     ID              shift and go to state 209
 
@@ -3349,8 +3349,8 @@ state 208
 
 state 209
 
-    (11) modulos_aux -> ID . tipo
-    (12) modulos_aux -> ID . tipo COMA modulos_aux
+    (9) modulos_aux -> ID . tipo
+    (10) modulos_aux -> ID . tipo COMA modulos_aux
     (15) tipo -> . REGLA_INT
     (16) tipo -> . REGLA_FLOAT
     (17) tipo -> . REGLA_CHAR
@@ -3711,10 +3711,10 @@ state 229
 
 state 230
 
-    (11) modulos_aux -> ID tipo .
-    (12) modulos_aux -> ID tipo . COMA modulos_aux
+    (9) modulos_aux -> ID tipo .
+    (10) modulos_aux -> ID tipo . COMA modulos_aux
 
-    CIERRAPAR       reduce using rule 11 (modulos_aux -> ID tipo .)
+    CIERRAPAR       reduce using rule 9 (modulos_aux -> ID tipo .)
     COMA            shift and go to state 237
 
 
@@ -3784,9 +3784,9 @@ state 236
 
 state 237
 
-    (12) modulos_aux -> ID tipo COMA . modulos_aux
-    (11) modulos_aux -> . ID tipo
-    (12) modulos_aux -> . ID tipo COMA modulos_aux
+    (10) modulos_aux -> ID tipo COMA . modulos_aux
+    (9) modulos_aux -> . ID tipo
+    (10) modulos_aux -> . ID tipo COMA modulos_aux
 
     ID              shift and go to state 209
 
@@ -3865,9 +3865,9 @@ state 243
 
 state 244
 
-    (12) modulos_aux -> ID tipo COMA modulos_aux .
+    (10) modulos_aux -> ID tipo COMA modulos_aux .
 
-    CIERRAPAR       reduce using rule 12 (modulos_aux -> ID tipo COMA modulos_aux .)
+    CIERRAPAR       reduce using rule 10 (modulos_aux -> ID tipo COMA modulos_aux .)
 
 
 state 245
