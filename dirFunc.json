@@ -1,8 +1,8 @@
 {
     "MAIN": {
         "name": "MAIN",
-        "scope": "GLOBAL",
-        "type": "VOID",
+        "GLOBAL": "GLOBAL",
+        "tipo": "VOID",
         "variables": {
             "entero3": {
                 "name": "entero3",
@@ -60,8 +60,8 @@
     },
     "func1": {
         "name": "func1",
-        "scope": "LOCAL",
-        "type": "VOID",
+        "LOCAL": "LOCAL",
+        "tipo": "VOID",
         "variables": {
             "z": {
                 "name": "z",
@@ -71,34 +71,38 @@
     },
     "func2": {
         "name": "func2",
-        "scope": "LOCAL",
-        "type": "INT",
+        "LOCAL": "LOCAL",
+        "tipo": "INT",
         "variables": {
-            "a": {
-                "name": "a",
-                "tipo": "INT"
-            },
             "aa": {
                 "name": "aa",
+                "tipo": "INT"
+            },
+            "a": {
+                "name": "a",
                 "tipo": "INT"
             }
         }
     },
     "func3": {
         "name": "func3",
-        "scope": "LOCAL",
-        "type": "CHAR",
+        "LOCAL": "LOCAL",
+        "tipo": "INT",
         "variables": {
-            "b": {
-                "name": "b",
+            "aa": {
+                "name": "aa",
+                "tipo": "INT"
+            },
+            "a": {
+                "name": "a",
                 "tipo": "INT"
             }
         }
     },
     "func4": {
         "name": "func4",
-        "scope": "LOCAL",
-        "type": "FLOAT",
+        "LOCAL": "LOCAL",
+        "tipo": "FLOAT",
         "variables": {
             "mama": {
                 "name": "mama",

@@ -17,17 +17,17 @@ VAR z:INT;
 }
 
 FUNC INT:func2(entrada FLOAT)
-VAR a:INT;
-VAR aa:INT;
+VAR a,aa:INT;
 {
   a=b;
 }
 
-FUNC CHAR:func3(entrada FLOAT)
-VAR b:INT;
+FUNC INT:func3(entrada FLOAT)
+VAR a,aa:INT;
 {
   a=b;
 }
+
 
 FUNC FLOAT:func4(entrada2 FLOAT)
 VAR c,mama:INT;

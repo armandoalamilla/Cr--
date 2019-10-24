@@ -406,6 +406,7 @@ s = f.read()
 
 parser.parse(s)
 
+
 #imprimir dir de funciones
 app_json = json.dumps(directorio.funcionLista, indent=4)
 #pp_json2 = json.dumps(directorio.lista_vars, indent=4)
