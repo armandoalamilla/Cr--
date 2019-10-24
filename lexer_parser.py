@@ -154,7 +154,7 @@ def p_programa_modulos_aux(p):
 
 
 def p_modulos(p):
-    ''' modulos : pN2 REGLA_FUNCION tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR vars bloque '''
+    ''' modulos : REGLA_FUNCION tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR vars bloque '''
     global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
    
     
@@ -168,15 +168,9 @@ def p_pN4(p):
 
 
   
-   
 
-#aumenta el cont del scope en modulos -- punto neuralgico     
-def p_pN2(p):
-    '''pN2 : '''
-    global contadorScope
-    contadorScope = contadorScope + 1
 
-#agrega el modulo -- punto neuralgico
+#agrega el modulo -- punto neuralgico 3
 def p_pN3(p):
     '''pN3 : '''
     global contadorScope, idTemp_modulos, tempTipo_modulos, arrayNombreFunc, nombreFunc
@@ -414,13 +408,13 @@ parser.parse(s)
 
 #imprimir dir de funciones
 app_json = json.dumps(directorio.funcionLista, indent=4)
-app_json2 = json.dumps(directorio.lista_vars, indent=4)
+#pp_json2 = json.dumps(directorio.lista_vars, indent=4)
 f = open("dirFunc.json", "w")
-g = open("dirVariables.json","w")
+#g = open("dirVariables.json","w")
 f.write(app_json)
-g.write(app_json2)
+#g.write(app_json2)
 f.close()
-g.close()
+#g.close()
 #print(arrayNombreFunc)
 
 

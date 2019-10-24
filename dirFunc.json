@@ -2,26 +2,120 @@
     "MAIN": {
         "name": "MAIN",
         "scope": "GLOBAL",
-        "type": "VOID"
+        "type": "VOID",
+        "variables": {
+            "entero3": {
+                "name": "entero3",
+                "tipo": "INT"
+            },
+            "entero2": {
+                "name": "entero2",
+                "tipo": "INT"
+            },
+            "entero": {
+                "name": "entero",
+                "tipo": "INT"
+            },
+            "flota2": {
+                "name": "flota2",
+                "tipo": "FLOAT"
+            },
+            "flota": {
+                "name": "flota",
+                "tipo": "FLOAT"
+            },
+            "DATAalgo": {
+                "name": "DATAalgo",
+                "tipo": "DATASET"
+            },
+            "d": {
+                "name": "d",
+                "tipo": "DATASET"
+            },
+            "lala": {
+                "name": "lala",
+                "tipo": "CHAR"
+            },
+            "arrP": {
+                "name": "arrP",
+                "tipo": "INT"
+            },
+            "arrP2": {
+                "name": "arrP2",
+                "tipo": "FLOAT"
+            },
+            "arrP3": {
+                "name": "arrP3",
+                "tipo": "CHAR"
+            },
+            "matrix4": {
+                "name": "matrix4",
+                "tipo": "INT"
+            },
+            "var11": {
+                "name": "var11",
+                "tipo": "INT"
+            }
+        }
     },
     "func1": {
         "name": "func1",
         "scope": "LOCAL",
-        "type": "VOID"
+        "type": "VOID",
+        "variables": {
+            "z": {
+                "name": "z",
+                "tipo": "INT"
+            }
+        }
     },
     "func2": {
         "name": "func2",
         "scope": "LOCAL",
-        "type": "INT"
+        "type": "INT",
+        "variables": {
+            "a": {
+                "name": "a",
+                "tipo": "INT"
+            },
+            "aa": {
+                "name": "aa",
+                "tipo": "INT"
+            }
+        }
     },
     "func3": {
         "name": "func3",
         "scope": "LOCAL",
-        "type": "CHAR"
+        "type": "CHAR",
+        "variables": {
+            "b": {
+                "name": "b",
+                "tipo": "INT"
+            }
+        }
     },
     "func4": {
         "name": "func4",
         "scope": "LOCAL",
-        "type": "FLOAT"
+        "type": "FLOAT",
+        "variables": {
+            "mama": {
+                "name": "mama",
+                "tipo": "INT"
+            },
+            "c": {
+                "name": "c",
+                "tipo": "INT"
+            },
+            "pruebaCOMA": {
+                "name": "pruebaCOMA",
+                "tipo": "FLOAT"
+            },
+            "prueba2": {
+                "name": "prueba2",
+                "tipo": "FLOAT"
+            }
+        }
     }
 }

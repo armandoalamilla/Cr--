@@ -4,3 +4,8 @@ parser.out
 *.out
 parsetab.py
 dirVariables.json
+dirFunc.json
+parser.out
+parser.out
+__pycache__/parsetab.cpython-37.pyc
+__pycache__/dirFunciones.cpython-37.pyc
