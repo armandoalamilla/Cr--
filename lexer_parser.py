@@ -216,9 +216,10 @@ def p_tipo(p):
     
     #print(contadorScope, arrayNombreFunc)
     #print(arrayNombreFunc,contadorScope)
-    for x in varNombreTemp:        
+    for x in varNombreTemp:
+        #print(x)      
         directorio.almacenaVarsEnFunc(nombreFunc,x,p[1])        
-        varNombreTemp.clear()
+    varNombreTemp.clear()
     
 
 
@@ -345,11 +346,6 @@ def p_declaracionVar(p):
     
 
         
-
-
-    
-    
-
 def p_var_id(p):    
     ''' var_id : ID
                 | ID COMA var_id

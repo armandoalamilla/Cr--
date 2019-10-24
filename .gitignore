@@ -3,3 +3,4 @@
 parser.out
 *.out
 parsetab.py
+dirVariables.json

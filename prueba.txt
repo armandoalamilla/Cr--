@@ -1,6 +1,6 @@
 PROGRAM algo:
 
-VAR entero,entero2:INT;
+VAR entero,entero2,entero3:INT;
 VAR flota,flota2:FLOAT;
 VAR d,DATAalgo:DATASET;
 VAR lala:CHAR;
@@ -30,7 +30,7 @@ VAR b:INT;
 }
 
 FUNC FLOAT:func4(entrada2 FLOAT)
-VAR c:INT;
+VAR c,mama:INT;
 VAR prueba2:FLOAT;
 {
   a=b;

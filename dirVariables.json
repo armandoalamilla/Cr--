@@ -1,6 +1,16 @@
 {
+    "entero3": {
+        "name": "entero3",
+        "tipo": "INT",
+        "func": "MAIN"
+    },
     "entero2": {
         "name": "entero2",
+        "tipo": "INT",
+        "func": "MAIN"
+    },
+    "entero": {
+        "name": "entero",
         "tipo": "INT",
         "func": "MAIN"
     },
@@ -9,8 +19,18 @@
         "tipo": "FLOAT",
         "func": "MAIN"
     },
+    "flota": {
+        "name": "flota",
+        "tipo": "FLOAT",
+        "func": "MAIN"
+    },
     "DATAalgo": {
         "name": "DATAalgo",
+        "tipo": "DATASET",
+        "func": "MAIN"
+    },
+    "d": {
+        "name": "d",
         "tipo": "DATASET",
         "func": "MAIN"
     },
@@ -63,6 +83,11 @@
         "name": "b",
         "tipo": "INT",
         "func": "func3"
+    },
+    "mama": {
+        "name": "mama",
+        "tipo": "INT",
+        "func": "func4"
     },
     "c": {
         "name": "c",
