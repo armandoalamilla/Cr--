@@ -16,7 +16,17 @@ nombreFunc = ''
 
 arrayNombreFunc = []
 
+#contadores
 contadorScope = 0
+contadorINT = 0
+contadorFLOAT = 0
+contadorCHAR = 0
+contadorDATASET = 0
+contadorBOOL = 0
+
+
+tempTipoVarFuncEntrada = ''
+tempIdVarFuncEntrada = ''
 
 tempTipo_modulos = ''
 idTemp_modulos = ''
@@ -154,26 +164,52 @@ def p_programa_modulos_aux(p):
 
 
 def p_modulos(p):
-    ''' modulos : REGLA_FUNCION tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR vars bloque '''
+    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR vars bloque '''
     global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
 
 
 def p_modulos_aux(p):
-    ''' modulos_aux : ID tipo 
-                    | ID tipo COMA modulos_aux '''
-    global nombreFunc
-            
-    directorio.almacenaVarsEnFunc(nombreFunc,p[1],'PARAMETRO ENTRADA')
+    ''' modulos_aux : pN6 tipo pN5
+                    | pN6 tipo COMA pN5 modulos_aux '''
+    
+    #print(p[1],tempTipoVarFuncEntrada)            
+
+   
 
 #almacenar ID de modulo -- punto neuralgico 4
 def p_pN4(p):
     ''' pN4 : ID '''
     global nombreFunc
-    nombreFunc = p[1]
+    nombreFunc = p[1] 
 
 
+#almacenar variables de entrada de funciones -- punto neuralgico 5
+def p_pN5(p):
+    ''' pN5 : '''
+    global tempIdVarFuncEntrada, tempIdVarFuncEntrada
+    #print(tempIdVarFuncEntrada,tempTipoVarFuncEntrada)
+    directorio.almacenaVarsEnFunc(nombreFunc,tempIdVarFuncEntrada,tempTipoVarFuncEntrada)
 
-  
+
+#almacenar id de la var de entrada de la func -- punto neuralgico 6
+def p_pN6(p):
+    ''' pN6 : ID '''
+    global tempIdVarFuncEntrada
+    tempIdVarFuncEntrada = p[1]
+
+#almacenar num de parametros de entrada, -- punto neuralgico 7
+def p_pN7(p):
+    ''' pN7 : '''
+
+#iniciar los contadores en 0 cada que inicia una nueva funcion -- punto neuralgico 8
+def p_pN8(p):
+    ''' pN8 : '''
+    global contadorINT, contadorFLOAT, contadorBOOL, contadorDATASET, contadorCHAR
+    contadorINT = 0
+    contadorFLOAT = 0
+    contadorBOOL = 0
+    contadorDATASET = 0
+    contadorCHAR = 0
 
 
 #agrega el modulo -- punto neuralgico 3
@@ -208,7 +244,10 @@ def p_tipo(p):
         | REGLA_CHAR
         | REGLA_DATASET
         | REGLA_BOOL '''
-    global varNombreTemp, contadorScope, arrayNombreFunc, contadorScope, nombreFunc
+    global varNombreTemp, contadorScope, arrayNombreFunc, contadorScope, nombreFunc, tempTipoVarFuncEntrada
+    global contadorINT, contadorFLOAT, contadorCHAR, contadorDATASET, contadorBOOL
+
+    tempTipoVarFuncEntrada = p[1]
     
     #print(contadorScope, arrayNombreFunc)
     #print(arrayNombreFunc,contadorScope)
@@ -216,6 +255,20 @@ def p_tipo(p):
         #print(x)      
         directorio.almacenaVarsEnFunc(nombreFunc,x,p[1])        
     varNombreTemp.clear()
+
+    #contar el numero de tipos
+    if p[1] == 'INT':
+        contadorINT = contadorINT + 1
+    elif p[1] == 'FLOAT':
+        contadorFLOAT = contadorFLOAT + 1
+    elif p[1] == 'CHAR':
+        contadorCHAR = contadorCHAR + 1
+    elif p[1] == 'BOOL':
+        contadorBOOL = contadorBOOL + 1
+    elif p[1] == 'DATASET':
+        contadorDATASET = contadorDATASET + 1
+
+    
     
 
 

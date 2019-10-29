@@ -3,6 +3,20 @@
         "name": "MAIN",
         "GLOBAL": "GLOBAL",
         "tipo": "VOID",
+        "numParametrosDefinidos": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "numLocalVariables": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
         "variables": {
             "entero3": {
                 "name": "entero3",
@@ -62,10 +76,28 @@
         "name": "func1",
         "LOCAL": "LOCAL",
         "tipo": "VOID",
+        "numParametrosDefinidos": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "numLocalVariables": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
         "variables": {
-            "entrada2": {
-                "name": "entrada2",
-                "tipo": "PARAMETRO ENTRADA"
+            "func1var1": {
+                "name": "func1var1",
+                "tipo": "CHAR"
+            },
+            "func1var2": {
+                "name": "func1var2",
+                "tipo": "BOOL"
             },
             "z": {
                 "name": "z",
@@ -77,10 +109,24 @@
         "name": "func2",
         "LOCAL": "LOCAL",
         "tipo": "INT",
+        "numParametrosDefinidos": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "numLocalVariables": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
         "variables": {
-            "entrada": {
-                "name": "entrada",
-                "tipo": "PARAMETRO ENTRADA"
+            "func2var1": {
+                "name": "func2var1",
+                "tipo": "FLOAT"
             },
             "aa": {
                 "name": "aa",
@@ -95,11 +141,29 @@
     "func3": {
         "name": "func3",
         "LOCAL": "LOCAL",
-        "tipo": "INT",
+        "tipo": "CHAR",
+        "numParametrosDefinidos": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "numLocalVariables": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
         "variables": {
-            "entrada": {
-                "name": "entrada",
-                "tipo": "PARAMETRO ENTRADA"
+            "func3var1": {
+                "name": "func3var1",
+                "tipo": "INT"
+            },
+            "func3var2": {
+                "name": "func3var2",
+                "tipo": "DATASET"
             },
             "aa": {
                 "name": "aa",
@@ -115,14 +179,28 @@
         "name": "func4",
         "LOCAL": "LOCAL",
         "tipo": "FLOAT",
+        "numParametrosDefinidos": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "numLocalVariables": {
+            "INT": 0,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
         "variables": {
-            "entrada1": {
-                "name": "entrada1",
-                "tipo": "PARAMETRO ENTRADA"
+            "func4var1": {
+                "name": "func4var1",
+                "tipo": "FLOAT"
             },
-            "entrada2": {
-                "name": "entrada2",
-                "tipo": "PARAMETRO ENTRADA"
+            "func4var2": {
+                "name": "func4var2",
+                "tipo": "INT"
             },
             "mama": {
                 "name": "mama",

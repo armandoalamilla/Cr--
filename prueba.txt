@@ -10,26 +10,26 @@ VAR arrP3[6]:CHAR;
 VAR matrix4[6]:INT;
 VAR var11:INT;
 
-FUNC VOID:func1(entrada2 FLOAT)
+FUNC VOID:func1(func1var1 CHAR, func1var2 BOOL)
 VAR z:INT;
 {
   a=b;
 }
 
-FUNC INT:func2(entrada FLOAT)
+FUNC INT:func2(func2var1 FLOAT)
 VAR a,aa:INT;
 {
   a=b;
 }
 
-FUNC INT:func3(entrada FLOAT)
+FUNC CHAR:func3(func3var1 INT, func3var2 DATASET)
 VAR a,aa:INT;
 {
   a=b;
 }
 
 
-FUNC FLOAT:func4(entrada2 FLOAT, entrada1 INT)
+FUNC FLOAT:func4(func4var1 FLOAT, func4var2 INT)
 VAR c,mama:INT;
 VAR prueba2,pruebaCOMA:FLOAT;
 {
