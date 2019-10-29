@@ -15,10 +15,10 @@ def almacenaFuncion(nombreFunc2, scope2, tipo2):
     #print(checaFuncionDeclararada(nombreFunc))
     funcionLista[nombreFunc2] = {
         name : nombreFunc2,
-        scope2 : scope2,
+        scope : scope2,
         tipo : tipo2,
-        numParametrosDef : {'INT' : 0, 'FLOAT' : 0, 'CHAR' : 0, 'BOOL' : 0 , 'DATASET' : 0},
-        numLocalVariables : {'INT' : 0, 'FLOAT' : 0, 'CHAR' : 0, 'BOOL' : 0 ,'DATASET' : 0},
+        numParametrosDef : {},
+        numLocalVariables : {},
         variables : {}
     }
 
@@ -40,7 +40,15 @@ def checaFuncionDeclararada(nombreFunc):
    else:
        return False
 
-#def almacenaNumParametros(contadorINT,contadorFLOAT,contadorBOOL,contador)
+def almacenaNumParametros(nombreFunc,contadorINT,contadorFLOAT,contadorBOOL,contadorD,contadorCHAR):
+
+    funcionLista[nombreFunc][numParametrosDef] = {'INT' : contadorINT, 'FLOAT' : contadorFLOAT, 
+    'CHAR' : contadorCHAR, 'BOOL' : contadorBOOL , 'DATASET' : contadorD}
+
+def almacenaNumVarLocales(nombreFunc,contadorINT,contadorFLOAT,contadorBOOL,contadorD,contadorCHAR):
+
+    funcionLista[nombreFunc][numLocalVariables] = {'INT' : contadorINT, 'FLOAT' : contadorFLOAT, 
+    'CHAR' : contadorCHAR, 'BOOL' : contadorBOOL ,'DATASET' : contadorD}
         
     
     

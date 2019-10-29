@@ -23,6 +23,9 @@ contadorFLOAT = 0
 contadorCHAR = 0
 contadorDATASET = 0
 contadorBOOL = 0
+contadorVARID = 0
+
+interruptorVARID = False
 
 
 tempTipoVarFuncEntrada = ''
@@ -164,7 +167,7 @@ def p_programa_modulos_aux(p):
 
 
 def p_modulos(p):
-    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR vars bloque '''
+    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque '''
     global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
 
 
@@ -174,6 +177,15 @@ def p_modulos_aux(p):
     
     #print(p[1],tempTipoVarFuncEntrada)            
 
+#agrega el modulo -- punto neuralgico 3
+def p_pN3(p):
+    '''pN3 : '''
+    global contadorScope, idTemp_modulos, tempTipo_modulos, arrayNombreFunc, nombreFunc
+    #print(contadorScope, p[4])
+    #arrayNombreFunc.append(idTemp_modulos)       
+    scopeActual = 'LOCAL'
+    #print(nombreFunc, tempTipo_modulos)
+    directorio.almacenaFuncion(nombreFunc,scopeActual,tempTipo_modulos)
    
 
 #almacenar ID de modulo -- punto neuralgico 4
@@ -200,8 +212,14 @@ def p_pN6(p):
 #almacenar num de parametros de entrada, -- punto neuralgico 7
 def p_pN7(p):
     ''' pN7 : '''
+    global nombreFunc, contadorINT, contadorFLOAT, contadorBOOL, contadorDATASET, contadorCHAR
 
-#iniciar los contadores en 0 cada que inicia una nueva funcion -- punto neuralgico 8
+    directorio.almacenaNumParametros(nombreFunc,contadorINT,contadorFLOAT,contadorBOOL,contadorDATASET,contadorCHAR)
+    #print(nombreFunc)
+    #print("INT:",contadorINT,'FLOAT:',contadorFLOAT,'BOOL:',contadorBOOL,'DATASET:',contadorDATASET,'CHAR:',contadorCHAR)
+
+
+#iniciar los contadores en 0 cada que inicia una nueva funcion y/o se declaran variables -- punto neuralgico 8
 def p_pN8(p):
     ''' pN8 : '''
     global contadorINT, contadorFLOAT, contadorBOOL, contadorDATASET, contadorCHAR
@@ -211,19 +229,26 @@ def p_pN8(p):
     contadorDATASET = 0
     contadorCHAR = 0
 
+#inicializar el contador de var id en 0 -- punto neuralgico 9
+def p_pN9(p):
+    ''' pN9 : '''
+    global contadorVARID
+    contadorVARID = 0
 
-#agrega el modulo -- punto neuralgico 3
-def p_pN3(p):
-    '''pN3 : '''
-    global contadorScope, idTemp_modulos, tempTipo_modulos, arrayNombreFunc, nombreFunc
-    #print(contadorScope, p[4])
-    #arrayNombreFunc.append(idTemp_modulos)       
-    scopeActual = 'LOCAL'
-    #print(nombreFunc, tempTipo_modulos)
-    directorio.almacenaFuncion(nombreFunc,scopeActual,tempTipo_modulos)
+#guardar num de vars locales de la funcion en el dir de funciones -- punto neuralgico 10
+def p_pN10(p):
+    ''' pN10 : '''
+    global contadorINT, contadorFLOAT, contadorBOOL, contadorDATASET, contadorCHAR, nombreFunc
+    directorio.almacenaNumVarLocales(nombreFunc,contadorINT,contadorFLOAT,contadorBOOL,contadorDATASET,contadorCHAR)
+    #print(nombreFunc)
+    #print('INT:',contadorINT,'FLOAT:',contadorFLOAT,'BOOL:',contadorBOOL,'DATASET',contadorDATASET,'CHAR',contadorCHAR)
+
+
+
+
+
         
-    
-    
+ 
    
 
 
@@ -245,7 +270,7 @@ def p_tipo(p):
         | REGLA_DATASET
         | REGLA_BOOL '''
     global varNombreTemp, contadorScope, arrayNombreFunc, contadorScope, nombreFunc, tempTipoVarFuncEntrada
-    global contadorINT, contadorFLOAT, contadorCHAR, contadorDATASET, contadorBOOL
+    global contadorINT, contadorFLOAT, contadorCHAR, contadorDATASET, contadorBOOL, interruptorVARID, contadorVARID
 
     tempTipoVarFuncEntrada = p[1]
     
@@ -256,17 +281,34 @@ def p_tipo(p):
         directorio.almacenaVarsEnFunc(nombreFunc,x,p[1])        
     varNombreTemp.clear()
 
-    #contar el numero de tipos
-    if p[1] == 'INT':
-        contadorINT = contadorINT + 1
-    elif p[1] == 'FLOAT':
-        contadorFLOAT = contadorFLOAT + 1
-    elif p[1] == 'CHAR':
-        contadorCHAR = contadorCHAR + 1
-    elif p[1] == 'BOOL':
-        contadorBOOL = contadorBOOL + 1
-    elif p[1] == 'DATASET':
-        contadorDATASET = contadorDATASET + 1
+    #contar el numero de tipos para paremetros - func 
+    if directorio.funcionLista[nombreFunc]['scope'] == 'LOCAL' and interruptorVARID == False:
+        if p[1] == 'INT':
+            contadorINT = contadorINT + 1
+        elif p[1] == 'FLOAT':
+            contadorFLOAT = contadorFLOAT + 1
+        elif p[1] == 'CHAR':
+            contadorCHAR = contadorCHAR + 1
+        elif p[1] == 'BOOL':
+            contadorBOOL = contadorBOOL + 1
+        elif p[1] == 'DATASET':
+            contadorDATASET = contadorDATASET + 1
+    elif interruptorVARID == True: #verifica si viene de varid
+        if p[1] == 'INT':
+            contadorINT = contadorVARID
+        elif p[1] == 'FLOAT':
+            contadorFLOAT = contadorVARID
+        elif p[1] == 'CHAR':
+            contadorCHAR = contadorVARID
+        elif p[1] == 'BOOL':
+            contadorBOOL = contadorVARID
+        elif p[1] == 'DATASET':
+            contadorDATASET = contadorVARID
+        interruptorVARID = False
+        contadorVARID = 0
+        
+        
+    
 
     
     
@@ -382,15 +424,27 @@ def p_declaracionVar(p):
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS  REGLA_FLOAT PUNTOYCOMA
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
                         '''
-    global contadorScope, nombreFunc
-    
+    global nombreFunc, contadorINT, contadorFLOAT, contadorBOOL, contadorCHAR, contadorDATASET 
         
 
     if p[1] != None :
-        if p[5] != ':' :
+        if p[5] == '[' : #verifica si es matrix
             directorio.almacenaVarsEnFunc(nombreFunc,p[1],p[9])
-        else:
+            if p[9] == 'INT':
+                contadorINT = contadorINT + 1
+            elif p[9] == 'FLOAT':
+                contadorFLOAT = contadorFLOAT + 1
+            elif p[9] == 'CHAR':
+                contadorCHAR = contadorCHAR + 1
+        else:   #verifica si es array
             directorio.almacenaVarsEnFunc(nombreFunc,p[1],p[6])
+            if p[6] == 'INT':
+                contadorINT = contadorINT + 1
+            elif p[6] == 'FLOAT':
+                contadorFLOAT = contadorFLOAT + 1
+            elif p[6] == 'CHAR':
+                contadorCHAR = contadorCHAR + 1
+
 
     
 
@@ -399,7 +453,9 @@ def p_var_id(p):
     ''' var_id : ID
                 | ID COMA var_id
                 '''
-    global varNombreTemp
+    global varNombreTemp, interruptorVARID, contadorVARID
+    contadorVARID = contadorVARID + 1
+    interruptorVARID = True
     varNombreTemp.append(p[1]) 
     
 
