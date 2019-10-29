@@ -6,7 +6,7 @@ scope = 'scope'
 tipo = 'tipo'
 numParametrosDef = 'numParametrosDefinidos'
 numLocalVariables = 'numLocalVariables'
-from ast import literal_eval
+
 
 
 def almacenaFuncion(nombreFunc2, scope2, tipo2):
