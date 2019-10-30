@@ -1,7 +1,7 @@
 import ply.lex as lex
 import ply.yacc as yacc
 import dirFunciones as directorio
-import sys, json
+import sys, json, os
 
 aprobado = True
 
@@ -33,11 +33,11 @@ tempIdVarFuncEntrada = ''
 
 tempTipo_modulos = ''
 idTemp_modulos = ''
-#variables que determinan el manejo de las funciones
+#variables que determinan el manejo de las funciones y scope actual
 
-NombreFuncActual = 'MAIN'
-scopeActual = 'global'
-tipoActual = 'VOID'
+NombreFuncActual = ''
+scopeActual = ''
+tipoActual = ''
 
 #directorio.almacenaFuncion(NombreFuncActual,scopeActual,tipoActual)
 
@@ -145,18 +145,24 @@ def t_error(t):
 lex.lex()
 
 def p_programa(p):
-    '''programa : REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN bloque REGLA_END 
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars  programa_modulos_aux REGLA_MAIN bloque REGLA_END  
+    '''programa : REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END 
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars  programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END  
     '''
 
 # pN1: almacena el main en el dir de funciones
 def p_pN1(p):
-    ''' pN1 :'''
+    ''' pN1 : '''
     global contadorScope, arrayNombreFunc, nombreFunc
     nombreFunc = "MAIN"
     directorio.almacenaFuncion('MAIN','GLOBAL','VOID')
+
+# pN11: cambia la func actual a main -- punto neuralgico 11
+def p_pN11(p):
+    ''' pN11 : '''
+    global nombreFunc
+    nombreFunc = 'MAIN'
 
 
     
@@ -196,6 +202,7 @@ def p_pN4(p):
 
 
 #almacenar variables de entrada de funciones -- punto neuralgico 5
+#NOTA IMPORTANTE, AGREGAR EN EL DIR FUNC LOS PARAMETROS COMO NUEVO ATRIBUTO <-- OJO
 def p_pN5(p):
     ''' pN5 : '''
     global tempIdVarFuncEntrada, tempIdVarFuncEntrada
@@ -364,7 +371,7 @@ def p_estatuto(p):
         | lectura '''
 
 def p_llamada_funcion(p):
-    ''' llamada_funcion : ID ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA'''
+    ''' llamada_funcion : pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA'''
 
 def p_llamada_funcion_aux(p):
     ''' llamada_funcion_aux : exp
@@ -383,10 +390,20 @@ def p_condicion(p):
         '''
 
 def p_asignacion(p):
-    '''asignacion : ID IGUAL logical_expresion PUNTOYCOMA
-        | ID array IGUAL logical_expresion PUNTOYCOMA
+    '''asignacion : pN12 IGUAL logical_expresion PUNTOYCOMA
+        | pN12 array IGUAL logical_expresion PUNTOYCOMA
         '''
-    
+
+#verifica que la variable exista en el dir de funciones -- punto neuralgico 12
+def p_pN12(p):
+    ''' pN12 : ID '''
+    global nombreFunc
+
+    try:
+        directorio.funcionLista[nombreFunc]['variables'][p[1]]
+    except KeyError:
+        print('variable',p[1],'en',nombreFunc,'no esta declarada')
+        sys.exit()
 
     
 
@@ -460,15 +477,27 @@ def p_var_id(p):
     
 
 def p_var_cte(p):
-    ''' var_cte : ID 
-                | ID array
-                | ID ABREPAR var_cte_aux CIERRAPAR 
+    ''' var_cte : pN12 
+                | pN12 array
+                | pN13 ABREPAR var_cte_aux CIERRAPAR 
                 | CTE_I
                 | CTE_F
                 | CTE_CHAR
                 | CTE_BOOL
                 | CTE_D
                 '''
+
+#checa que la funcion este declarada en el dir de funciones -- punto neuralgico 13
+def p_pN13(p):
+    ''' pN13 : ID '''
+    global nombreFunc
+    try:
+        directorio.funcionLista[p[1]]
+    except KeyError:
+        print('La funcion',p[1],'en',nombreFunc,'no esta declarada')
+        sys.exit()
+
+    
 
 def p_var_cte_aux(p):
     ''' var_cte_aux : exp
@@ -511,7 +540,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-archivo = "prueba.txt"
+archivo = "pruebaSinFunc.txt"
 f = open(archivo, 'r')
 s = f.read()
 

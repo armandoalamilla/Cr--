@@ -15,21 +15,21 @@ VAR z,a:INT;
 VAR algo:FLOAT;
 VAR algo3,LALALA:CHAR;
 {
-  a=b;
+  z=a;
 }
 
 FUNC INT:func2(func2var1 FLOAT)
 VAR a,aa:INT;
 VAR algo,algo2:DATASET;
 {
-  a=b;
+  a=aa;
 }
 
 FUNC CHAR:func3(func3var1 INT, func3var2 DATASET, func3var3 CHAR, func3var4 INT)
 VAR a,aa:INT;
 VAR algo,algo2,algo3,algo4,algo5:BOOL;
 {
-  a=b;
+  a=aa;
 }
 
 
@@ -38,39 +38,14 @@ VAR c,mama:INT;
 VAR prueba2,pruebaCOMA,prueba25:FLOAT;
 VAR analiza,analiza2:DATASET;
 {
-  a=b;
+  mama=func4var1;
 }
 
 
 
 MAIN 
 {
-   noseC = 'X://carpeta/algo.txt';
-   arrayDE[2]= f;
-   a=a + b;
-   primerFuncion(a,b);
-   segundaFuncion(b,a);
-
-   IF ((a < b) OR (b>a) )
-   {
-       a=a;
-   };
-
-   WHILE (a < b)
-   {
-        IF ((a < b) OR (b>a) )
-            {
-       a=a;
-             };
-
-       a=a+b;
-   };
-
-   PRINT(A,B);
-   READ(a);
-   READ(A[3][5]);
-
-   PIECHART(d)
+  arrP[5][8] = entero + (entero + 1);
 
 }
 
