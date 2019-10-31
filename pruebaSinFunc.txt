@@ -1,7 +1,7 @@
 PROGRAM algo:
 
-VAR entero,entero2,entero3:INT;
-VAR flota,flota2:FLOAT;
+VAR entero,entero2,entero3,a:INT;
+VAR flota,flota2,flota3:FLOAT;
 VAR d,DATAalgo:DATASET;
 VAR lala:CHAR;
 VAR arrP[5]:INT;
@@ -11,10 +11,15 @@ VAR matrix4[6][7]:INT;
 VAR var11:INT;
 
 MAIN 
-{
-   arrP[5][8] = entero + (entero + 1);
-   
-
+{  
+  flota = 3.0 + 3.55 / flota2;
+  entero = 2;
+  entero2 = entero;
+  READ(entero3);
+  lala = 'a' + 'b';
+  DATAalgo = lala + lala;
+  PRINT(entero,flota,3+5/entero,DATAalgo);
+  
 }
 
 END

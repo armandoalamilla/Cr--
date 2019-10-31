@@ -6,6 +6,10 @@
         "numParametrosDefinidos": {},
         "numLocalVariables": {},
         "variables": {
+            "a": {
+                "name": "a",
+                "tipo": "INT"
+            },
             "entero3": {
                 "name": "entero3",
                 "tipo": "INT"
@@ -17,6 +21,10 @@
             "entero": {
                 "name": "entero",
                 "tipo": "INT"
+            },
+            "flota3": {
+                "name": "flota3",
+                "tipo": "FLOAT"
             },
             "flota2": {
                 "name": "flota2",
