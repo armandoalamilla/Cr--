@@ -9,9 +9,10 @@ VAR arrP2[5]:FLOAT;
 VAR arrP3[6]:CHAR;
 VAR matrix4[6][7]:INT;
 VAR var11:INT;
+VAR booleano:BOOL;
 
-MAIN 
-{  
+MAIN
+{
   flota = 3.0 + 3.55 / flota2;
   entero = 2;
   entero2 = entero;
@@ -19,7 +20,8 @@ MAIN
   lala = 'a' + 'b';
   DATAalgo = lala + lala;
   PRINT(entero,flota,3+5/entero,DATAalgo);
-  
+  booleano = (5+7) >= (entero) ;
+
 }
 
 END

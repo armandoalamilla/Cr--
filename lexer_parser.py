@@ -130,6 +130,12 @@ t_IGUAL = r'\='
 
 tokens = tokens + list(reserved.values())
 
+def t_CTE_B(t):
+    r'TRUE|FALSE'
+    global temTipoCTE
+    temTipoCTE = 'BOOL'
+    return t
+
 def t_CTE_CHAR(t):
     r'(\'[^\']*\')'
     global temTipoCTE
@@ -376,21 +382,51 @@ def p_tipo_func(p):
 
 
 def p_expresion(p):
-    '''expresion : exp MAYORQUE exp
-                   | exp MENORQUE exp
-                   | exp MAYORQUEIGUAL exp
-                   | exp MENORQUEIGUAL exp
-                   | exp IGUALIGUAL exp
-                   | exp DIFDE exp
-                   | exp '''
-    
+    '''expresion : exp pN22_LUCIA exp pN23_LUCIA
+                 | exp  '''
+
+#almacenar el simbolo de mayorque y menorque en la pila POper -- punto neuralgico 21
+def p_pN22_LUCIA(p):
+    ''' pN22_LUCIA : MAYORQUE
+             | MENORQUE
+             | MAYORQUEIGUAL
+             | MENORQUEIGUAL
+             | IGUALIGUAL
+             | DIFDE '''
+    cuad.POper.append(p[1])
+
+#checa la semantica cuando es > o < -- pN
+def p_pN23_LUCIA(p):
+    ''' pN23_LUCIA : '''
+    try:
+        cuad.POper[len(cuad.POper)-1]
+    except IndexError:
+        print("pila vacia")
+    else:
+        if cuad.POper[len(cuad.POper)-1] == '>' or cuad.POper[len(cuad.POper)-1] == '<' or cuad.POper[len(cuad.POper)-1] == '>=' or cuad.POper[len(cuad.POper)-1] == '<='or cuad.POper[len(cuad.POper)-1] == '==' or cuad.POper[len(cuad.POper)-1] == '!=':
+            cuad.right_operand = cuad.PilaO.pop()
+            cuad.right_type = cuad.PTypes.pop()
+            cuad.left_operand = cuad.PilaO.pop()
+            cuad.left_type = cuad.PTypes.pop()
+            operator = cuad.POper.pop()
+            result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
+            if result_type != 'error':
+                result = 't'+str(cuad.contCuad)
+                cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
+                cuad.PilaO.append(result)
+                cuad.PTypes.append(result_type)
+            else:
+                print("HORROR DE TIPOS")
+                sys.exit()
+
+
 
 def p_logical_expresion(p):
     '''logical_expresion : REGLA_NOT expresion
         | expresion REGLA_AND expresion
         | expresion REGLA_OR expresion
         | expresion '''
-    
+
 
 def p_estatuto(p):
     '''estatuto : llamada_funcion
@@ -410,7 +446,7 @@ def p_llamada_funcion_aux(p):
 
 def p_escritura(p):
     ''' escritura : REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA '''
-    
+
 
 def p_escritura_aux(p):
     ''' escritura_aux : expresion pN19
@@ -433,13 +469,13 @@ def p_asignacion(p):
         | pN12 array pN16 logical_expresion PUNTOYCOMA '''
     global nombreFunc
 
-    
+
     if cuad.POper[len(cuad.POper)-1] == '=':
         cuad.right_operand = cuad.PilaO.pop()
         cuad.right_type = cuad.PTypes.pop()
         cuad.left_operand = cuad.PilaO.pop()
         cuad.left_type = cuad.PTypes.pop()
-        operator = cuad.POper.pop()        
+        operator = cuad.POper.pop()
         result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
         if result_type != 'error':
             result = 't'+str(cuad.contCuad)
@@ -467,7 +503,7 @@ def p_pN16(p):
 def p_pN12(p):
     ''' pN12 : ID '''
     global nombreFunc, tempCTE, tempNombreVar
-    
+
     try:
         directorio.funcionLista[nombreFunc]['variables'][p[1]]
     except KeyError:
@@ -477,7 +513,7 @@ def p_pN12(p):
         cuad.PilaO.append(p[1])
         tempNombreVar = p[1]
         cuad.PTypes.append(directorio.funcionLista[nombreFunc]['variables'][p[1]]['tipo'])
-    
+
 
 
 
@@ -570,7 +606,7 @@ def p_var_cte(p):
 def p_pN20(p):
     ''' pN20 : ID '''
     global nombreFunc, tempCTE, tempNombreVar, temTipoCTE
-    
+
     try:
         directorio.funcionLista[nombreFunc]['variables'][p[1]]
     except KeyError:
@@ -580,7 +616,7 @@ def p_pN20(p):
         cuad.PilaO.append(p[1])
         tempNombreVar = p[1]
         temTipoCTE = directorio.funcionLista[nombreFunc]['variables'][p[1]]['tipo']
-    
+
 
 
 
@@ -702,7 +738,7 @@ def p_pN2(p):
     cuad.PTypes.append(temTipoCTE)
 
 
-  
+
 
 
 def p_error(p):
