@@ -14,6 +14,7 @@ PQuad = []
 
 #contador cuadruplos
 contCuad = 0
+contQuadAux = 0
 
 right_operand = ''
 right_type = ''
@@ -22,7 +23,9 @@ left_type = ''
 
 def agregarCuad(operator, left_operand, right_operand, result):
     PQuad.append({'operator':operator, 'left_operand':left_operand,'right_operand':right_operand, 'result':result})
-    global contCuad
+    global contCuad, contQuadAux
     contCuad = contCuad + 1
+    contQuadAux = contQuadAux + 1
+    
 
 

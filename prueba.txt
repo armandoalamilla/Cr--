@@ -10,42 +10,25 @@ VAR arrP3[6]:CHAR;
 VAR matrix4[6][7]:INT;
 VAR var11:INT;
 
-FUNC VOID:func1(func1var1 CHAR, func1var2 BOOL, func1var3 BOOL)
+FUNC VOID:func1(func1var1 CHAR, func1var2 BOOL, func1var3 INT)
 VAR z,a:INT;
 VAR algo:FLOAT;
 VAR algo3,LALALA:CHAR;
 {
   z=a;
+  algo = 5.0 + 3.0;
 }
-
-FUNC INT:func2(func2var1 FLOAT)
-VAR a,aa:INT;
-VAR algo,algo2:DATASET;
-{
-  a=aa;
-}
-
-FUNC CHAR:func3(func3var1 INT, func3var2 DATASET, func3var3 CHAR, func3var4 INT)
-VAR a,aa:INT;
-VAR algo,algo2,algo3,algo4,algo5:BOOL;
-{
-  a=aa;
-}
-
-
-FUNC FLOAT:func4(func4var1 FLOAT, func4var2 INT)
-VAR c,mama:INT;
-VAR prueba2,pruebaCOMA,prueba25:FLOAT;
-VAR analiza,analiza2:DATASET;
-{
-  mama=func4var1;
-}
-
 
 
 MAIN 
 {
-  arrP[5][8] = entero + (entero + 1);
+  flota = 3.0 + 3.55 / flota2;
+  entero = 2;
+  entero2 = entero;
+  READ(entero3);
+  lala = 'a' + 'b';
+  DATAalgo = lala + lala;
+  PRINT(entero,flota,3+5/entero,DATAalgo);
 
 }
 

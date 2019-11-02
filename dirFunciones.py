@@ -6,6 +6,7 @@ scope = 'scope'
 tipo = 'tipo'
 numParametrosDef = 'numParametrosDefinidos'
 numLocalVariables = 'numLocalVariables'
+paramDefinidos = 'paramDefinidos'
 
 
 
@@ -18,6 +19,7 @@ def almacenaFuncion(nombreFunc2, scope2, tipo2):
         scope : scope2,
         tipo : tipo2,
         numParametrosDef : {},
+        paramDefinidos : {},
         numLocalVariables : {},
         variables : {}
     }
@@ -32,6 +34,12 @@ def almacenaVarsEnFunc(nombreFunc, nombreVar, tipoVar):
 
     funcionLista[nombreFunc][variables].update(lista_vars)
     lista_vars.clear()
+
+def almacenaParmsEnFunc(nombreFunc, nommbreVar, tipoVar):
+    funcionLista[nombreFunc]['paramDefinidos'][nommbreVar] = {
+        'name' : nommbreVar,
+        'tipo' : tipoVar,
+    }
 
 def checaFuncionDeclararada(nombreFunc):
    
