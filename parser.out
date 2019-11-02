@@ -1,0 +1,4046 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    RESIDUO
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END
+Rule 2     programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque REGLA_END
+Rule 3     programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+Rule 4     programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+Rule 5     pN1 -> <empty>
+Rule 6     pN11 -> <empty>
+Rule 7     programa_modulos_aux -> modulos
+Rule 8     programa_modulos_aux -> modulos programa_modulos_aux
+Rule 9     modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+Rule 10    modulos_aux -> pN6 tipo pN5
+Rule 11    modulos_aux -> pN6 tipo COMA pN5 modulos_aux
+Rule 12    pN3 -> <empty>
+Rule 13    pN4 -> ID
+Rule 14    pN5 -> <empty>
+Rule 15    pN6 -> ID
+Rule 16    pN7 -> <empty>
+Rule 17    pN8 -> <empty>
+Rule 18    pN9 -> <empty>
+Rule 19    pN10 -> <empty>
+Rule 20    vars -> REGLA_VAR declaracionVar
+Rule 21    vars -> REGLA_VAR declaracionVar vars
+Rule 22    tipo -> REGLA_INT
+Rule 23    tipo -> REGLA_FLOAT
+Rule 24    tipo -> REGLA_CHAR
+Rule 25    tipo -> REGLA_DATASET
+Rule 26    tipo -> REGLA_BOOL
+Rule 27    tipo_func -> REGLA_INT
+Rule 28    tipo_func -> REGLA_FLOAT
+Rule 29    tipo_func -> REGLA_CHAR
+Rule 30    tipo_func -> REGLA_BOOL
+Rule 31    tipo_func -> REGLA_VOID
+Rule 32    expresion -> exp pN22_LUCIA exp pN23_LUCIA
+Rule 33    expresion -> exp
+Rule 34    pN22_LUCIA -> MAYORQUE
+Rule 35    pN22_LUCIA -> MENORQUE
+Rule 36    pN22_LUCIA -> MAYORQUEIGUAL
+Rule 37    pN22_LUCIA -> MENORQUEIGUAL
+Rule 38    pN22_LUCIA -> IGUALIGUAL
+Rule 39    pN22_LUCIA -> DIFDE
+Rule 40    pN23_LUCIA -> <empty>
+Rule 41    logical_expresion -> REGLA_NOT expresion
+Rule 42    logical_expresion -> expresion REGLA_AND expresion
+Rule 43    logical_expresion -> expresion REGLA_OR expresion
+Rule 44    logical_expresion -> expresion
+Rule 45    estatuto -> llamada_funcion
+Rule 46    estatuto -> asignacion
+Rule 47    estatuto -> condicion
+Rule 48    estatuto -> escritura
+Rule 49    estatuto -> ciclo
+Rule 50    estatuto -> func_pred
+Rule 51    estatuto -> lectura
+Rule 52    llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA
+Rule 53    llamada_funcion_aux -> exp
+Rule 54    llamada_funcion_aux -> exp COMA llamada_funcion_aux
+Rule 55    escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA
+Rule 56    escritura_aux -> expresion pN19
+Rule 57    escritura_aux -> expresion COMA pN19 escritura_aux
+Rule 58    pN19 -> <empty>
+Rule 59    condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+Rule 60    condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
+Rule 61    asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA
+Rule 62    asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA
+Rule 63    pN16 -> IGUAL
+Rule 64    pN12 -> ID
+Rule 65    ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+Rule 66    func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR
+Rule 67    func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR
+Rule 68    func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR
+Rule 69    func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+Rule 70    func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR
+Rule 71    func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR
+Rule 72    func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR
+Rule 73    func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR
+Rule 74    func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR
+Rule 75    lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA
+Rule 76    lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA
+Rule 77    array -> ABREBRACK exp CIERRABRACK
+Rule 78    array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK
+Rule 79    declaracionVar -> var_id DOSPUNTOS tipo PUNTOYCOMA
+Rule 80    declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+Rule 81    declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+Rule 82    declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+Rule 83    declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+Rule 84    declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+Rule 85    declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+Rule 86    var_id -> ID
+Rule 87    var_id -> ID COMA var_id
+Rule 88    var_cte -> pN20
+Rule 89    var_cte -> pN20 array
+Rule 90    var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR
+Rule 91    var_cte -> CTE_I
+Rule 92    var_cte -> CTE_F
+Rule 93    var_cte -> CTE_CHAR
+Rule 94    var_cte -> CTE_BOOL
+Rule 95    var_cte -> CTE_D
+Rule 96    pN20 -> ID
+Rule 97    pN13 -> ID
+Rule 98    var_cte_aux -> exp
+Rule 99    var_cte_aux -> exp COMA var_cte_aux
+Rule 100   bloque -> ABRECOR estatuto_aux CIERRACOR
+Rule 101   estatuto_aux -> estatuto
+Rule 102   estatuto_aux -> estatuto estatuto_aux
+Rule 103   exp -> termino pN17
+Rule 104   exp -> termino pN17 pN14 exp
+Rule 105   pN14 -> SUMA
+Rule 106   pN14 -> RESTA
+Rule 107   pN17 -> <empty>
+Rule 108   termino -> factor pN18
+Rule 109   termino -> factor pN18 pN15 termino
+Rule 110   pN15 -> MULTIPLICACION
+Rule 111   pN15 -> DIVISION
+Rule 112   pN18 -> <empty>
+Rule 113   factor -> ABREPAR logical_expresion CIERRAPAR
+Rule 114   factor -> var_cte pN2
+Rule 115   factor -> SUMA var_cte
+Rule 116   factor -> RESTA var_cte
+Rule 117   pN2 -> <empty>
+
+Terminals, with rules where they appear
+
+ABREBRACK            : 77 78 78 80 81 82 83 83 84 84 85 85
+ABRECOR              : 100
+ABREPAR              : 9 52 55 59 60 65 66 67 68 69 70 71 72 73 74 75 76 90 113
+CIERRABRACK          : 77 78 78 80 81 82 83 83 84 84 85 85
+CIERRACOR            : 100
+CIERRAPAR            : 9 52 55 59 60 65 66 67 68 69 70 71 72 73 74 75 76 90 113
+COMA                 : 11 54 57 66 67 68 69 69 71 72 73 74 87 99
+CTE_BOOL             : 94
+CTE_CHAR             : 69 69 74 93
+CTE_D                : 95
+CTE_F                : 92
+CTE_I                : 66 67 68 71 72 73 80 81 82 83 83 84 84 85 85 91
+DIFDE                : 39
+DIVISION             : 111
+DOSPUNTOS            : 1 2 3 4 9 79 80 81 82 83 84 85
+ID                   : 1 2 3 4 13 15 64 66 67 68 69 70 71 72 73 74 75 76 80 81 82 83 84 85 86 87 96 97
+IGUAL                : 63
+IGUALIGUAL           : 38
+MAYORQUE             : 34
+MAYORQUEIGUAL        : 36
+MENORQUE             : 35
+MENORQUEIGUAL        : 37
+MULTIPLICACION       : 110
+PUNTOYCOMA           : 52 55 59 60 61 62 65 75 76 79 80 81 82 83 84 85
+REGLA_AND            : 42
+REGLA_AVERAGE        : 66
+REGLA_BASIC_V_P      : 74
+REGLA_BOOL           : 26 30
+REGLA_CHAR           : 24 29 82 85
+REGLA_DATASET        : 25
+REGLA_DESV_T         : 72
+REGLA_DIST_N         : 73
+REGLA_ELSE           : 60
+REGLA_END            : 1 2 3 4
+REGLA_FLOAT          : 23 28 81 84
+REGLA_FUNCION        : 9
+REGLA_IF             : 59 60
+REGLA_INT            : 22 27 80 83
+REGLA_MAIN           : 1 2 3 4
+REGLA_MEDIAN         : 67
+REGLA_MODE           : 68
+REGLA_NOT            : 41
+REGLA_OR             : 43
+REGLA_PIECHART       : 70
+REGLA_PLOT           : 69
+REGLA_PRINT          : 55
+REGLA_PROGRAMA       : 1 2 3 4
+REGLA_READ           : 75 76
+REGLA_VAR            : 20 21
+REGLA_VARIANZA       : 71
+REGLA_VOID           : 31
+REGLA_WHILE          : 65
+RESIDUO              : 
+RESTA                : 106 116
+SUMA                 : 105 115
+error                : 
+
+Nonterminals, with rules where they appear
+
+array                : 62 76 89
+asignacion           : 46
+bloque               : 1 2 3 4 9 59 60 60 65
+ciclo                : 49
+condicion            : 47
+declaracionVar       : 20 21
+escritura            : 48
+escritura_aux        : 55 57
+estatuto             : 101 102
+estatuto_aux         : 100 102
+exp                  : 32 32 33 53 54 77 78 78 98 99 104
+expresion            : 41 42 42 43 43 44 56 57
+factor               : 108 109
+func_pred            : 50
+lectura              : 51
+llamada_funcion      : 45
+llamada_funcion_aux  : 52 54
+logical_expresion    : 59 60 61 62 65 113
+modulos              : 7 8
+modulos_aux          : 9 11
+pN1                  : 1 2 3 4
+pN10                 : 9
+pN11                 : 1 2 3 4
+pN12                 : 61 62
+pN13                 : 52 90
+pN14                 : 104
+pN15                 : 109
+pN16                 : 61 62
+pN17                 : 103 104
+pN18                 : 108 109
+pN19                 : 56 57
+pN2                  : 114
+pN20                 : 88 89
+pN22_LUCIA           : 32
+pN23_LUCIA           : 32
+pN3                  : 9
+pN4                  : 9
+pN5                  : 10 11
+pN6                  : 10 11
+pN7                  : 9
+pN8                  : 9 9
+pN9                  : 9
+programa             : 0
+programa_modulos_aux : 3 4 8
+termino              : 103 104 109
+tipo                 : 10 11 79
+tipo_func            : 9
+var_cte              : 114 115 116
+var_cte_aux          : 90 99
+var_id               : 79 87
+vars                 : 2 4 9 21
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END
+    (2) programa -> . REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque REGLA_END
+    (3) programa -> . REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+    (4) programa -> . REGLA_PROGRAMA ID DOSPUNTOS pN1 vars programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+
+    REGLA_PROGRAMA  shift and go to state 2
+
+    programa                       shift and go to state 1
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> REGLA_PROGRAMA . ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END
+    (2) programa -> REGLA_PROGRAMA . ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque REGLA_END
+    (3) programa -> REGLA_PROGRAMA . ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+    (4) programa -> REGLA_PROGRAMA . ID DOSPUNTOS pN1 vars programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+
+    ID              shift and go to state 3
+
+
+state 3
+
+    (1) programa -> REGLA_PROGRAMA ID . DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END
+    (2) programa -> REGLA_PROGRAMA ID . DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque REGLA_END
+    (3) programa -> REGLA_PROGRAMA ID . DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+    (4) programa -> REGLA_PROGRAMA ID . DOSPUNTOS pN1 vars programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+
+    DOSPUNTOS       shift and go to state 4
+
+
+state 4
+
+    (1) programa -> REGLA_PROGRAMA ID DOSPUNTOS . pN1 REGLA_MAIN pN11 bloque REGLA_END
+    (2) programa -> REGLA_PROGRAMA ID DOSPUNTOS . pN1 vars REGLA_MAIN pN11 bloque REGLA_END
+    (3) programa -> REGLA_PROGRAMA ID DOSPUNTOS . pN1 programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+    (4) programa -> REGLA_PROGRAMA ID DOSPUNTOS . pN1 vars programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+    (5) pN1 -> .
+
+    REGLA_MAIN      reduce using rule 5 (pN1 -> .)
+    REGLA_VAR       reduce using rule 5 (pN1 -> .)
+    REGLA_FUNCION   reduce using rule 5 (pN1 -> .)
+
+    pN1                            shift and go to state 5
+
+state 5
+
+    (1) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 . REGLA_MAIN pN11 bloque REGLA_END
+    (2) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 . vars REGLA_MAIN pN11 bloque REGLA_END
+    (3) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 . programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+    (4) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 . vars programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+    (20) vars -> . REGLA_VAR declaracionVar
+    (21) vars -> . REGLA_VAR declaracionVar vars
+    (7) programa_modulos_aux -> . modulos
+    (8) programa_modulos_aux -> . modulos programa_modulos_aux
+    (9) modulos -> . REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+
+    REGLA_MAIN      shift and go to state 6
+    REGLA_VAR       shift and go to state 9
+    REGLA_FUNCION   shift and go to state 11
+
+    vars                           shift and go to state 7
+    programa_modulos_aux           shift and go to state 8
+    modulos                        shift and go to state 10
+
+state 6
+
+    (1) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN . pN11 bloque REGLA_END
+    (6) pN11 -> .
+
+    ABRECOR         reduce using rule 6 (pN11 -> .)
+
+    pN11                           shift and go to state 12
+
+state 7
+
+    (2) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars . REGLA_MAIN pN11 bloque REGLA_END
+    (4) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars . programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+    (7) programa_modulos_aux -> . modulos
+    (8) programa_modulos_aux -> . modulos programa_modulos_aux
+    (9) modulos -> . REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+
+    REGLA_MAIN      shift and go to state 13
+    REGLA_FUNCION   shift and go to state 11
+
+    programa_modulos_aux           shift and go to state 14
+    modulos                        shift and go to state 10
+
+state 8
+
+    (3) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux . REGLA_MAIN pN11 bloque REGLA_END
+
+    REGLA_MAIN      shift and go to state 15
+
+
+state 9
+
+    (20) vars -> REGLA_VAR . declaracionVar
+    (21) vars -> REGLA_VAR . declaracionVar vars
+    (79) declaracionVar -> . var_id DOSPUNTOS tipo PUNTOYCOMA
+    (80) declaracionVar -> . ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (81) declaracionVar -> . ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (82) declaracionVar -> . ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+    (83) declaracionVar -> . ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (84) declaracionVar -> . ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (85) declaracionVar -> . ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+    (86) var_id -> . ID
+    (87) var_id -> . ID COMA var_id
+
+    ID              shift and go to state 18
+
+    declaracionVar                 shift and go to state 16
+    var_id                         shift and go to state 17
+
+state 10
+
+    (7) programa_modulos_aux -> modulos .
+    (8) programa_modulos_aux -> modulos . programa_modulos_aux
+    (7) programa_modulos_aux -> . modulos
+    (8) programa_modulos_aux -> . modulos programa_modulos_aux
+    (9) modulos -> . REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+
+    REGLA_MAIN      reduce using rule 7 (programa_modulos_aux -> modulos .)
+    REGLA_FUNCION   shift and go to state 11
+
+    modulos                        shift and go to state 10
+    programa_modulos_aux           shift and go to state 19
+
+state 11
+
+    (9) modulos -> REGLA_FUNCION . pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+    (17) pN8 -> .
+
+    REGLA_INT       reduce using rule 17 (pN8 -> .)
+    REGLA_FLOAT     reduce using rule 17 (pN8 -> .)
+    REGLA_CHAR      reduce using rule 17 (pN8 -> .)
+    REGLA_BOOL      reduce using rule 17 (pN8 -> .)
+    REGLA_VOID      reduce using rule 17 (pN8 -> .)
+
+    pN8                            shift and go to state 20
+
+state 12
+
+    (1) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 . bloque REGLA_END
+    (100) bloque -> . ABRECOR estatuto_aux CIERRACOR
+
+    ABRECOR         shift and go to state 22
+
+    bloque                         shift and go to state 21
+
+state 13
+
+    (2) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN . pN11 bloque REGLA_END
+    (6) pN11 -> .
+
+    ABRECOR         reduce using rule 6 (pN11 -> .)
+
+    pN11                           shift and go to state 23
+
+state 14
+
+    (4) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars programa_modulos_aux . REGLA_MAIN pN11 bloque REGLA_END
+
+    REGLA_MAIN      shift and go to state 24
+
+
+state 15
+
+    (3) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN . pN11 bloque REGLA_END
+    (6) pN11 -> .
+
+    ABRECOR         reduce using rule 6 (pN11 -> .)
+
+    pN11                           shift and go to state 25
+
+state 16
+
+    (20) vars -> REGLA_VAR declaracionVar .
+    (21) vars -> REGLA_VAR declaracionVar . vars
+    (20) vars -> . REGLA_VAR declaracionVar
+    (21) vars -> . REGLA_VAR declaracionVar vars
+
+    REGLA_MAIN      reduce using rule 20 (vars -> REGLA_VAR declaracionVar .)
+    REGLA_FUNCION   reduce using rule 20 (vars -> REGLA_VAR declaracionVar .)
+    ABRECOR         reduce using rule 20 (vars -> REGLA_VAR declaracionVar .)
+    REGLA_VAR       shift and go to state 9
+
+    vars                           shift and go to state 26
+
+state 17
+
+    (79) declaracionVar -> var_id . DOSPUNTOS tipo PUNTOYCOMA
+
+    DOSPUNTOS       shift and go to state 27
+
+
+state 18
+
+    (80) declaracionVar -> ID . ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (81) declaracionVar -> ID . ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (82) declaracionVar -> ID . ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+    (83) declaracionVar -> ID . ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (84) declaracionVar -> ID . ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (85) declaracionVar -> ID . ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+    (86) var_id -> ID .
+    (87) var_id -> ID . COMA var_id
+
+    ABREBRACK       shift and go to state 28
+    DOSPUNTOS       reduce using rule 86 (var_id -> ID .)
+    COMA            shift and go to state 29
+
+
+state 19
+
+    (8) programa_modulos_aux -> modulos programa_modulos_aux .
+
+    REGLA_MAIN      reduce using rule 8 (programa_modulos_aux -> modulos programa_modulos_aux .)
+
+
+state 20
+
+    (9) modulos -> REGLA_FUNCION pN8 . tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+    (27) tipo_func -> . REGLA_INT
+    (28) tipo_func -> . REGLA_FLOAT
+    (29) tipo_func -> . REGLA_CHAR
+    (30) tipo_func -> . REGLA_BOOL
+    (31) tipo_func -> . REGLA_VOID
+
+    REGLA_INT       shift and go to state 31
+    REGLA_FLOAT     shift and go to state 32
+    REGLA_CHAR      shift and go to state 33
+    REGLA_BOOL      shift and go to state 34
+    REGLA_VOID      shift and go to state 35
+
+    tipo_func                      shift and go to state 30
+
+state 21
+
+    (1) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque . REGLA_END
+
+    REGLA_END       shift and go to state 36
+
+
+state 22
+
+    (100) bloque -> ABRECOR . estatuto_aux CIERRACOR
+    (101) estatuto_aux -> . estatuto
+    (102) estatuto_aux -> . estatuto estatuto_aux
+    (45) estatuto -> . llamada_funcion
+    (46) estatuto -> . asignacion
+    (47) estatuto -> . condicion
+    (48) estatuto -> . escritura
+    (49) estatuto -> . ciclo
+    (50) estatuto -> . func_pred
+    (51) estatuto -> . lectura
+    (52) llamada_funcion -> . pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA
+    (61) asignacion -> . pN12 pN16 logical_expresion PUNTOYCOMA
+    (62) asignacion -> . pN12 array pN16 logical_expresion PUNTOYCOMA
+    (59) condicion -> . REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+    (60) condicion -> . REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
+    (55) escritura -> . REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA
+    (65) ciclo -> . REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+    (66) func_pred -> . REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR
+    (67) func_pred -> . REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR
+    (68) func_pred -> . REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR
+    (69) func_pred -> . REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+    (70) func_pred -> . REGLA_PIECHART ABREPAR ID CIERRAPAR
+    (71) func_pred -> . REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR
+    (72) func_pred -> . REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR
+    (73) func_pred -> . REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR
+    (74) func_pred -> . REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR
+    (75) lectura -> . REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA
+    (76) lectura -> . REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA
+    (97) pN13 -> . ID
+    (64) pN12 -> . ID
+
+    REGLA_IF        shift and go to state 48
+    REGLA_PRINT     shift and go to state 49
+    REGLA_WHILE     shift and go to state 50
+    REGLA_AVERAGE   shift and go to state 51
+    REGLA_MEDIAN    shift and go to state 53
+    REGLA_MODE      shift and go to state 54
+    REGLA_PLOT      shift and go to state 55
+    REGLA_PIECHART  shift and go to state 56
+    REGLA_VARIANZA  shift and go to state 57
+    REGLA_DESV_T    shift and go to state 58
+    REGLA_DIST_N    shift and go to state 59
+    REGLA_BASIC_V_P shift and go to state 60
+    REGLA_READ      shift and go to state 61
+    ID              shift and go to state 52
+
+    estatuto_aux                   shift and go to state 37
+    estatuto                       shift and go to state 38
+    llamada_funcion                shift and go to state 39
+    asignacion                     shift and go to state 40
+    condicion                      shift and go to state 41
+    escritura                      shift and go to state 42
+    ciclo                          shift and go to state 43
+    func_pred                      shift and go to state 44
+    lectura                        shift and go to state 45
+    pN13                           shift and go to state 46
+    pN12                           shift and go to state 47
+
+state 23
+
+    (2) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 . bloque REGLA_END
+    (100) bloque -> . ABRECOR estatuto_aux CIERRACOR
+
+    ABRECOR         shift and go to state 22
+
+    bloque                         shift and go to state 62
+
+state 24
+
+    (4) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars programa_modulos_aux REGLA_MAIN . pN11 bloque REGLA_END
+    (6) pN11 -> .
+
+    ABRECOR         reduce using rule 6 (pN11 -> .)
+
+    pN11                           shift and go to state 63
+
+state 25
+
+    (3) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 . bloque REGLA_END
+    (100) bloque -> . ABRECOR estatuto_aux CIERRACOR
+
+    ABRECOR         shift and go to state 22
+
+    bloque                         shift and go to state 64
+
+state 26
+
+    (21) vars -> REGLA_VAR declaracionVar vars .
+
+    REGLA_MAIN      reduce using rule 21 (vars -> REGLA_VAR declaracionVar vars .)
+    REGLA_FUNCION   reduce using rule 21 (vars -> REGLA_VAR declaracionVar vars .)
+    ABRECOR         reduce using rule 21 (vars -> REGLA_VAR declaracionVar vars .)
+
+
+state 27
+
+    (79) declaracionVar -> var_id DOSPUNTOS . tipo PUNTOYCOMA
+    (22) tipo -> . REGLA_INT
+    (23) tipo -> . REGLA_FLOAT
+    (24) tipo -> . REGLA_CHAR
+    (25) tipo -> . REGLA_DATASET
+    (26) tipo -> . REGLA_BOOL
+
+    REGLA_INT       shift and go to state 66
+    REGLA_FLOAT     shift and go to state 67
+    REGLA_CHAR      shift and go to state 68
+    REGLA_DATASET   shift and go to state 69
+    REGLA_BOOL      shift and go to state 70
+
+    tipo                           shift and go to state 65
+
+state 28
+
+    (80) declaracionVar -> ID ABREBRACK . CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (81) declaracionVar -> ID ABREBRACK . CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (82) declaracionVar -> ID ABREBRACK . CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+    (83) declaracionVar -> ID ABREBRACK . CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (84) declaracionVar -> ID ABREBRACK . CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (85) declaracionVar -> ID ABREBRACK . CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+
+    CTE_I           shift and go to state 71
+
+
+state 29
+
+    (87) var_id -> ID COMA . var_id
+    (86) var_id -> . ID
+    (87) var_id -> . ID COMA var_id
+
+    ID              shift and go to state 72
+
+    var_id                         shift and go to state 73
+
+state 30
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func . DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+
+    DOSPUNTOS       shift and go to state 74
+
+
+state 31
+
+    (27) tipo_func -> REGLA_INT .
+
+    DOSPUNTOS       reduce using rule 27 (tipo_func -> REGLA_INT .)
+
+
+state 32
+
+    (28) tipo_func -> REGLA_FLOAT .
+
+    DOSPUNTOS       reduce using rule 28 (tipo_func -> REGLA_FLOAT .)
+
+
+state 33
+
+    (29) tipo_func -> REGLA_CHAR .
+
+    DOSPUNTOS       reduce using rule 29 (tipo_func -> REGLA_CHAR .)
+
+
+state 34
+
+    (30) tipo_func -> REGLA_BOOL .
+
+    DOSPUNTOS       reduce using rule 30 (tipo_func -> REGLA_BOOL .)
+
+
+state 35
+
+    (31) tipo_func -> REGLA_VOID .
+
+    DOSPUNTOS       reduce using rule 31 (tipo_func -> REGLA_VOID .)
+
+
+state 36
+
+    (1) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END .
+
+    $end            reduce using rule 1 (programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END .)
+
+
+state 37
+
+    (100) bloque -> ABRECOR estatuto_aux . CIERRACOR
+
+    CIERRACOR       shift and go to state 75
+
+
+state 38
+
+    (101) estatuto_aux -> estatuto .
+    (102) estatuto_aux -> estatuto . estatuto_aux
+    (101) estatuto_aux -> . estatuto
+    (102) estatuto_aux -> . estatuto estatuto_aux
+    (45) estatuto -> . llamada_funcion
+    (46) estatuto -> . asignacion
+    (47) estatuto -> . condicion
+    (48) estatuto -> . escritura
+    (49) estatuto -> . ciclo
+    (50) estatuto -> . func_pred
+    (51) estatuto -> . lectura
+    (52) llamada_funcion -> . pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA
+    (61) asignacion -> . pN12 pN16 logical_expresion PUNTOYCOMA
+    (62) asignacion -> . pN12 array pN16 logical_expresion PUNTOYCOMA
+    (59) condicion -> . REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+    (60) condicion -> . REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
+    (55) escritura -> . REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA
+    (65) ciclo -> . REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+    (66) func_pred -> . REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR
+    (67) func_pred -> . REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR
+    (68) func_pred -> . REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR
+    (69) func_pred -> . REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+    (70) func_pred -> . REGLA_PIECHART ABREPAR ID CIERRAPAR
+    (71) func_pred -> . REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR
+    (72) func_pred -> . REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR
+    (73) func_pred -> . REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR
+    (74) func_pred -> . REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR
+    (75) lectura -> . REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA
+    (76) lectura -> . REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA
+    (97) pN13 -> . ID
+    (64) pN12 -> . ID
+
+    CIERRACOR       reduce using rule 101 (estatuto_aux -> estatuto .)
+    REGLA_IF        shift and go to state 48
+    REGLA_PRINT     shift and go to state 49
+    REGLA_WHILE     shift and go to state 50
+    REGLA_AVERAGE   shift and go to state 51
+    REGLA_MEDIAN    shift and go to state 53
+    REGLA_MODE      shift and go to state 54
+    REGLA_PLOT      shift and go to state 55
+    REGLA_PIECHART  shift and go to state 56
+    REGLA_VARIANZA  shift and go to state 57
+    REGLA_DESV_T    shift and go to state 58
+    REGLA_DIST_N    shift and go to state 59
+    REGLA_BASIC_V_P shift and go to state 60
+    REGLA_READ      shift and go to state 61
+    ID              shift and go to state 52
+
+    estatuto                       shift and go to state 38
+    estatuto_aux                   shift and go to state 76
+    llamada_funcion                shift and go to state 39
+    asignacion                     shift and go to state 40
+    condicion                      shift and go to state 41
+    escritura                      shift and go to state 42
+    ciclo                          shift and go to state 43
+    func_pred                      shift and go to state 44
+    lectura                        shift and go to state 45
+    pN13                           shift and go to state 46
+    pN12                           shift and go to state 47
+
+state 39
+
+    (45) estatuto -> llamada_funcion .
+
+    REGLA_IF        reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_PRINT     reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_WHILE     reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_AVERAGE   reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_MEDIAN    reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_MODE      reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_PLOT      reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_PIECHART  reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_VARIANZA  reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_DESV_T    reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_DIST_N    reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_BASIC_V_P reduce using rule 45 (estatuto -> llamada_funcion .)
+    REGLA_READ      reduce using rule 45 (estatuto -> llamada_funcion .)
+    ID              reduce using rule 45 (estatuto -> llamada_funcion .)
+    CIERRACOR       reduce using rule 45 (estatuto -> llamada_funcion .)
+
+
+state 40
+
+    (46) estatuto -> asignacion .
+
+    REGLA_IF        reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_PRINT     reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_WHILE     reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_AVERAGE   reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_MEDIAN    reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_MODE      reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_PLOT      reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_PIECHART  reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_VARIANZA  reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_DESV_T    reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_DIST_N    reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_BASIC_V_P reduce using rule 46 (estatuto -> asignacion .)
+    REGLA_READ      reduce using rule 46 (estatuto -> asignacion .)
+    ID              reduce using rule 46 (estatuto -> asignacion .)
+    CIERRACOR       reduce using rule 46 (estatuto -> asignacion .)
+
+
+state 41
+
+    (47) estatuto -> condicion .
+
+    REGLA_IF        reduce using rule 47 (estatuto -> condicion .)
+    REGLA_PRINT     reduce using rule 47 (estatuto -> condicion .)
+    REGLA_WHILE     reduce using rule 47 (estatuto -> condicion .)
+    REGLA_AVERAGE   reduce using rule 47 (estatuto -> condicion .)
+    REGLA_MEDIAN    reduce using rule 47 (estatuto -> condicion .)
+    REGLA_MODE      reduce using rule 47 (estatuto -> condicion .)
+    REGLA_PLOT      reduce using rule 47 (estatuto -> condicion .)
+    REGLA_PIECHART  reduce using rule 47 (estatuto -> condicion .)
+    REGLA_VARIANZA  reduce using rule 47 (estatuto -> condicion .)
+    REGLA_DESV_T    reduce using rule 47 (estatuto -> condicion .)
+    REGLA_DIST_N    reduce using rule 47 (estatuto -> condicion .)
+    REGLA_BASIC_V_P reduce using rule 47 (estatuto -> condicion .)
+    REGLA_READ      reduce using rule 47 (estatuto -> condicion .)
+    ID              reduce using rule 47 (estatuto -> condicion .)
+    CIERRACOR       reduce using rule 47 (estatuto -> condicion .)
+
+
+state 42
+
+    (48) estatuto -> escritura .
+
+    REGLA_IF        reduce using rule 48 (estatuto -> escritura .)
+    REGLA_PRINT     reduce using rule 48 (estatuto -> escritura .)
+    REGLA_WHILE     reduce using rule 48 (estatuto -> escritura .)
+    REGLA_AVERAGE   reduce using rule 48 (estatuto -> escritura .)
+    REGLA_MEDIAN    reduce using rule 48 (estatuto -> escritura .)
+    REGLA_MODE      reduce using rule 48 (estatuto -> escritura .)
+    REGLA_PLOT      reduce using rule 48 (estatuto -> escritura .)
+    REGLA_PIECHART  reduce using rule 48 (estatuto -> escritura .)
+    REGLA_VARIANZA  reduce using rule 48 (estatuto -> escritura .)
+    REGLA_DESV_T    reduce using rule 48 (estatuto -> escritura .)
+    REGLA_DIST_N    reduce using rule 48 (estatuto -> escritura .)
+    REGLA_BASIC_V_P reduce using rule 48 (estatuto -> escritura .)
+    REGLA_READ      reduce using rule 48 (estatuto -> escritura .)
+    ID              reduce using rule 48 (estatuto -> escritura .)
+    CIERRACOR       reduce using rule 48 (estatuto -> escritura .)
+
+
+state 43
+
+    (49) estatuto -> ciclo .
+
+    REGLA_IF        reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_PRINT     reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_WHILE     reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_AVERAGE   reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_MEDIAN    reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_MODE      reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_PLOT      reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_PIECHART  reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_VARIANZA  reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_DESV_T    reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_DIST_N    reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_BASIC_V_P reduce using rule 49 (estatuto -> ciclo .)
+    REGLA_READ      reduce using rule 49 (estatuto -> ciclo .)
+    ID              reduce using rule 49 (estatuto -> ciclo .)
+    CIERRACOR       reduce using rule 49 (estatuto -> ciclo .)
+
+
+state 44
+
+    (50) estatuto -> func_pred .
+
+    REGLA_IF        reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_PRINT     reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_WHILE     reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_AVERAGE   reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_MEDIAN    reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_MODE      reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_PLOT      reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_PIECHART  reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_VARIANZA  reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_DESV_T    reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_DIST_N    reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_BASIC_V_P reduce using rule 50 (estatuto -> func_pred .)
+    REGLA_READ      reduce using rule 50 (estatuto -> func_pred .)
+    ID              reduce using rule 50 (estatuto -> func_pred .)
+    CIERRACOR       reduce using rule 50 (estatuto -> func_pred .)
+
+
+state 45
+
+    (51) estatuto -> lectura .
+
+    REGLA_IF        reduce using rule 51 (estatuto -> lectura .)
+    REGLA_PRINT     reduce using rule 51 (estatuto -> lectura .)
+    REGLA_WHILE     reduce using rule 51 (estatuto -> lectura .)
+    REGLA_AVERAGE   reduce using rule 51 (estatuto -> lectura .)
+    REGLA_MEDIAN    reduce using rule 51 (estatuto -> lectura .)
+    REGLA_MODE      reduce using rule 51 (estatuto -> lectura .)
+    REGLA_PLOT      reduce using rule 51 (estatuto -> lectura .)
+    REGLA_PIECHART  reduce using rule 51 (estatuto -> lectura .)
+    REGLA_VARIANZA  reduce using rule 51 (estatuto -> lectura .)
+    REGLA_DESV_T    reduce using rule 51 (estatuto -> lectura .)
+    REGLA_DIST_N    reduce using rule 51 (estatuto -> lectura .)
+    REGLA_BASIC_V_P reduce using rule 51 (estatuto -> lectura .)
+    REGLA_READ      reduce using rule 51 (estatuto -> lectura .)
+    ID              reduce using rule 51 (estatuto -> lectura .)
+    CIERRACOR       reduce using rule 51 (estatuto -> lectura .)
+
+
+state 46
+
+    (52) llamada_funcion -> pN13 . ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA
+
+    ABREPAR         shift and go to state 77
+
+
+state 47
+
+    (61) asignacion -> pN12 . pN16 logical_expresion PUNTOYCOMA
+    (62) asignacion -> pN12 . array pN16 logical_expresion PUNTOYCOMA
+    (63) pN16 -> . IGUAL
+    (77) array -> . ABREBRACK exp CIERRABRACK
+    (78) array -> . ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK
+
+    IGUAL           shift and go to state 80
+    ABREBRACK       shift and go to state 81
+
+    pN16                           shift and go to state 78
+    array                          shift and go to state 79
+
+state 48
+
+    (59) condicion -> REGLA_IF . ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+    (60) condicion -> REGLA_IF . ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
+
+    ABREPAR         shift and go to state 82
+
+
+state 49
+
+    (55) escritura -> REGLA_PRINT . ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA
+
+    ABREPAR         shift and go to state 83
+
+
+state 50
+
+    (65) ciclo -> REGLA_WHILE . ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+
+    ABREPAR         shift and go to state 84
+
+
+state 51
+
+    (66) func_pred -> REGLA_AVERAGE . ABREPAR ID COMA CTE_I CIERRAPAR
+
+    ABREPAR         shift and go to state 85
+
+
+state 52
+
+    (97) pN13 -> ID .
+    (64) pN12 -> ID .
+
+    ABREPAR         reduce using rule 97 (pN13 -> ID .)
+    IGUAL           reduce using rule 64 (pN12 -> ID .)
+    ABREBRACK       reduce using rule 64 (pN12 -> ID .)
+
+
+state 53
+
+    (67) func_pred -> REGLA_MEDIAN . ABREPAR ID COMA CTE_I CIERRAPAR
+
+    ABREPAR         shift and go to state 86
+
+
+state 54
+
+    (68) func_pred -> REGLA_MODE . ABREPAR ID COMA CTE_I CIERRAPAR
+
+    ABREPAR         shift and go to state 87
+
+
+state 55
+
+    (69) func_pred -> REGLA_PLOT . ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+
+    ABREPAR         shift and go to state 88
+
+
+state 56
+
+    (70) func_pred -> REGLA_PIECHART . ABREPAR ID CIERRAPAR
+
+    ABREPAR         shift and go to state 89
+
+
+state 57
+
+    (71) func_pred -> REGLA_VARIANZA . ABREPAR ID COMA CTE_I CIERRAPAR
+
+    ABREPAR         shift and go to state 90
+
+
+state 58
+
+    (72) func_pred -> REGLA_DESV_T . ABREPAR ID COMA CTE_I CIERRAPAR
+
+    ABREPAR         shift and go to state 91
+
+
+state 59
+
+    (73) func_pred -> REGLA_DIST_N . ABREPAR ID COMA CTE_I CIERRAPAR
+
+    ABREPAR         shift and go to state 92
+
+
+state 60
+
+    (74) func_pred -> REGLA_BASIC_V_P . ABREPAR ID COMA CTE_CHAR CIERRAPAR
+
+    ABREPAR         shift and go to state 93
+
+
+state 61
+
+    (75) lectura -> REGLA_READ . ABREPAR ID CIERRAPAR PUNTOYCOMA
+    (76) lectura -> REGLA_READ . ABREPAR ID array CIERRAPAR PUNTOYCOMA
+
+    ABREPAR         shift and go to state 94
+
+
+state 62
+
+    (2) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque . REGLA_END
+
+    REGLA_END       shift and go to state 95
+
+
+state 63
+
+    (4) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars programa_modulos_aux REGLA_MAIN pN11 . bloque REGLA_END
+    (100) bloque -> . ABRECOR estatuto_aux CIERRACOR
+
+    ABRECOR         shift and go to state 22
+
+    bloque                         shift and go to state 96
+
+state 64
+
+    (3) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 bloque . REGLA_END
+
+    REGLA_END       shift and go to state 97
+
+
+state 65
+
+    (79) declaracionVar -> var_id DOSPUNTOS tipo . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 98
+
+
+state 66
+
+    (22) tipo -> REGLA_INT .
+
+    PUNTOYCOMA      reduce using rule 22 (tipo -> REGLA_INT .)
+    COMA            reduce using rule 22 (tipo -> REGLA_INT .)
+    CIERRAPAR       reduce using rule 22 (tipo -> REGLA_INT .)
+
+
+state 67
+
+    (23) tipo -> REGLA_FLOAT .
+
+    PUNTOYCOMA      reduce using rule 23 (tipo -> REGLA_FLOAT .)
+    COMA            reduce using rule 23 (tipo -> REGLA_FLOAT .)
+    CIERRAPAR       reduce using rule 23 (tipo -> REGLA_FLOAT .)
+
+
+state 68
+
+    (24) tipo -> REGLA_CHAR .
+
+    PUNTOYCOMA      reduce using rule 24 (tipo -> REGLA_CHAR .)
+    COMA            reduce using rule 24 (tipo -> REGLA_CHAR .)
+    CIERRAPAR       reduce using rule 24 (tipo -> REGLA_CHAR .)
+
+
+state 69
+
+    (25) tipo -> REGLA_DATASET .
+
+    PUNTOYCOMA      reduce using rule 25 (tipo -> REGLA_DATASET .)
+    COMA            reduce using rule 25 (tipo -> REGLA_DATASET .)
+    CIERRAPAR       reduce using rule 25 (tipo -> REGLA_DATASET .)
+
+
+state 70
+
+    (26) tipo -> REGLA_BOOL .
+
+    PUNTOYCOMA      reduce using rule 26 (tipo -> REGLA_BOOL .)
+    COMA            reduce using rule 26 (tipo -> REGLA_BOOL .)
+    CIERRAPAR       reduce using rule 26 (tipo -> REGLA_BOOL .)
+
+
+state 71
+
+    (80) declaracionVar -> ID ABREBRACK CTE_I . CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (81) declaracionVar -> ID ABREBRACK CTE_I . CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (82) declaracionVar -> ID ABREBRACK CTE_I . CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+    (83) declaracionVar -> ID ABREBRACK CTE_I . CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (84) declaracionVar -> ID ABREBRACK CTE_I . CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (85) declaracionVar -> ID ABREBRACK CTE_I . CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+
+    CIERRABRACK     shift and go to state 99
+
+
+state 72
+
+    (86) var_id -> ID .
+    (87) var_id -> ID . COMA var_id
+
+    DOSPUNTOS       reduce using rule 86 (var_id -> ID .)
+    COMA            shift and go to state 29
+
+
+state 73
+
+    (87) var_id -> ID COMA var_id .
+
+    DOSPUNTOS       reduce using rule 87 (var_id -> ID COMA var_id .)
+
+
+state 74
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS . pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+    (13) pN4 -> . ID
+
+    ID              shift and go to state 101
+
+    pN4                            shift and go to state 100
+
+state 75
+
+    (100) bloque -> ABRECOR estatuto_aux CIERRACOR .
+
+    REGLA_END       reduce using rule 100 (bloque -> ABRECOR estatuto_aux CIERRACOR .)
+    PUNTOYCOMA      reduce using rule 100 (bloque -> ABRECOR estatuto_aux CIERRACOR .)
+    REGLA_ELSE      reduce using rule 100 (bloque -> ABRECOR estatuto_aux CIERRACOR .)
+    REGLA_FUNCION   reduce using rule 100 (bloque -> ABRECOR estatuto_aux CIERRACOR .)
+    REGLA_MAIN      reduce using rule 100 (bloque -> ABRECOR estatuto_aux CIERRACOR .)
+
+
+state 76
+
+    (102) estatuto_aux -> estatuto estatuto_aux .
+
+    CIERRACOR       reduce using rule 102 (estatuto_aux -> estatuto estatuto_aux .)
+
+
+state 77
+
+    (52) llamada_funcion -> pN13 ABREPAR . llamada_funcion_aux CIERRAPAR PUNTOYCOMA
+    (53) llamada_funcion_aux -> . exp
+    (54) llamada_funcion_aux -> . exp COMA llamada_funcion_aux
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    pN13                           shift and go to state 102
+    llamada_funcion_aux            shift and go to state 104
+    exp                            shift and go to state 105
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+
+state 78
+
+    (61) asignacion -> pN12 pN16 . logical_expresion PUNTOYCOMA
+    (41) logical_expresion -> . REGLA_NOT expresion
+    (42) logical_expresion -> . expresion REGLA_AND expresion
+    (43) logical_expresion -> . expresion REGLA_OR expresion
+    (44) logical_expresion -> . expresion
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    REGLA_NOT       shift and go to state 119
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    logical_expresion              shift and go to state 118
+    expresion                      shift and go to state 120
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 79
+
+    (62) asignacion -> pN12 array . pN16 logical_expresion PUNTOYCOMA
+    (63) pN16 -> . IGUAL
+
+    IGUAL           shift and go to state 80
+
+    pN16                           shift and go to state 122
+
+state 80
+
+    (63) pN16 -> IGUAL .
+
+    REGLA_NOT       reduce using rule 63 (pN16 -> IGUAL .)
+    ABREPAR         reduce using rule 63 (pN16 -> IGUAL .)
+    SUMA            reduce using rule 63 (pN16 -> IGUAL .)
+    RESTA           reduce using rule 63 (pN16 -> IGUAL .)
+    CTE_I           reduce using rule 63 (pN16 -> IGUAL .)
+    CTE_F           reduce using rule 63 (pN16 -> IGUAL .)
+    CTE_CHAR        reduce using rule 63 (pN16 -> IGUAL .)
+    CTE_BOOL        reduce using rule 63 (pN16 -> IGUAL .)
+    CTE_D           reduce using rule 63 (pN16 -> IGUAL .)
+    ID              reduce using rule 63 (pN16 -> IGUAL .)
+
+
+state 81
+
+    (77) array -> ABREBRACK . exp CIERRABRACK
+    (78) array -> ABREBRACK . exp CIERRABRACK ABREBRACK exp CIERRABRACK
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    exp                            shift and go to state 123
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 82
+
+    (59) condicion -> REGLA_IF ABREPAR . logical_expresion CIERRAPAR bloque PUNTOYCOMA
+    (60) condicion -> REGLA_IF ABREPAR . logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
+    (41) logical_expresion -> . REGLA_NOT expresion
+    (42) logical_expresion -> . expresion REGLA_AND expresion
+    (43) logical_expresion -> . expresion REGLA_OR expresion
+    (44) logical_expresion -> . expresion
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    REGLA_NOT       shift and go to state 119
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    logical_expresion              shift and go to state 124
+    expresion                      shift and go to state 120
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 83
+
+    (55) escritura -> REGLA_PRINT ABREPAR . escritura_aux CIERRAPAR PUNTOYCOMA
+    (56) escritura_aux -> . expresion pN19
+    (57) escritura_aux -> . expresion COMA pN19 escritura_aux
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    escritura_aux                  shift and go to state 125
+    expresion                      shift and go to state 126
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 84
+
+    (65) ciclo -> REGLA_WHILE ABREPAR . logical_expresion CIERRAPAR bloque PUNTOYCOMA
+    (41) logical_expresion -> . REGLA_NOT expresion
+    (42) logical_expresion -> . expresion REGLA_AND expresion
+    (43) logical_expresion -> . expresion REGLA_OR expresion
+    (44) logical_expresion -> . expresion
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    REGLA_NOT       shift and go to state 119
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    logical_expresion              shift and go to state 127
+    expresion                      shift and go to state 120
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 85
+
+    (66) func_pred -> REGLA_AVERAGE ABREPAR . ID COMA CTE_I CIERRAPAR
+
+    ID              shift and go to state 128
+
+
+state 86
+
+    (67) func_pred -> REGLA_MEDIAN ABREPAR . ID COMA CTE_I CIERRAPAR
+
+    ID              shift and go to state 129
+
+
+state 87
+
+    (68) func_pred -> REGLA_MODE ABREPAR . ID COMA CTE_I CIERRAPAR
+
+    ID              shift and go to state 130
+
+
+state 88
+
+    (69) func_pred -> REGLA_PLOT ABREPAR . ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+
+    ID              shift and go to state 131
+
+
+state 89
+
+    (70) func_pred -> REGLA_PIECHART ABREPAR . ID CIERRAPAR
+
+    ID              shift and go to state 132
+
+
+state 90
+
+    (71) func_pred -> REGLA_VARIANZA ABREPAR . ID COMA CTE_I CIERRAPAR
+
+    ID              shift and go to state 133
+
+
+state 91
+
+    (72) func_pred -> REGLA_DESV_T ABREPAR . ID COMA CTE_I CIERRAPAR
+
+    ID              shift and go to state 134
+
+
+state 92
+
+    (73) func_pred -> REGLA_DIST_N ABREPAR . ID COMA CTE_I CIERRAPAR
+
+    ID              shift and go to state 135
+
+
+state 93
+
+    (74) func_pred -> REGLA_BASIC_V_P ABREPAR . ID COMA CTE_CHAR CIERRAPAR
+
+    ID              shift and go to state 136
+
+
+state 94
+
+    (75) lectura -> REGLA_READ ABREPAR . ID CIERRAPAR PUNTOYCOMA
+    (76) lectura -> REGLA_READ ABREPAR . ID array CIERRAPAR PUNTOYCOMA
+
+    ID              shift and go to state 137
+
+
+state 95
+
+    (2) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque REGLA_END .
+
+    $end            reduce using rule 2 (programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque REGLA_END .)
+
+
+state 96
+
+    (4) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars programa_modulos_aux REGLA_MAIN pN11 bloque . REGLA_END
+
+    REGLA_END       shift and go to state 138
+
+
+state 97
+
+    (3) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END .
+
+    $end            reduce using rule 3 (programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END .)
+
+
+state 98
+
+    (79) declaracionVar -> var_id DOSPUNTOS tipo PUNTOYCOMA .
+
+    REGLA_VAR       reduce using rule 79 (declaracionVar -> var_id DOSPUNTOS tipo PUNTOYCOMA .)
+    REGLA_MAIN      reduce using rule 79 (declaracionVar -> var_id DOSPUNTOS tipo PUNTOYCOMA .)
+    REGLA_FUNCION   reduce using rule 79 (declaracionVar -> var_id DOSPUNTOS tipo PUNTOYCOMA .)
+    ABRECOR         reduce using rule 79 (declaracionVar -> var_id DOSPUNTOS tipo PUNTOYCOMA .)
+
+
+state 99
+
+    (80) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK . DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (81) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK . DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (82) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK . DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+    (83) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK . ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (84) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK . ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (85) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK . ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+
+    DOSPUNTOS       shift and go to state 140
+    ABREBRACK       shift and go to state 139
+
+
+state 100
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 . pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+    (12) pN3 -> .
+
+    ABREPAR         reduce using rule 12 (pN3 -> .)
+
+    pN3                            shift and go to state 141
+
+state 101
+
+    (13) pN4 -> ID .
+
+    ABREPAR         reduce using rule 13 (pN4 -> ID .)
+
+
+state 102
+
+    (90) var_cte -> pN13 . ABREPAR var_cte_aux CIERRAPAR
+
+    ABREPAR         shift and go to state 142
+
+
+state 103
+
+    (113) factor -> ABREPAR . logical_expresion CIERRAPAR
+    (41) logical_expresion -> . REGLA_NOT expresion
+    (42) logical_expresion -> . expresion REGLA_AND expresion
+    (43) logical_expresion -> . expresion REGLA_OR expresion
+    (44) logical_expresion -> . expresion
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    REGLA_NOT       shift and go to state 119
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    logical_expresion              shift and go to state 143
+    expresion                      shift and go to state 120
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 104
+
+    (52) llamada_funcion -> pN13 ABREPAR llamada_funcion_aux . CIERRAPAR PUNTOYCOMA
+
+    CIERRAPAR       shift and go to state 144
+
+
+state 105
+
+    (53) llamada_funcion_aux -> exp .
+    (54) llamada_funcion_aux -> exp . COMA llamada_funcion_aux
+
+    CIERRAPAR       reduce using rule 53 (llamada_funcion_aux -> exp .)
+    COMA            shift and go to state 145
+
+
+state 106
+
+    (103) exp -> termino . pN17
+    (104) exp -> termino . pN17 pN14 exp
+    (107) pN17 -> .
+
+    SUMA            reduce using rule 107 (pN17 -> .)
+    RESTA           reduce using rule 107 (pN17 -> .)
+    COMA            reduce using rule 107 (pN17 -> .)
+    CIERRAPAR       reduce using rule 107 (pN17 -> .)
+    MAYORQUE        reduce using rule 107 (pN17 -> .)
+    MENORQUE        reduce using rule 107 (pN17 -> .)
+    MAYORQUEIGUAL   reduce using rule 107 (pN17 -> .)
+    MENORQUEIGUAL   reduce using rule 107 (pN17 -> .)
+    IGUALIGUAL      reduce using rule 107 (pN17 -> .)
+    DIFDE           reduce using rule 107 (pN17 -> .)
+    REGLA_AND       reduce using rule 107 (pN17 -> .)
+    REGLA_OR        reduce using rule 107 (pN17 -> .)
+    PUNTOYCOMA      reduce using rule 107 (pN17 -> .)
+    CIERRABRACK     reduce using rule 107 (pN17 -> .)
+
+    pN17                           shift and go to state 146
+
+state 107
+
+    (108) termino -> factor . pN18
+    (109) termino -> factor . pN18 pN15 termino
+    (112) pN18 -> .
+
+    MULTIPLICACION  reduce using rule 112 (pN18 -> .)
+    DIVISION        reduce using rule 112 (pN18 -> .)
+    SUMA            reduce using rule 112 (pN18 -> .)
+    RESTA           reduce using rule 112 (pN18 -> .)
+    COMA            reduce using rule 112 (pN18 -> .)
+    CIERRAPAR       reduce using rule 112 (pN18 -> .)
+    MAYORQUE        reduce using rule 112 (pN18 -> .)
+    MENORQUE        reduce using rule 112 (pN18 -> .)
+    MAYORQUEIGUAL   reduce using rule 112 (pN18 -> .)
+    MENORQUEIGUAL   reduce using rule 112 (pN18 -> .)
+    IGUALIGUAL      reduce using rule 112 (pN18 -> .)
+    DIFDE           reduce using rule 112 (pN18 -> .)
+    REGLA_AND       reduce using rule 112 (pN18 -> .)
+    REGLA_OR        reduce using rule 112 (pN18 -> .)
+    PUNTOYCOMA      reduce using rule 112 (pN18 -> .)
+    CIERRABRACK     reduce using rule 112 (pN18 -> .)
+
+    pN18                           shift and go to state 147
+
+state 108
+
+    (114) factor -> var_cte . pN2
+    (117) pN2 -> .
+
+    MULTIPLICACION  reduce using rule 117 (pN2 -> .)
+    DIVISION        reduce using rule 117 (pN2 -> .)
+    SUMA            reduce using rule 117 (pN2 -> .)
+    RESTA           reduce using rule 117 (pN2 -> .)
+    COMA            reduce using rule 117 (pN2 -> .)
+    CIERRAPAR       reduce using rule 117 (pN2 -> .)
+    MAYORQUE        reduce using rule 117 (pN2 -> .)
+    MENORQUE        reduce using rule 117 (pN2 -> .)
+    MAYORQUEIGUAL   reduce using rule 117 (pN2 -> .)
+    MENORQUEIGUAL   reduce using rule 117 (pN2 -> .)
+    IGUALIGUAL      reduce using rule 117 (pN2 -> .)
+    DIFDE           reduce using rule 117 (pN2 -> .)
+    REGLA_AND       reduce using rule 117 (pN2 -> .)
+    REGLA_OR        reduce using rule 117 (pN2 -> .)
+    PUNTOYCOMA      reduce using rule 117 (pN2 -> .)
+    CIERRABRACK     reduce using rule 117 (pN2 -> .)
+
+    pN2                            shift and go to state 148
+
+state 109
+
+    (115) factor -> SUMA . var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    var_cte                        shift and go to state 149
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 110
+
+    (116) factor -> RESTA . var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    var_cte                        shift and go to state 150
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 111
+
+    (88) var_cte -> pN20 .
+    (89) var_cte -> pN20 . array
+    (77) array -> . ABREBRACK exp CIERRABRACK
+    (78) array -> . ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK
+
+    MULTIPLICACION  reduce using rule 88 (var_cte -> pN20 .)
+    DIVISION        reduce using rule 88 (var_cte -> pN20 .)
+    SUMA            reduce using rule 88 (var_cte -> pN20 .)
+    RESTA           reduce using rule 88 (var_cte -> pN20 .)
+    COMA            reduce using rule 88 (var_cte -> pN20 .)
+    CIERRAPAR       reduce using rule 88 (var_cte -> pN20 .)
+    MAYORQUE        reduce using rule 88 (var_cte -> pN20 .)
+    MENORQUE        reduce using rule 88 (var_cte -> pN20 .)
+    MAYORQUEIGUAL   reduce using rule 88 (var_cte -> pN20 .)
+    MENORQUEIGUAL   reduce using rule 88 (var_cte -> pN20 .)
+    IGUALIGUAL      reduce using rule 88 (var_cte -> pN20 .)
+    DIFDE           reduce using rule 88 (var_cte -> pN20 .)
+    REGLA_AND       reduce using rule 88 (var_cte -> pN20 .)
+    REGLA_OR        reduce using rule 88 (var_cte -> pN20 .)
+    PUNTOYCOMA      reduce using rule 88 (var_cte -> pN20 .)
+    CIERRABRACK     reduce using rule 88 (var_cte -> pN20 .)
+    ABREBRACK       shift and go to state 81
+
+    array                          shift and go to state 151
+
+state 112
+
+    (91) var_cte -> CTE_I .
+
+    MULTIPLICACION  reduce using rule 91 (var_cte -> CTE_I .)
+    DIVISION        reduce using rule 91 (var_cte -> CTE_I .)
+    SUMA            reduce using rule 91 (var_cte -> CTE_I .)
+    RESTA           reduce using rule 91 (var_cte -> CTE_I .)
+    COMA            reduce using rule 91 (var_cte -> CTE_I .)
+    CIERRAPAR       reduce using rule 91 (var_cte -> CTE_I .)
+    MAYORQUE        reduce using rule 91 (var_cte -> CTE_I .)
+    MENORQUE        reduce using rule 91 (var_cte -> CTE_I .)
+    MAYORQUEIGUAL   reduce using rule 91 (var_cte -> CTE_I .)
+    MENORQUEIGUAL   reduce using rule 91 (var_cte -> CTE_I .)
+    IGUALIGUAL      reduce using rule 91 (var_cte -> CTE_I .)
+    DIFDE           reduce using rule 91 (var_cte -> CTE_I .)
+    REGLA_AND       reduce using rule 91 (var_cte -> CTE_I .)
+    REGLA_OR        reduce using rule 91 (var_cte -> CTE_I .)
+    PUNTOYCOMA      reduce using rule 91 (var_cte -> CTE_I .)
+    CIERRABRACK     reduce using rule 91 (var_cte -> CTE_I .)
+
+
+state 113
+
+    (92) var_cte -> CTE_F .
+
+    MULTIPLICACION  reduce using rule 92 (var_cte -> CTE_F .)
+    DIVISION        reduce using rule 92 (var_cte -> CTE_F .)
+    SUMA            reduce using rule 92 (var_cte -> CTE_F .)
+    RESTA           reduce using rule 92 (var_cte -> CTE_F .)
+    COMA            reduce using rule 92 (var_cte -> CTE_F .)
+    CIERRAPAR       reduce using rule 92 (var_cte -> CTE_F .)
+    MAYORQUE        reduce using rule 92 (var_cte -> CTE_F .)
+    MENORQUE        reduce using rule 92 (var_cte -> CTE_F .)
+    MAYORQUEIGUAL   reduce using rule 92 (var_cte -> CTE_F .)
+    MENORQUEIGUAL   reduce using rule 92 (var_cte -> CTE_F .)
+    IGUALIGUAL      reduce using rule 92 (var_cte -> CTE_F .)
+    DIFDE           reduce using rule 92 (var_cte -> CTE_F .)
+    REGLA_AND       reduce using rule 92 (var_cte -> CTE_F .)
+    REGLA_OR        reduce using rule 92 (var_cte -> CTE_F .)
+    PUNTOYCOMA      reduce using rule 92 (var_cte -> CTE_F .)
+    CIERRABRACK     reduce using rule 92 (var_cte -> CTE_F .)
+
+
+state 114
+
+    (93) var_cte -> CTE_CHAR .
+
+    MULTIPLICACION  reduce using rule 93 (var_cte -> CTE_CHAR .)
+    DIVISION        reduce using rule 93 (var_cte -> CTE_CHAR .)
+    SUMA            reduce using rule 93 (var_cte -> CTE_CHAR .)
+    RESTA           reduce using rule 93 (var_cte -> CTE_CHAR .)
+    COMA            reduce using rule 93 (var_cte -> CTE_CHAR .)
+    CIERRAPAR       reduce using rule 93 (var_cte -> CTE_CHAR .)
+    MAYORQUE        reduce using rule 93 (var_cte -> CTE_CHAR .)
+    MENORQUE        reduce using rule 93 (var_cte -> CTE_CHAR .)
+    MAYORQUEIGUAL   reduce using rule 93 (var_cte -> CTE_CHAR .)
+    MENORQUEIGUAL   reduce using rule 93 (var_cte -> CTE_CHAR .)
+    IGUALIGUAL      reduce using rule 93 (var_cte -> CTE_CHAR .)
+    DIFDE           reduce using rule 93 (var_cte -> CTE_CHAR .)
+    REGLA_AND       reduce using rule 93 (var_cte -> CTE_CHAR .)
+    REGLA_OR        reduce using rule 93 (var_cte -> CTE_CHAR .)
+    PUNTOYCOMA      reduce using rule 93 (var_cte -> CTE_CHAR .)
+    CIERRABRACK     reduce using rule 93 (var_cte -> CTE_CHAR .)
+
+
+state 115
+
+    (94) var_cte -> CTE_BOOL .
+
+    MULTIPLICACION  reduce using rule 94 (var_cte -> CTE_BOOL .)
+    DIVISION        reduce using rule 94 (var_cte -> CTE_BOOL .)
+    SUMA            reduce using rule 94 (var_cte -> CTE_BOOL .)
+    RESTA           reduce using rule 94 (var_cte -> CTE_BOOL .)
+    COMA            reduce using rule 94 (var_cte -> CTE_BOOL .)
+    CIERRAPAR       reduce using rule 94 (var_cte -> CTE_BOOL .)
+    MAYORQUE        reduce using rule 94 (var_cte -> CTE_BOOL .)
+    MENORQUE        reduce using rule 94 (var_cte -> CTE_BOOL .)
+    MAYORQUEIGUAL   reduce using rule 94 (var_cte -> CTE_BOOL .)
+    MENORQUEIGUAL   reduce using rule 94 (var_cte -> CTE_BOOL .)
+    IGUALIGUAL      reduce using rule 94 (var_cte -> CTE_BOOL .)
+    DIFDE           reduce using rule 94 (var_cte -> CTE_BOOL .)
+    REGLA_AND       reduce using rule 94 (var_cte -> CTE_BOOL .)
+    REGLA_OR        reduce using rule 94 (var_cte -> CTE_BOOL .)
+    PUNTOYCOMA      reduce using rule 94 (var_cte -> CTE_BOOL .)
+    CIERRABRACK     reduce using rule 94 (var_cte -> CTE_BOOL .)
+
+
+state 116
+
+    (95) var_cte -> CTE_D .
+
+    MULTIPLICACION  reduce using rule 95 (var_cte -> CTE_D .)
+    DIVISION        reduce using rule 95 (var_cte -> CTE_D .)
+    SUMA            reduce using rule 95 (var_cte -> CTE_D .)
+    RESTA           reduce using rule 95 (var_cte -> CTE_D .)
+    COMA            reduce using rule 95 (var_cte -> CTE_D .)
+    CIERRAPAR       reduce using rule 95 (var_cte -> CTE_D .)
+    MAYORQUE        reduce using rule 95 (var_cte -> CTE_D .)
+    MENORQUE        reduce using rule 95 (var_cte -> CTE_D .)
+    MAYORQUEIGUAL   reduce using rule 95 (var_cte -> CTE_D .)
+    MENORQUEIGUAL   reduce using rule 95 (var_cte -> CTE_D .)
+    IGUALIGUAL      reduce using rule 95 (var_cte -> CTE_D .)
+    DIFDE           reduce using rule 95 (var_cte -> CTE_D .)
+    REGLA_AND       reduce using rule 95 (var_cte -> CTE_D .)
+    REGLA_OR        reduce using rule 95 (var_cte -> CTE_D .)
+    PUNTOYCOMA      reduce using rule 95 (var_cte -> CTE_D .)
+    CIERRABRACK     reduce using rule 95 (var_cte -> CTE_D .)
+
+
+state 117
+
+    (96) pN20 -> ID .
+    (97) pN13 -> ID .
+
+    ABREBRACK       reduce using rule 96 (pN20 -> ID .)
+    MULTIPLICACION  reduce using rule 96 (pN20 -> ID .)
+    DIVISION        reduce using rule 96 (pN20 -> ID .)
+    SUMA            reduce using rule 96 (pN20 -> ID .)
+    RESTA           reduce using rule 96 (pN20 -> ID .)
+    COMA            reduce using rule 96 (pN20 -> ID .)
+    CIERRAPAR       reduce using rule 96 (pN20 -> ID .)
+    MAYORQUE        reduce using rule 96 (pN20 -> ID .)
+    MENORQUE        reduce using rule 96 (pN20 -> ID .)
+    MAYORQUEIGUAL   reduce using rule 96 (pN20 -> ID .)
+    MENORQUEIGUAL   reduce using rule 96 (pN20 -> ID .)
+    IGUALIGUAL      reduce using rule 96 (pN20 -> ID .)
+    DIFDE           reduce using rule 96 (pN20 -> ID .)
+    REGLA_AND       reduce using rule 96 (pN20 -> ID .)
+    REGLA_OR        reduce using rule 96 (pN20 -> ID .)
+    PUNTOYCOMA      reduce using rule 96 (pN20 -> ID .)
+    CIERRABRACK     reduce using rule 96 (pN20 -> ID .)
+    ABREPAR         reduce using rule 97 (pN13 -> ID .)
+
+
+state 118
+
+    (61) asignacion -> pN12 pN16 logical_expresion . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 152
+
+
+state 119
+
+    (41) logical_expresion -> REGLA_NOT . expresion
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    expresion                      shift and go to state 153
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 120
+
+    (42) logical_expresion -> expresion . REGLA_AND expresion
+    (43) logical_expresion -> expresion . REGLA_OR expresion
+    (44) logical_expresion -> expresion .
+
+    REGLA_AND       shift and go to state 154
+    REGLA_OR        shift and go to state 155
+    PUNTOYCOMA      reduce using rule 44 (logical_expresion -> expresion .)
+    CIERRAPAR       reduce using rule 44 (logical_expresion -> expresion .)
+
+
+state 121
+
+    (32) expresion -> exp . pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> exp .
+    (34) pN22_LUCIA -> . MAYORQUE
+    (35) pN22_LUCIA -> . MENORQUE
+    (36) pN22_LUCIA -> . MAYORQUEIGUAL
+    (37) pN22_LUCIA -> . MENORQUEIGUAL
+    (38) pN22_LUCIA -> . IGUALIGUAL
+    (39) pN22_LUCIA -> . DIFDE
+
+    REGLA_AND       reduce using rule 33 (expresion -> exp .)
+    REGLA_OR        reduce using rule 33 (expresion -> exp .)
+    PUNTOYCOMA      reduce using rule 33 (expresion -> exp .)
+    CIERRAPAR       reduce using rule 33 (expresion -> exp .)
+    COMA            reduce using rule 33 (expresion -> exp .)
+    MAYORQUE        shift and go to state 157
+    MENORQUE        shift and go to state 158
+    MAYORQUEIGUAL   shift and go to state 159
+    MENORQUEIGUAL   shift and go to state 160
+    IGUALIGUAL      shift and go to state 161
+    DIFDE           shift and go to state 162
+
+    pN22_LUCIA                     shift and go to state 156
+
+state 122
+
+    (62) asignacion -> pN12 array pN16 . logical_expresion PUNTOYCOMA
+    (41) logical_expresion -> . REGLA_NOT expresion
+    (42) logical_expresion -> . expresion REGLA_AND expresion
+    (43) logical_expresion -> . expresion REGLA_OR expresion
+    (44) logical_expresion -> . expresion
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    REGLA_NOT       shift and go to state 119
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    logical_expresion              shift and go to state 163
+    expresion                      shift and go to state 120
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 123
+
+    (77) array -> ABREBRACK exp . CIERRABRACK
+    (78) array -> ABREBRACK exp . CIERRABRACK ABREBRACK exp CIERRABRACK
+
+    CIERRABRACK     shift and go to state 164
+
+
+state 124
+
+    (59) condicion -> REGLA_IF ABREPAR logical_expresion . CIERRAPAR bloque PUNTOYCOMA
+    (60) condicion -> REGLA_IF ABREPAR logical_expresion . CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
+
+    CIERRAPAR       shift and go to state 165
+
+
+state 125
+
+    (55) escritura -> REGLA_PRINT ABREPAR escritura_aux . CIERRAPAR PUNTOYCOMA
+
+    CIERRAPAR       shift and go to state 166
+
+
+state 126
+
+    (56) escritura_aux -> expresion . pN19
+    (57) escritura_aux -> expresion . COMA pN19 escritura_aux
+    (58) pN19 -> .
+
+    COMA            shift and go to state 168
+    CIERRAPAR       reduce using rule 58 (pN19 -> .)
+
+    pN19                           shift and go to state 167
+
+state 127
+
+    (65) ciclo -> REGLA_WHILE ABREPAR logical_expresion . CIERRAPAR bloque PUNTOYCOMA
+
+    CIERRAPAR       shift and go to state 169
+
+
+state 128
+
+    (66) func_pred -> REGLA_AVERAGE ABREPAR ID . COMA CTE_I CIERRAPAR
+
+    COMA            shift and go to state 170
+
+
+state 129
+
+    (67) func_pred -> REGLA_MEDIAN ABREPAR ID . COMA CTE_I CIERRAPAR
+
+    COMA            shift and go to state 171
+
+
+state 130
+
+    (68) func_pred -> REGLA_MODE ABREPAR ID . COMA CTE_I CIERRAPAR
+
+    COMA            shift and go to state 172
+
+
+state 131
+
+    (69) func_pred -> REGLA_PLOT ABREPAR ID . COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+
+    COMA            shift and go to state 173
+
+
+state 132
+
+    (70) func_pred -> REGLA_PIECHART ABREPAR ID . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 174
+
+
+state 133
+
+    (71) func_pred -> REGLA_VARIANZA ABREPAR ID . COMA CTE_I CIERRAPAR
+
+    COMA            shift and go to state 175
+
+
+state 134
+
+    (72) func_pred -> REGLA_DESV_T ABREPAR ID . COMA CTE_I CIERRAPAR
+
+    COMA            shift and go to state 176
+
+
+state 135
+
+    (73) func_pred -> REGLA_DIST_N ABREPAR ID . COMA CTE_I CIERRAPAR
+
+    COMA            shift and go to state 177
+
+
+state 136
+
+    (74) func_pred -> REGLA_BASIC_V_P ABREPAR ID . COMA CTE_CHAR CIERRAPAR
+
+    COMA            shift and go to state 178
+
+
+state 137
+
+    (75) lectura -> REGLA_READ ABREPAR ID . CIERRAPAR PUNTOYCOMA
+    (76) lectura -> REGLA_READ ABREPAR ID . array CIERRAPAR PUNTOYCOMA
+    (77) array -> . ABREBRACK exp CIERRABRACK
+    (78) array -> . ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK
+
+    CIERRAPAR       shift and go to state 179
+    ABREBRACK       shift and go to state 81
+
+    array                          shift and go to state 180
+
+state 138
+
+    (4) programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END .
+
+    $end            reduce using rule 4 (programa -> REGLA_PROGRAMA ID DOSPUNTOS pN1 vars programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END .)
+
+
+state 139
+
+    (83) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK . CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (84) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK . CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (85) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK . CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+
+    CTE_I           shift and go to state 181
+
+
+state 140
+
+    (80) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS . REGLA_INT PUNTOYCOMA
+    (81) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS . REGLA_FLOAT PUNTOYCOMA
+    (82) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS . REGLA_CHAR PUNTOYCOMA
+
+    REGLA_INT       shift and go to state 182
+    REGLA_FLOAT     shift and go to state 183
+    REGLA_CHAR      shift and go to state 184
+
+
+state 141
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 . ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+
+    ABREPAR         shift and go to state 185
+
+
+state 142
+
+    (90) var_cte -> pN13 ABREPAR . var_cte_aux CIERRAPAR
+    (98) var_cte_aux -> . exp
+    (99) var_cte_aux -> . exp COMA var_cte_aux
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    pN13                           shift and go to state 102
+    var_cte_aux                    shift and go to state 186
+    exp                            shift and go to state 187
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+
+state 143
+
+    (113) factor -> ABREPAR logical_expresion . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 188
+
+
+state 144
+
+    (52) llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 189
+
+
+state 145
+
+    (54) llamada_funcion_aux -> exp COMA . llamada_funcion_aux
+    (53) llamada_funcion_aux -> . exp
+    (54) llamada_funcion_aux -> . exp COMA llamada_funcion_aux
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    exp                            shift and go to state 105
+    llamada_funcion_aux            shift and go to state 190
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 146
+
+    (103) exp -> termino pN17 .
+    (104) exp -> termino pN17 . pN14 exp
+    (105) pN14 -> . SUMA
+    (106) pN14 -> . RESTA
+
+    COMA            reduce using rule 103 (exp -> termino pN17 .)
+    CIERRAPAR       reduce using rule 103 (exp -> termino pN17 .)
+    MAYORQUE        reduce using rule 103 (exp -> termino pN17 .)
+    MENORQUE        reduce using rule 103 (exp -> termino pN17 .)
+    MAYORQUEIGUAL   reduce using rule 103 (exp -> termino pN17 .)
+    MENORQUEIGUAL   reduce using rule 103 (exp -> termino pN17 .)
+    IGUALIGUAL      reduce using rule 103 (exp -> termino pN17 .)
+    DIFDE           reduce using rule 103 (exp -> termino pN17 .)
+    REGLA_AND       reduce using rule 103 (exp -> termino pN17 .)
+    REGLA_OR        reduce using rule 103 (exp -> termino pN17 .)
+    PUNTOYCOMA      reduce using rule 103 (exp -> termino pN17 .)
+    CIERRABRACK     reduce using rule 103 (exp -> termino pN17 .)
+    SUMA            shift and go to state 192
+    RESTA           shift and go to state 193
+
+    pN14                           shift and go to state 191
+
+state 147
+
+    (108) termino -> factor pN18 .
+    (109) termino -> factor pN18 . pN15 termino
+    (110) pN15 -> . MULTIPLICACION
+    (111) pN15 -> . DIVISION
+
+    SUMA            reduce using rule 108 (termino -> factor pN18 .)
+    RESTA           reduce using rule 108 (termino -> factor pN18 .)
+    COMA            reduce using rule 108 (termino -> factor pN18 .)
+    CIERRAPAR       reduce using rule 108 (termino -> factor pN18 .)
+    MAYORQUE        reduce using rule 108 (termino -> factor pN18 .)
+    MENORQUE        reduce using rule 108 (termino -> factor pN18 .)
+    MAYORQUEIGUAL   reduce using rule 108 (termino -> factor pN18 .)
+    MENORQUEIGUAL   reduce using rule 108 (termino -> factor pN18 .)
+    IGUALIGUAL      reduce using rule 108 (termino -> factor pN18 .)
+    DIFDE           reduce using rule 108 (termino -> factor pN18 .)
+    REGLA_AND       reduce using rule 108 (termino -> factor pN18 .)
+    REGLA_OR        reduce using rule 108 (termino -> factor pN18 .)
+    PUNTOYCOMA      reduce using rule 108 (termino -> factor pN18 .)
+    CIERRABRACK     reduce using rule 108 (termino -> factor pN18 .)
+    MULTIPLICACION  shift and go to state 195
+    DIVISION        shift and go to state 196
+
+    pN15                           shift and go to state 194
+
+state 148
+
+    (114) factor -> var_cte pN2 .
+
+    MULTIPLICACION  reduce using rule 114 (factor -> var_cte pN2 .)
+    DIVISION        reduce using rule 114 (factor -> var_cte pN2 .)
+    SUMA            reduce using rule 114 (factor -> var_cte pN2 .)
+    RESTA           reduce using rule 114 (factor -> var_cte pN2 .)
+    COMA            reduce using rule 114 (factor -> var_cte pN2 .)
+    CIERRAPAR       reduce using rule 114 (factor -> var_cte pN2 .)
+    MAYORQUE        reduce using rule 114 (factor -> var_cte pN2 .)
+    MENORQUE        reduce using rule 114 (factor -> var_cte pN2 .)
+    MAYORQUEIGUAL   reduce using rule 114 (factor -> var_cte pN2 .)
+    MENORQUEIGUAL   reduce using rule 114 (factor -> var_cte pN2 .)
+    IGUALIGUAL      reduce using rule 114 (factor -> var_cte pN2 .)
+    DIFDE           reduce using rule 114 (factor -> var_cte pN2 .)
+    REGLA_AND       reduce using rule 114 (factor -> var_cte pN2 .)
+    REGLA_OR        reduce using rule 114 (factor -> var_cte pN2 .)
+    PUNTOYCOMA      reduce using rule 114 (factor -> var_cte pN2 .)
+    CIERRABRACK     reduce using rule 114 (factor -> var_cte pN2 .)
+
+
+state 149
+
+    (115) factor -> SUMA var_cte .
+
+    MULTIPLICACION  reduce using rule 115 (factor -> SUMA var_cte .)
+    DIVISION        reduce using rule 115 (factor -> SUMA var_cte .)
+    SUMA            reduce using rule 115 (factor -> SUMA var_cte .)
+    RESTA           reduce using rule 115 (factor -> SUMA var_cte .)
+    COMA            reduce using rule 115 (factor -> SUMA var_cte .)
+    CIERRAPAR       reduce using rule 115 (factor -> SUMA var_cte .)
+    MAYORQUE        reduce using rule 115 (factor -> SUMA var_cte .)
+    MENORQUE        reduce using rule 115 (factor -> SUMA var_cte .)
+    MAYORQUEIGUAL   reduce using rule 115 (factor -> SUMA var_cte .)
+    MENORQUEIGUAL   reduce using rule 115 (factor -> SUMA var_cte .)
+    IGUALIGUAL      reduce using rule 115 (factor -> SUMA var_cte .)
+    DIFDE           reduce using rule 115 (factor -> SUMA var_cte .)
+    REGLA_AND       reduce using rule 115 (factor -> SUMA var_cte .)
+    REGLA_OR        reduce using rule 115 (factor -> SUMA var_cte .)
+    PUNTOYCOMA      reduce using rule 115 (factor -> SUMA var_cte .)
+    CIERRABRACK     reduce using rule 115 (factor -> SUMA var_cte .)
+
+
+state 150
+
+    (116) factor -> RESTA var_cte .
+
+    MULTIPLICACION  reduce using rule 116 (factor -> RESTA var_cte .)
+    DIVISION        reduce using rule 116 (factor -> RESTA var_cte .)
+    SUMA            reduce using rule 116 (factor -> RESTA var_cte .)
+    RESTA           reduce using rule 116 (factor -> RESTA var_cte .)
+    COMA            reduce using rule 116 (factor -> RESTA var_cte .)
+    CIERRAPAR       reduce using rule 116 (factor -> RESTA var_cte .)
+    MAYORQUE        reduce using rule 116 (factor -> RESTA var_cte .)
+    MENORQUE        reduce using rule 116 (factor -> RESTA var_cte .)
+    MAYORQUEIGUAL   reduce using rule 116 (factor -> RESTA var_cte .)
+    MENORQUEIGUAL   reduce using rule 116 (factor -> RESTA var_cte .)
+    IGUALIGUAL      reduce using rule 116 (factor -> RESTA var_cte .)
+    DIFDE           reduce using rule 116 (factor -> RESTA var_cte .)
+    REGLA_AND       reduce using rule 116 (factor -> RESTA var_cte .)
+    REGLA_OR        reduce using rule 116 (factor -> RESTA var_cte .)
+    PUNTOYCOMA      reduce using rule 116 (factor -> RESTA var_cte .)
+    CIERRABRACK     reduce using rule 116 (factor -> RESTA var_cte .)
+
+
+state 151
+
+    (89) var_cte -> pN20 array .
+
+    MULTIPLICACION  reduce using rule 89 (var_cte -> pN20 array .)
+    DIVISION        reduce using rule 89 (var_cte -> pN20 array .)
+    SUMA            reduce using rule 89 (var_cte -> pN20 array .)
+    RESTA           reduce using rule 89 (var_cte -> pN20 array .)
+    COMA            reduce using rule 89 (var_cte -> pN20 array .)
+    CIERRAPAR       reduce using rule 89 (var_cte -> pN20 array .)
+    MAYORQUE        reduce using rule 89 (var_cte -> pN20 array .)
+    MENORQUE        reduce using rule 89 (var_cte -> pN20 array .)
+    MAYORQUEIGUAL   reduce using rule 89 (var_cte -> pN20 array .)
+    MENORQUEIGUAL   reduce using rule 89 (var_cte -> pN20 array .)
+    IGUALIGUAL      reduce using rule 89 (var_cte -> pN20 array .)
+    DIFDE           reduce using rule 89 (var_cte -> pN20 array .)
+    REGLA_AND       reduce using rule 89 (var_cte -> pN20 array .)
+    REGLA_OR        reduce using rule 89 (var_cte -> pN20 array .)
+    PUNTOYCOMA      reduce using rule 89 (var_cte -> pN20 array .)
+    CIERRABRACK     reduce using rule 89 (var_cte -> pN20 array .)
+
+
+state 152
+
+    (61) asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .
+
+    REGLA_IF        reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_PRINT     reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_WHILE     reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_AVERAGE   reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_MEDIAN    reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_MODE      reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_PLOT      reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_PIECHART  reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_VARIANZA  reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_DESV_T    reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_DIST_N    reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_BASIC_V_P reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_READ      reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    ID              reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+    CIERRACOR       reduce using rule 61 (asignacion -> pN12 pN16 logical_expresion PUNTOYCOMA .)
+
+
+state 153
+
+    (41) logical_expresion -> REGLA_NOT expresion .
+
+    PUNTOYCOMA      reduce using rule 41 (logical_expresion -> REGLA_NOT expresion .)
+    CIERRAPAR       reduce using rule 41 (logical_expresion -> REGLA_NOT expresion .)
+
+
+state 154
+
+    (42) logical_expresion -> expresion REGLA_AND . expresion
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    expresion                      shift and go to state 197
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 155
+
+    (43) logical_expresion -> expresion REGLA_OR . expresion
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    expresion                      shift and go to state 198
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 156
+
+    (32) expresion -> exp pN22_LUCIA . exp pN23_LUCIA
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    exp                            shift and go to state 199
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 157
+
+    (34) pN22_LUCIA -> MAYORQUE .
+
+    ABREPAR         reduce using rule 34 (pN22_LUCIA -> MAYORQUE .)
+    SUMA            reduce using rule 34 (pN22_LUCIA -> MAYORQUE .)
+    RESTA           reduce using rule 34 (pN22_LUCIA -> MAYORQUE .)
+    CTE_I           reduce using rule 34 (pN22_LUCIA -> MAYORQUE .)
+    CTE_F           reduce using rule 34 (pN22_LUCIA -> MAYORQUE .)
+    CTE_CHAR        reduce using rule 34 (pN22_LUCIA -> MAYORQUE .)
+    CTE_BOOL        reduce using rule 34 (pN22_LUCIA -> MAYORQUE .)
+    CTE_D           reduce using rule 34 (pN22_LUCIA -> MAYORQUE .)
+    ID              reduce using rule 34 (pN22_LUCIA -> MAYORQUE .)
+
+
+state 158
+
+    (35) pN22_LUCIA -> MENORQUE .
+
+    ABREPAR         reduce using rule 35 (pN22_LUCIA -> MENORQUE .)
+    SUMA            reduce using rule 35 (pN22_LUCIA -> MENORQUE .)
+    RESTA           reduce using rule 35 (pN22_LUCIA -> MENORQUE .)
+    CTE_I           reduce using rule 35 (pN22_LUCIA -> MENORQUE .)
+    CTE_F           reduce using rule 35 (pN22_LUCIA -> MENORQUE .)
+    CTE_CHAR        reduce using rule 35 (pN22_LUCIA -> MENORQUE .)
+    CTE_BOOL        reduce using rule 35 (pN22_LUCIA -> MENORQUE .)
+    CTE_D           reduce using rule 35 (pN22_LUCIA -> MENORQUE .)
+    ID              reduce using rule 35 (pN22_LUCIA -> MENORQUE .)
+
+
+state 159
+
+    (36) pN22_LUCIA -> MAYORQUEIGUAL .
+
+    ABREPAR         reduce using rule 36 (pN22_LUCIA -> MAYORQUEIGUAL .)
+    SUMA            reduce using rule 36 (pN22_LUCIA -> MAYORQUEIGUAL .)
+    RESTA           reduce using rule 36 (pN22_LUCIA -> MAYORQUEIGUAL .)
+    CTE_I           reduce using rule 36 (pN22_LUCIA -> MAYORQUEIGUAL .)
+    CTE_F           reduce using rule 36 (pN22_LUCIA -> MAYORQUEIGUAL .)
+    CTE_CHAR        reduce using rule 36 (pN22_LUCIA -> MAYORQUEIGUAL .)
+    CTE_BOOL        reduce using rule 36 (pN22_LUCIA -> MAYORQUEIGUAL .)
+    CTE_D           reduce using rule 36 (pN22_LUCIA -> MAYORQUEIGUAL .)
+    ID              reduce using rule 36 (pN22_LUCIA -> MAYORQUEIGUAL .)
+
+
+state 160
+
+    (37) pN22_LUCIA -> MENORQUEIGUAL .
+
+    ABREPAR         reduce using rule 37 (pN22_LUCIA -> MENORQUEIGUAL .)
+    SUMA            reduce using rule 37 (pN22_LUCIA -> MENORQUEIGUAL .)
+    RESTA           reduce using rule 37 (pN22_LUCIA -> MENORQUEIGUAL .)
+    CTE_I           reduce using rule 37 (pN22_LUCIA -> MENORQUEIGUAL .)
+    CTE_F           reduce using rule 37 (pN22_LUCIA -> MENORQUEIGUAL .)
+    CTE_CHAR        reduce using rule 37 (pN22_LUCIA -> MENORQUEIGUAL .)
+    CTE_BOOL        reduce using rule 37 (pN22_LUCIA -> MENORQUEIGUAL .)
+    CTE_D           reduce using rule 37 (pN22_LUCIA -> MENORQUEIGUAL .)
+    ID              reduce using rule 37 (pN22_LUCIA -> MENORQUEIGUAL .)
+
+
+state 161
+
+    (38) pN22_LUCIA -> IGUALIGUAL .
+
+    ABREPAR         reduce using rule 38 (pN22_LUCIA -> IGUALIGUAL .)
+    SUMA            reduce using rule 38 (pN22_LUCIA -> IGUALIGUAL .)
+    RESTA           reduce using rule 38 (pN22_LUCIA -> IGUALIGUAL .)
+    CTE_I           reduce using rule 38 (pN22_LUCIA -> IGUALIGUAL .)
+    CTE_F           reduce using rule 38 (pN22_LUCIA -> IGUALIGUAL .)
+    CTE_CHAR        reduce using rule 38 (pN22_LUCIA -> IGUALIGUAL .)
+    CTE_BOOL        reduce using rule 38 (pN22_LUCIA -> IGUALIGUAL .)
+    CTE_D           reduce using rule 38 (pN22_LUCIA -> IGUALIGUAL .)
+    ID              reduce using rule 38 (pN22_LUCIA -> IGUALIGUAL .)
+
+
+state 162
+
+    (39) pN22_LUCIA -> DIFDE .
+
+    ABREPAR         reduce using rule 39 (pN22_LUCIA -> DIFDE .)
+    SUMA            reduce using rule 39 (pN22_LUCIA -> DIFDE .)
+    RESTA           reduce using rule 39 (pN22_LUCIA -> DIFDE .)
+    CTE_I           reduce using rule 39 (pN22_LUCIA -> DIFDE .)
+    CTE_F           reduce using rule 39 (pN22_LUCIA -> DIFDE .)
+    CTE_CHAR        reduce using rule 39 (pN22_LUCIA -> DIFDE .)
+    CTE_BOOL        reduce using rule 39 (pN22_LUCIA -> DIFDE .)
+    CTE_D           reduce using rule 39 (pN22_LUCIA -> DIFDE .)
+    ID              reduce using rule 39 (pN22_LUCIA -> DIFDE .)
+
+
+state 163
+
+    (62) asignacion -> pN12 array pN16 logical_expresion . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 200
+
+
+state 164
+
+    (77) array -> ABREBRACK exp CIERRABRACK .
+    (78) array -> ABREBRACK exp CIERRABRACK . ABREBRACK exp CIERRABRACK
+
+    IGUAL           reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    MULTIPLICACION  reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    DIVISION        reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    SUMA            reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    RESTA           reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    COMA            reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    CIERRAPAR       reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    MAYORQUE        reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    MENORQUE        reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    MAYORQUEIGUAL   reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    MENORQUEIGUAL   reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    IGUALIGUAL      reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    DIFDE           reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    REGLA_AND       reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    REGLA_OR        reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    PUNTOYCOMA      reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    CIERRABRACK     reduce using rule 77 (array -> ABREBRACK exp CIERRABRACK .)
+    ABREBRACK       shift and go to state 201
+
+
+state 165
+
+    (59) condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR . bloque PUNTOYCOMA
+    (60) condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR . bloque REGLA_ELSE bloque PUNTOYCOMA
+    (100) bloque -> . ABRECOR estatuto_aux CIERRACOR
+
+    ABRECOR         shift and go to state 22
+
+    bloque                         shift and go to state 202
+
+state 166
+
+    (55) escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 203
+
+
+state 167
+
+    (56) escritura_aux -> expresion pN19 .
+
+    CIERRAPAR       reduce using rule 56 (escritura_aux -> expresion pN19 .)
+
+
+state 168
+
+    (57) escritura_aux -> expresion COMA . pN19 escritura_aux
+    (58) pN19 -> .
+
+    ABREPAR         reduce using rule 58 (pN19 -> .)
+    SUMA            reduce using rule 58 (pN19 -> .)
+    RESTA           reduce using rule 58 (pN19 -> .)
+    CTE_I           reduce using rule 58 (pN19 -> .)
+    CTE_F           reduce using rule 58 (pN19 -> .)
+    CTE_CHAR        reduce using rule 58 (pN19 -> .)
+    CTE_BOOL        reduce using rule 58 (pN19 -> .)
+    CTE_D           reduce using rule 58 (pN19 -> .)
+    ID              reduce using rule 58 (pN19 -> .)
+
+    pN19                           shift and go to state 204
+
+state 169
+
+    (65) ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR . bloque PUNTOYCOMA
+    (100) bloque -> . ABRECOR estatuto_aux CIERRACOR
+
+    ABRECOR         shift and go to state 22
+
+    bloque                         shift and go to state 205
+
+state 170
+
+    (66) func_pred -> REGLA_AVERAGE ABREPAR ID COMA . CTE_I CIERRAPAR
+
+    CTE_I           shift and go to state 206
+
+
+state 171
+
+    (67) func_pred -> REGLA_MEDIAN ABREPAR ID COMA . CTE_I CIERRAPAR
+
+    CTE_I           shift and go to state 207
+
+
+state 172
+
+    (68) func_pred -> REGLA_MODE ABREPAR ID COMA . CTE_I CIERRAPAR
+
+    CTE_I           shift and go to state 208
+
+
+state 173
+
+    (69) func_pred -> REGLA_PLOT ABREPAR ID COMA . CTE_CHAR COMA CTE_CHAR CIERRAPAR
+
+    CTE_CHAR        shift and go to state 209
+
+
+state 174
+
+    (70) func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .
+
+    REGLA_IF        reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_PRINT     reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_WHILE     reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_AVERAGE   reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_MEDIAN    reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_MODE      reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_PLOT      reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_PIECHART  reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_VARIANZA  reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_DESV_T    reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_DIST_N    reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_BASIC_V_P reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    REGLA_READ      reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    ID              reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+    CIERRACOR       reduce using rule 70 (func_pred -> REGLA_PIECHART ABREPAR ID CIERRAPAR .)
+
+
+state 175
+
+    (71) func_pred -> REGLA_VARIANZA ABREPAR ID COMA . CTE_I CIERRAPAR
+
+    CTE_I           shift and go to state 210
+
+
+state 176
+
+    (72) func_pred -> REGLA_DESV_T ABREPAR ID COMA . CTE_I CIERRAPAR
+
+    CTE_I           shift and go to state 211
+
+
+state 177
+
+    (73) func_pred -> REGLA_DIST_N ABREPAR ID COMA . CTE_I CIERRAPAR
+
+    CTE_I           shift and go to state 212
+
+
+state 178
+
+    (74) func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA . CTE_CHAR CIERRAPAR
+
+    CTE_CHAR        shift and go to state 213
+
+
+state 179
+
+    (75) lectura -> REGLA_READ ABREPAR ID CIERRAPAR . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 214
+
+
+state 180
+
+    (76) lectura -> REGLA_READ ABREPAR ID array . CIERRAPAR PUNTOYCOMA
+
+    CIERRAPAR       shift and go to state 215
+
+
+state 181
+
+    (83) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I . CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (84) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I . CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (85) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I . CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+
+    CIERRABRACK     shift and go to state 216
+
+
+state 182
+
+    (80) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 217
+
+
+state 183
+
+    (81) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 218
+
+
+state 184
+
+    (82) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 219
+
+
+state 185
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR . modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+    (10) modulos_aux -> . pN6 tipo pN5
+    (11) modulos_aux -> . pN6 tipo COMA pN5 modulos_aux
+    (15) pN6 -> . ID
+
+    ID              shift and go to state 222
+
+    modulos_aux                    shift and go to state 220
+    pN6                            shift and go to state 221
+
+state 186
+
+    (90) var_cte -> pN13 ABREPAR var_cte_aux . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 223
+
+
+state 187
+
+    (98) var_cte_aux -> exp .
+    (99) var_cte_aux -> exp . COMA var_cte_aux
+
+    CIERRAPAR       reduce using rule 98 (var_cte_aux -> exp .)
+    COMA            shift and go to state 224
+
+
+state 188
+
+    (113) factor -> ABREPAR logical_expresion CIERRAPAR .
+
+    MULTIPLICACION  reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    DIVISION        reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    SUMA            reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    RESTA           reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    COMA            reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    CIERRAPAR       reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    MAYORQUE        reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    MENORQUE        reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    MAYORQUEIGUAL   reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    MENORQUEIGUAL   reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    IGUALIGUAL      reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    DIFDE           reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    REGLA_AND       reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    REGLA_OR        reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    PUNTOYCOMA      reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+    CIERRABRACK     reduce using rule 113 (factor -> ABREPAR logical_expresion CIERRAPAR .)
+
+
+state 189
+
+    (52) llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .
+
+    REGLA_IF        reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_PRINT     reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_WHILE     reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_AVERAGE   reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_MEDIAN    reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_MODE      reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_PLOT      reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_PIECHART  reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_VARIANZA  reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_DESV_T    reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_DIST_N    reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_BASIC_V_P reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_READ      reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    ID              reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+    CIERRACOR       reduce using rule 52 (llamada_funcion -> pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA .)
+
+
+state 190
+
+    (54) llamada_funcion_aux -> exp COMA llamada_funcion_aux .
+
+    CIERRAPAR       reduce using rule 54 (llamada_funcion_aux -> exp COMA llamada_funcion_aux .)
+
+
+state 191
+
+    (104) exp -> termino pN17 pN14 . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    termino                        shift and go to state 106
+    exp                            shift and go to state 225
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 192
+
+    (105) pN14 -> SUMA .
+
+    ABREPAR         reduce using rule 105 (pN14 -> SUMA .)
+    SUMA            reduce using rule 105 (pN14 -> SUMA .)
+    RESTA           reduce using rule 105 (pN14 -> SUMA .)
+    CTE_I           reduce using rule 105 (pN14 -> SUMA .)
+    CTE_F           reduce using rule 105 (pN14 -> SUMA .)
+    CTE_CHAR        reduce using rule 105 (pN14 -> SUMA .)
+    CTE_BOOL        reduce using rule 105 (pN14 -> SUMA .)
+    CTE_D           reduce using rule 105 (pN14 -> SUMA .)
+    ID              reduce using rule 105 (pN14 -> SUMA .)
+
+
+state 193
+
+    (106) pN14 -> RESTA .
+
+    ABREPAR         reduce using rule 106 (pN14 -> RESTA .)
+    SUMA            reduce using rule 106 (pN14 -> RESTA .)
+    RESTA           reduce using rule 106 (pN14 -> RESTA .)
+    CTE_I           reduce using rule 106 (pN14 -> RESTA .)
+    CTE_F           reduce using rule 106 (pN14 -> RESTA .)
+    CTE_CHAR        reduce using rule 106 (pN14 -> RESTA .)
+    CTE_BOOL        reduce using rule 106 (pN14 -> RESTA .)
+    CTE_D           reduce using rule 106 (pN14 -> RESTA .)
+    ID              reduce using rule 106 (pN14 -> RESTA .)
+
+
+state 194
+
+    (109) termino -> factor pN18 pN15 . termino
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    factor                         shift and go to state 107
+    termino                        shift and go to state 226
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 195
+
+    (110) pN15 -> MULTIPLICACION .
+
+    ABREPAR         reduce using rule 110 (pN15 -> MULTIPLICACION .)
+    SUMA            reduce using rule 110 (pN15 -> MULTIPLICACION .)
+    RESTA           reduce using rule 110 (pN15 -> MULTIPLICACION .)
+    CTE_I           reduce using rule 110 (pN15 -> MULTIPLICACION .)
+    CTE_F           reduce using rule 110 (pN15 -> MULTIPLICACION .)
+    CTE_CHAR        reduce using rule 110 (pN15 -> MULTIPLICACION .)
+    CTE_BOOL        reduce using rule 110 (pN15 -> MULTIPLICACION .)
+    CTE_D           reduce using rule 110 (pN15 -> MULTIPLICACION .)
+    ID              reduce using rule 110 (pN15 -> MULTIPLICACION .)
+
+
+state 196
+
+    (111) pN15 -> DIVISION .
+
+    ABREPAR         reduce using rule 111 (pN15 -> DIVISION .)
+    SUMA            reduce using rule 111 (pN15 -> DIVISION .)
+    RESTA           reduce using rule 111 (pN15 -> DIVISION .)
+    CTE_I           reduce using rule 111 (pN15 -> DIVISION .)
+    CTE_F           reduce using rule 111 (pN15 -> DIVISION .)
+    CTE_CHAR        reduce using rule 111 (pN15 -> DIVISION .)
+    CTE_BOOL        reduce using rule 111 (pN15 -> DIVISION .)
+    CTE_D           reduce using rule 111 (pN15 -> DIVISION .)
+    ID              reduce using rule 111 (pN15 -> DIVISION .)
+
+
+state 197
+
+    (42) logical_expresion -> expresion REGLA_AND expresion .
+
+    PUNTOYCOMA      reduce using rule 42 (logical_expresion -> expresion REGLA_AND expresion .)
+    CIERRAPAR       reduce using rule 42 (logical_expresion -> expresion REGLA_AND expresion .)
+
+
+state 198
+
+    (43) logical_expresion -> expresion REGLA_OR expresion .
+
+    PUNTOYCOMA      reduce using rule 43 (logical_expresion -> expresion REGLA_OR expresion .)
+    CIERRAPAR       reduce using rule 43 (logical_expresion -> expresion REGLA_OR expresion .)
+
+
+state 199
+
+    (32) expresion -> exp pN22_LUCIA exp . pN23_LUCIA
+    (40) pN23_LUCIA -> .
+
+    REGLA_AND       reduce using rule 40 (pN23_LUCIA -> .)
+    REGLA_OR        reduce using rule 40 (pN23_LUCIA -> .)
+    PUNTOYCOMA      reduce using rule 40 (pN23_LUCIA -> .)
+    CIERRAPAR       reduce using rule 40 (pN23_LUCIA -> .)
+    COMA            reduce using rule 40 (pN23_LUCIA -> .)
+
+    pN23_LUCIA                     shift and go to state 227
+
+state 200
+
+    (62) asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .
+
+    REGLA_IF        reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_PRINT     reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_WHILE     reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_AVERAGE   reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_MEDIAN    reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_MODE      reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_PLOT      reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_PIECHART  reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_VARIANZA  reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_DESV_T    reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_DIST_N    reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_BASIC_V_P reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    REGLA_READ      reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    ID              reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+    CIERRACOR       reduce using rule 62 (asignacion -> pN12 array pN16 logical_expresion PUNTOYCOMA .)
+
+
+state 201
+
+    (78) array -> ABREBRACK exp CIERRABRACK ABREBRACK . exp CIERRABRACK
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    exp                            shift and go to state 228
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 202
+
+    (59) condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque . PUNTOYCOMA
+    (60) condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque . REGLA_ELSE bloque PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 229
+    REGLA_ELSE      shift and go to state 230
+
+
+state 203
+
+    (55) escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .
+
+    REGLA_IF        reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_PRINT     reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_WHILE     reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_AVERAGE   reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_MEDIAN    reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_MODE      reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_PLOT      reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_PIECHART  reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_VARIANZA  reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_DESV_T    reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_DIST_N    reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_BASIC_V_P reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    REGLA_READ      reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    ID              reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+    CIERRACOR       reduce using rule 55 (escritura -> REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA .)
+
+
+state 204
+
+    (57) escritura_aux -> expresion COMA pN19 . escritura_aux
+    (56) escritura_aux -> . expresion pN19
+    (57) escritura_aux -> . expresion COMA pN19 escritura_aux
+    (32) expresion -> . exp pN22_LUCIA exp pN23_LUCIA
+    (33) expresion -> . exp
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    expresion                      shift and go to state 126
+    escritura_aux                  shift and go to state 231
+    exp                            shift and go to state 121
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 205
+
+    (65) ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 232
+
+
+state 206
+
+    (66) func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 233
+
+
+state 207
+
+    (67) func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 234
+
+
+state 208
+
+    (68) func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 235
+
+
+state 209
+
+    (69) func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR . COMA CTE_CHAR CIERRAPAR
+
+    COMA            shift and go to state 236
+
+
+state 210
+
+    (71) func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 237
+
+
+state 211
+
+    (72) func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 238
+
+
+state 212
+
+    (73) func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 239
+
+
+state 213
+
+    (74) func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 240
+
+
+state 214
+
+    (75) lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .
+
+    REGLA_IF        reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_PRINT     reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_WHILE     reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_AVERAGE   reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_MEDIAN    reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_MODE      reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_PLOT      reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_PIECHART  reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_VARIANZA  reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_DESV_T    reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_DIST_N    reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_BASIC_V_P reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    REGLA_READ      reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    ID              reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+    CIERRACOR       reduce using rule 75 (lectura -> REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA .)
+
+
+state 215
+
+    (76) lectura -> REGLA_READ ABREPAR ID array CIERRAPAR . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 241
+
+
+state 216
+
+    (83) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK . DOSPUNTOS REGLA_INT PUNTOYCOMA
+    (84) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK . DOSPUNTOS REGLA_FLOAT PUNTOYCOMA
+    (85) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK . DOSPUNTOS REGLA_CHAR PUNTOYCOMA
+
+    DOSPUNTOS       shift and go to state 242
+
+
+state 217
+
+    (80) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .
+
+    REGLA_VAR       reduce using rule 80 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .)
+    REGLA_MAIN      reduce using rule 80 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .)
+    REGLA_FUNCION   reduce using rule 80 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .)
+    ABRECOR         reduce using rule 80 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .)
+
+
+state 218
+
+    (81) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .
+
+    REGLA_VAR       reduce using rule 81 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .)
+    REGLA_MAIN      reduce using rule 81 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .)
+    REGLA_FUNCION   reduce using rule 81 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .)
+    ABRECOR         reduce using rule 81 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .)
+
+
+state 219
+
+    (82) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .
+
+    REGLA_VAR       reduce using rule 82 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .)
+    REGLA_MAIN      reduce using rule 82 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .)
+    REGLA_FUNCION   reduce using rule 82 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .)
+    ABRECOR         reduce using rule 82 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .)
+
+
+state 220
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux . CIERRAPAR pN7 pN8 pN9 vars pN10 bloque
+
+    CIERRAPAR       shift and go to state 243
+
+
+state 221
+
+    (10) modulos_aux -> pN6 . tipo pN5
+    (11) modulos_aux -> pN6 . tipo COMA pN5 modulos_aux
+    (22) tipo -> . REGLA_INT
+    (23) tipo -> . REGLA_FLOAT
+    (24) tipo -> . REGLA_CHAR
+    (25) tipo -> . REGLA_DATASET
+    (26) tipo -> . REGLA_BOOL
+
+    REGLA_INT       shift and go to state 66
+    REGLA_FLOAT     shift and go to state 67
+    REGLA_CHAR      shift and go to state 68
+    REGLA_DATASET   shift and go to state 69
+    REGLA_BOOL      shift and go to state 70
+
+    tipo                           shift and go to state 244
+
+state 222
+
+    (15) pN6 -> ID .
+
+    REGLA_INT       reduce using rule 15 (pN6 -> ID .)
+    REGLA_FLOAT     reduce using rule 15 (pN6 -> ID .)
+    REGLA_CHAR      reduce using rule 15 (pN6 -> ID .)
+    REGLA_DATASET   reduce using rule 15 (pN6 -> ID .)
+    REGLA_BOOL      reduce using rule 15 (pN6 -> ID .)
+
+
+state 223
+
+    (90) var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .
+
+    MULTIPLICACION  reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    DIVISION        reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    SUMA            reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    RESTA           reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    COMA            reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    CIERRAPAR       reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    MAYORQUE        reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    MENORQUE        reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    MAYORQUEIGUAL   reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    MENORQUEIGUAL   reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    IGUALIGUAL      reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    DIFDE           reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    REGLA_AND       reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    REGLA_OR        reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    PUNTOYCOMA      reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+    CIERRABRACK     reduce using rule 90 (var_cte -> pN13 ABREPAR var_cte_aux CIERRAPAR .)
+
+
+state 224
+
+    (99) var_cte_aux -> exp COMA . var_cte_aux
+    (98) var_cte_aux -> . exp
+    (99) var_cte_aux -> . exp COMA var_cte_aux
+    (103) exp -> . termino pN17
+    (104) exp -> . termino pN17 pN14 exp
+    (108) termino -> . factor pN18
+    (109) termino -> . factor pN18 pN15 termino
+    (113) factor -> . ABREPAR logical_expresion CIERRAPAR
+    (114) factor -> . var_cte pN2
+    (115) factor -> . SUMA var_cte
+    (116) factor -> . RESTA var_cte
+    (88) var_cte -> . pN20
+    (89) var_cte -> . pN20 array
+    (90) var_cte -> . pN13 ABREPAR var_cte_aux CIERRAPAR
+    (91) var_cte -> . CTE_I
+    (92) var_cte -> . CTE_F
+    (93) var_cte -> . CTE_CHAR
+    (94) var_cte -> . CTE_BOOL
+    (95) var_cte -> . CTE_D
+    (96) pN20 -> . ID
+    (97) pN13 -> . ID
+
+    ABREPAR         shift and go to state 103
+    SUMA            shift and go to state 109
+    RESTA           shift and go to state 110
+    CTE_I           shift and go to state 112
+    CTE_F           shift and go to state 113
+    CTE_CHAR        shift and go to state 114
+    CTE_BOOL        shift and go to state 115
+    CTE_D           shift and go to state 116
+    ID              shift and go to state 117
+
+    exp                            shift and go to state 187
+    var_cte_aux                    shift and go to state 245
+    termino                        shift and go to state 106
+    factor                         shift and go to state 107
+    var_cte                        shift and go to state 108
+    pN20                           shift and go to state 111
+    pN13                           shift and go to state 102
+
+state 225
+
+    (104) exp -> termino pN17 pN14 exp .
+
+    COMA            reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    CIERRAPAR       reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    MAYORQUE        reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    MENORQUE        reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    MAYORQUEIGUAL   reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    MENORQUEIGUAL   reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    IGUALIGUAL      reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    DIFDE           reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    REGLA_AND       reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    REGLA_OR        reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    PUNTOYCOMA      reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+    CIERRABRACK     reduce using rule 104 (exp -> termino pN17 pN14 exp .)
+
+
+state 226
+
+    (109) termino -> factor pN18 pN15 termino .
+
+    SUMA            reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    RESTA           reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    COMA            reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    CIERRAPAR       reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    MAYORQUE        reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    MENORQUE        reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    MAYORQUEIGUAL   reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    MENORQUEIGUAL   reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    IGUALIGUAL      reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    DIFDE           reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    REGLA_AND       reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    REGLA_OR        reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    PUNTOYCOMA      reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+    CIERRABRACK     reduce using rule 109 (termino -> factor pN18 pN15 termino .)
+
+
+state 227
+
+    (32) expresion -> exp pN22_LUCIA exp pN23_LUCIA .
+
+    REGLA_AND       reduce using rule 32 (expresion -> exp pN22_LUCIA exp pN23_LUCIA .)
+    REGLA_OR        reduce using rule 32 (expresion -> exp pN22_LUCIA exp pN23_LUCIA .)
+    PUNTOYCOMA      reduce using rule 32 (expresion -> exp pN22_LUCIA exp pN23_LUCIA .)
+    CIERRAPAR       reduce using rule 32 (expresion -> exp pN22_LUCIA exp pN23_LUCIA .)
+    COMA            reduce using rule 32 (expresion -> exp pN22_LUCIA exp pN23_LUCIA .)
+
+
+state 228
+
+    (78) array -> ABREBRACK exp CIERRABRACK ABREBRACK exp . CIERRABRACK
+
+    CIERRABRACK     shift and go to state 246
+
+
+state 229
+
+    (59) condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .
+
+    REGLA_IF        reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_PRINT     reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_WHILE     reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_AVERAGE   reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_MEDIAN    reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_MODE      reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_PLOT      reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_PIECHART  reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_VARIANZA  reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_DESV_T    reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_DIST_N    reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_BASIC_V_P reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_READ      reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    ID              reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    CIERRACOR       reduce using rule 59 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+
+
+state 230
+
+    (60) condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE . bloque PUNTOYCOMA
+    (100) bloque -> . ABRECOR estatuto_aux CIERRACOR
+
+    ABRECOR         shift and go to state 22
+
+    bloque                         shift and go to state 247
+
+state 231
+
+    (57) escritura_aux -> expresion COMA pN19 escritura_aux .
+
+    CIERRAPAR       reduce using rule 57 (escritura_aux -> expresion COMA pN19 escritura_aux .)
+
+
+state 232
+
+    (65) ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .
+
+    REGLA_IF        reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_PRINT     reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_WHILE     reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_AVERAGE   reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_MEDIAN    reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_MODE      reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_PLOT      reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_PIECHART  reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_VARIANZA  reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_DESV_T    reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_DIST_N    reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_BASIC_V_P reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    REGLA_READ      reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    ID              reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+    CIERRACOR       reduce using rule 65 (ciclo -> REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA .)
+
+
+state 233
+
+    (66) func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .
+
+    REGLA_IF        reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PRINT     reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_WHILE     reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_AVERAGE   reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MEDIAN    reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MODE      reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PLOT      reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PIECHART  reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_VARIANZA  reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DESV_T    reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DIST_N    reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_BASIC_V_P reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_READ      reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    ID              reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    CIERRACOR       reduce using rule 66 (func_pred -> REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR .)
+
+
+state 234
+
+    (67) func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .
+
+    REGLA_IF        reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PRINT     reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_WHILE     reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_AVERAGE   reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MEDIAN    reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MODE      reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PLOT      reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PIECHART  reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_VARIANZA  reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DESV_T    reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DIST_N    reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_BASIC_V_P reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_READ      reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    ID              reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+    CIERRACOR       reduce using rule 67 (func_pred -> REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR .)
+
+
+state 235
+
+    (68) func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .
+
+    REGLA_IF        reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PRINT     reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_WHILE     reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_AVERAGE   reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MEDIAN    reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MODE      reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PLOT      reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PIECHART  reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_VARIANZA  reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DESV_T    reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DIST_N    reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_BASIC_V_P reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_READ      reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    ID              reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+    CIERRACOR       reduce using rule 68 (func_pred -> REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR .)
+
+
+state 236
+
+    (69) func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA . CTE_CHAR CIERRAPAR
+
+    CTE_CHAR        shift and go to state 248
+
+
+state 237
+
+    (71) func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .
+
+    REGLA_IF        reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PRINT     reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_WHILE     reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_AVERAGE   reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MEDIAN    reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MODE      reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PLOT      reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PIECHART  reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_VARIANZA  reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DESV_T    reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DIST_N    reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_BASIC_V_P reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_READ      reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    ID              reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+    CIERRACOR       reduce using rule 71 (func_pred -> REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR .)
+
+
+state 238
+
+    (72) func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .
+
+    REGLA_IF        reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PRINT     reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_WHILE     reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_AVERAGE   reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MEDIAN    reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MODE      reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PLOT      reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PIECHART  reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_VARIANZA  reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DESV_T    reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DIST_N    reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_BASIC_V_P reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_READ      reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    ID              reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+    CIERRACOR       reduce using rule 72 (func_pred -> REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR .)
+
+
+state 239
+
+    (73) func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .
+
+    REGLA_IF        reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PRINT     reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_WHILE     reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_AVERAGE   reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MEDIAN    reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_MODE      reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PLOT      reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_PIECHART  reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_VARIANZA  reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DESV_T    reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_DIST_N    reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_BASIC_V_P reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    REGLA_READ      reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    ID              reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+    CIERRACOR       reduce using rule 73 (func_pred -> REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR .)
+
+
+state 240
+
+    (74) func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .
+
+    REGLA_IF        reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_PRINT     reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_WHILE     reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_AVERAGE   reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_MEDIAN    reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_MODE      reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_PLOT      reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_PIECHART  reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_VARIANZA  reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_DESV_T    reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_DIST_N    reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_BASIC_V_P reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    REGLA_READ      reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    ID              reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+    CIERRACOR       reduce using rule 74 (func_pred -> REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR .)
+
+
+state 241
+
+    (76) lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .
+
+    REGLA_IF        reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_PRINT     reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_WHILE     reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_AVERAGE   reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_MEDIAN    reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_MODE      reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_PLOT      reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_PIECHART  reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_VARIANZA  reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_DESV_T    reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_DIST_N    reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_BASIC_V_P reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    REGLA_READ      reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    ID              reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+    CIERRACOR       reduce using rule 76 (lectura -> REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA .)
+
+
+state 242
+
+    (83) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS . REGLA_INT PUNTOYCOMA
+    (84) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS . REGLA_FLOAT PUNTOYCOMA
+    (85) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS . REGLA_CHAR PUNTOYCOMA
+
+    REGLA_INT       shift and go to state 249
+    REGLA_FLOAT     shift and go to state 250
+    REGLA_CHAR      shift and go to state 251
+
+
+state 243
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR . pN7 pN8 pN9 vars pN10 bloque
+    (16) pN7 -> .
+
+    REGLA_VAR       reduce using rule 16 (pN7 -> .)
+
+    pN7                            shift and go to state 252
+
+state 244
+
+    (10) modulos_aux -> pN6 tipo . pN5
+    (11) modulos_aux -> pN6 tipo . COMA pN5 modulos_aux
+    (14) pN5 -> .
+
+    COMA            shift and go to state 254
+    CIERRAPAR       reduce using rule 14 (pN5 -> .)
+
+    pN5                            shift and go to state 253
+
+state 245
+
+    (99) var_cte_aux -> exp COMA var_cte_aux .
+
+    CIERRAPAR       reduce using rule 99 (var_cte_aux -> exp COMA var_cte_aux .)
+
+
+state 246
+
+    (78) array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .
+
+    IGUAL           reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    MULTIPLICACION  reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    DIVISION        reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    SUMA            reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    RESTA           reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    COMA            reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    CIERRAPAR       reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    MAYORQUE        reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    MENORQUE        reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    MAYORQUEIGUAL   reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    MENORQUEIGUAL   reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    IGUALIGUAL      reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    DIFDE           reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    REGLA_AND       reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    REGLA_OR        reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    PUNTOYCOMA      reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+    CIERRABRACK     reduce using rule 78 (array -> ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK .)
+
+
+state 247
+
+    (60) condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 255
+
+
+state 248
+
+    (69) func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR . CIERRAPAR
+
+    CIERRAPAR       shift and go to state 256
+
+
+state 249
+
+    (83) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 257
+
+
+state 250
+
+    (84) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 258
+
+
+state 251
+
+    (85) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 259
+
+
+state 252
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 . pN8 pN9 vars pN10 bloque
+    (17) pN8 -> .
+
+    REGLA_VAR       reduce using rule 17 (pN8 -> .)
+
+    pN8                            shift and go to state 260
+
+state 253
+
+    (10) modulos_aux -> pN6 tipo pN5 .
+
+    CIERRAPAR       reduce using rule 10 (modulos_aux -> pN6 tipo pN5 .)
+
+
+state 254
+
+    (11) modulos_aux -> pN6 tipo COMA . pN5 modulos_aux
+    (14) pN5 -> .
+
+    ID              reduce using rule 14 (pN5 -> .)
+
+    pN5                            shift and go to state 261
+
+state 255
+
+    (60) condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .
+
+    REGLA_IF        reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_PRINT     reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_WHILE     reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_AVERAGE   reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_MEDIAN    reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_MODE      reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_PLOT      reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_PIECHART  reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_VARIANZA  reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_DESV_T    reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_DIST_N    reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_BASIC_V_P reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    REGLA_READ      reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    ID              reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+    CIERRACOR       reduce using rule 60 (condicion -> REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA .)
+
+
+state 256
+
+    (69) func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .
+
+    REGLA_IF        reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_PRINT     reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_WHILE     reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_AVERAGE   reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_MEDIAN    reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_MODE      reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_PLOT      reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_PIECHART  reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_VARIANZA  reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_DESV_T    reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_DIST_N    reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_BASIC_V_P reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    REGLA_READ      reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    ID              reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+    CIERRACOR       reduce using rule 69 (func_pred -> REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR .)
+
+
+state 257
+
+    (83) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .
+
+    REGLA_VAR       reduce using rule 83 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .)
+    REGLA_MAIN      reduce using rule 83 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .)
+    REGLA_FUNCION   reduce using rule 83 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .)
+    ABRECOR         reduce using rule 83 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_INT PUNTOYCOMA .)
+
+
+state 258
+
+    (84) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .
+
+    REGLA_VAR       reduce using rule 84 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .)
+    REGLA_MAIN      reduce using rule 84 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .)
+    REGLA_FUNCION   reduce using rule 84 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .)
+    ABRECOR         reduce using rule 84 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_FLOAT PUNTOYCOMA .)
+
+
+state 259
+
+    (85) declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .
+
+    REGLA_VAR       reduce using rule 85 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .)
+    REGLA_MAIN      reduce using rule 85 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .)
+    REGLA_FUNCION   reduce using rule 85 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .)
+    ABRECOR         reduce using rule 85 (declaracionVar -> ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA .)
+
+
+state 260
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 . pN9 vars pN10 bloque
+    (18) pN9 -> .
+
+    REGLA_VAR       reduce using rule 18 (pN9 -> .)
+
+    pN9                            shift and go to state 262
+
+state 261
+
+    (11) modulos_aux -> pN6 tipo COMA pN5 . modulos_aux
+    (10) modulos_aux -> . pN6 tipo pN5
+    (11) modulos_aux -> . pN6 tipo COMA pN5 modulos_aux
+    (15) pN6 -> . ID
+
+    ID              shift and go to state 222
+
+    pN6                            shift and go to state 221
+    modulos_aux                    shift and go to state 263
+
+state 262
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 . vars pN10 bloque
+    (20) vars -> . REGLA_VAR declaracionVar
+    (21) vars -> . REGLA_VAR declaracionVar vars
+
+    REGLA_VAR       shift and go to state 9
+
+    vars                           shift and go to state 264
+
+state 263
+
+    (11) modulos_aux -> pN6 tipo COMA pN5 modulos_aux .
+
+    CIERRAPAR       reduce using rule 11 (modulos_aux -> pN6 tipo COMA pN5 modulos_aux .)
+
+
+state 264
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars . pN10 bloque
+    (19) pN10 -> .
+
+    ABRECOR         reduce using rule 19 (pN10 -> .)
+
+    pN10                           shift and go to state 265
+
+state 265
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 . bloque
+    (100) bloque -> . ABRECOR estatuto_aux CIERRACOR
+
+    ABRECOR         shift and go to state 22
+
+    bloque                         shift and go to state 266
+
+state 266
+
+    (9) modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque .
+
+    REGLA_FUNCION   reduce using rule 9 (modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque .)
+    REGLA_MAIN      reduce using rule 9 (modulos -> REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque .)
+
