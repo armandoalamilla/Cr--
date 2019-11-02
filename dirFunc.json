@@ -58,10 +58,6 @@
             "var11": {
                 "name": "var11",
                 "tipo": "INT"
-            },
-            "booleano": {
-                "name": "booleano",
-                "tipo": "BOOL"
             }
         }
     },

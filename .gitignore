@@ -10,3 +10,5 @@ parser.out
 __pycache__/parsetab.cpython-37.pyc
 __pycache__/dirFunciones.cpython-37.pyc
 parser.out
+dirFunc.json
+parser.out
