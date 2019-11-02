@@ -286,7 +286,7 @@ def p_pN10(p):
     #print(nombreFunc)
     #print('INT:',contadorINT,'FLOAT:',contadorFLOAT,'BOOL:',contadorBOOL,'DATASET',contadorDATASET,'CHAR',contadorCHAR)
 
-#reiniciar contadores de cuads a 0 al terminar una funcion y genera el cuad ENDPROC -- pn 20  
+#reiniciar contadores de cuads a 0 al terminar una funcion y genera el cuad ENDPROC -- pn 20
 def p_pN21(p):
     ''' pN21 : '''
     cuad.agregarCuad('ENDPROC','','','t'+str(cuad.contCuad))
@@ -724,10 +724,9 @@ def p_pN18(p):
 
 
 def p_factor(p):
-    ''' factor : ABREPAR logical_expresion CIERRAPAR
-                | var_cte pN2
-                | SUMA var_cte
-                | RESTA var_cte'''
+    ''' factor : pN24_LUCIA logical_expresion CIERRAPAR pN25_LUCIA
+                | var_cte pN2 '''
+
 
 #meter el tipo en la pila de operandos -- punto neuralgico 2
 def p_pN2(p):
@@ -735,7 +734,19 @@ def p_pN2(p):
     global tempCTE, temTipoCTE
     cuad.PTypes.append(temTipoCTE)
 
+#meter el signo de parentesis en la pila de operadores -- punto neuralgico 24
+def p_pN24_LUCIA(p):
+    ''' pN24_LUCIA : ABREPAR '''
+    #print("ENTRA A PN24")
+    cuad.POper.append(p[1])
+    #print(cuad.POper)
 
+#sacar el signo de parentesis en la pila de operadores -- punto neuralgico 25
+def p_pN25_LUCIA(p):
+    ''' pN25_LUCIA : '''
+    #print("ENTRA A PN25")
+    cuad.POper.pop()
+    #print(cuad.POper)
 
 
 
@@ -747,7 +758,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-archivo = "prueba.txt"
+archivo = "pruebaSinFunc.txt"
 f = open(archivo, 'r')
 s = f.read()
 
