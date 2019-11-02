@@ -14,9 +14,10 @@ FUNC VOID:func1(func1var1 CHAR, func1var2 BOOL, func1var3 INT)
 VAR z,a:INT;
 VAR algo:FLOAT;
 VAR algo3,LALALA:CHAR;
+VAR lala:BOOL;
 {
   z=a;
-  algo = 5.0 + 3.0;
+  lala = 5.0 > 3.0;
 }
 
 
