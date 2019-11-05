@@ -13,14 +13,12 @@ VAR booleano:BOOL;
 
 MAIN
 {
-  flota = 3.0 + 3.55 / flota2;
+  flota = 3.0 + 3.55 / (flota2 + flota3);
   entero = 2;
   entero2 = entero;
-  READ(entero3);
   lala = 'a' + 'b';
   DATAalgo = lala + lala;
-  PRINT(entero,flota,3+5/entero,DATAalgo);
-  booleano = (5+7) >= (entero) ;
+  booleano = (5+7) >= entero ;
 
 }
 
