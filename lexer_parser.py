@@ -468,7 +468,7 @@ def p_asignacion(p):
         result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
         if result_type != 'error':
             result = 't'+str(cuad.contCuad)
-            cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
+            cuad.agregarCuad(operator,cuad.right_operand,'',cuad.left_operand)
             cuad.PilaO.append(result)
             cuad.PTypes.append(result_type)
             #print('asignacion',cuad.PTypes)
