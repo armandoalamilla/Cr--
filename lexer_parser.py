@@ -478,10 +478,6 @@ def p_pN28_LUCIA(p):
     #fill
     cuad.PQuad[falso][''] = cuad.contQuadAux
 
-def p_lala(p):
-    ''' lala : '''
-    print("me ejecute yo if")
-
 def p_asignacion(p):
     '''asignacion : pN12 pN16 logical_expresion PUNTOYCOMA
         | pN12 array pN16 logical_expresion PUNTOYCOMA '''
