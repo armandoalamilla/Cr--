@@ -469,7 +469,7 @@ def p_asignacion(p):
         if result_type != 'error':
             result = 't'+str(cuad.contCuad)
             cuad.agregarCuad(operator,cuad.right_operand,'',cuad.left_operand)
-            cuad.PilaO.append(result)
+            cuad.PilaO.append(cuad.left_operand)
             cuad.PTypes.append(result_type)
             #print('asignacion',cuad.PTypes)
             #print('asignacion',cuad.PilaO)
@@ -749,7 +749,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-archivo = "pruebaSinFunc.txt"
+archivo = "prueba.txt"
 f = open(archivo, 'r')
 s = f.read()
 
