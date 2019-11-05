@@ -453,6 +453,10 @@ def p_condicion(p):
         |  REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
         '''
 
+def p_lala(p):
+    ''' lala : '''
+    print("me ejecute yo if")
+
 def p_asignacion(p):
     '''asignacion : pN12 pN16 logical_expresion PUNTOYCOMA
         | pN12 array pN16 logical_expresion PUNTOYCOMA '''
@@ -507,8 +511,35 @@ def p_pN12(p):
 
 
 def p_ciclo(p):
-    '''ciclo : REGLA_WHILE ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
+    '''ciclo : REGLA_WHILE pN28 ABREPAR logical_expresion CIERRAPAR pN29 bloque PUNTOYCOMA pN30
         '''
+
+#mete a la pila de saltos el contador actual de quads -- pN 28
+def p_pN28(p):
+    ''' pN28 : '''
+    cuad.PJumps.append(cuad.contQuadAux)
+
+#genera el cuad de GotoF -- pN 29
+def p_pN29(p):
+    ''' pN29 : '''
+    exp_type = cuad.PTypes.pop()
+    if exp_type != 'BOOL':
+        print("HORROR DE TIPOS EN EL IF")
+    else:
+        result = cuad.PilaO.pop()
+        cuad.agregarCuad('GotoF',result,'','')
+        cuad.PJumps.append(cuad.contQuadAux-1)
+
+def p_pN30(p):
+    ''' pN30 : '''
+    end = cuad.PJumps.pop()
+    print('end',end)
+    retorna = cuad.PJumps.pop()
+    cuad.agregarCuad('Goto','','',retorna)
+    #fill
+    cuad.PQuad[end]['result'] = cuad.contQuadAux
+
+
 
 def p_func_pred(p):
     ''' func_pred : REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR
@@ -749,7 +780,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-archivo = "prueba.txt"
+archivo = "pruebaSinFunc.txt"
 f = open(archivo, 'r')
 s = f.read()
 
@@ -775,6 +806,7 @@ f.close()
 print(cuad.POper)
 print(cuad.PTypes)
 print(cuad.PilaO)
+print(cuad.PJumps)
 contador = 0
 for x in cuad.PQuad:
     print(contador,x)

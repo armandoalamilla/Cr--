@@ -13,9 +13,14 @@ VAR booleano:BOOL;
 
 MAIN
 {
-  entero = 4 + (1 +2);
-  entero2 = 4 + (1 +2);
+  var11 = 3;
+  WHILE(3 > 5)
+  {
+    var11 = 3;
+    entero2 = 5 * 8;
+  };
 
+  PRINT(booleano);
 }
 
 END
