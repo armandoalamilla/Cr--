@@ -14,7 +14,7 @@ VAR booleano:BOOL;
 MAIN
 {
   var11 = 3;
-  WHILE(3 != 5)
+  IF (3 != 5)
   {
     var11 = 3;
     entero2 = 5 * 8;

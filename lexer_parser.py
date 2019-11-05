@@ -449,9 +449,34 @@ def p_pN19(p):
 
 
 def p_condicion(p):
-    '''condicion : REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque PUNTOYCOMA
-        |  REGLA_IF ABREPAR logical_expresion CIERRAPAR bloque REGLA_ELSE bloque PUNTOYCOMA
+    '''condicion : REGLA_IF ABREPAR logical_expresion CIERRAPAR pN26_LUCIA bloque PUNTOYCOMA pN27_LUCIA
+        |  REGLA_IF ABREPAR logical_expresion CIERRAPAR pN26_LUCIA bloque REGLA_ELSE pN28_LUCIA bloque PUNTOYCOMA pN27_LUCIA
         '''
+
+def p_pN26_LUCIA(p):
+    ''' pN26_LUCIA : '''
+    exp_type = cuad.PTypes.pop()
+    if exp_type != 'BOOL':
+        print("Error if invalido")
+        sys.exit()
+    else:
+        result = cuad.PilaO.pop()
+        cuad.agregarCuad('GOTOF',result,'','')
+        cuad.PJumps.append(cuad.contQuadAux - 1)
+
+def p_pN27_LUCIA(p):
+    ''' pN27_LUCIA : '''
+    end = cuad.PJumps.pop()
+    #fill
+    cuad.PQuad[end]['result'] = cuad.contQuadAux
+
+def p_pN28_LUCIA(p):
+    ''' pN28_LUCIA : '''
+    falso = cuad.PJumps.pop()
+    cuad.agregarCuad('GOTO','','',falso)
+    cuad.PJumps.append(cuad.contQuadAux - 1)
+    #fill
+    cuad.PQuad[falso][''] = cuad.contQuadAux
 
 def p_lala(p):
     ''' lala : '''
