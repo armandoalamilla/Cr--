@@ -182,8 +182,8 @@ lex.lex()
 def p_programa(p):
     '''programa : REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END
                 | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars  programa_modulos_aux REGLA_MAIN pN11 bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 pN24 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars pN24 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END
     '''
 
 # pN1: almacena el main en el dir de funciones
@@ -198,6 +198,16 @@ def p_pN11(p):
     ''' pN11 : '''
     global nombreFunc
     nombreFunc = 'MAIN'
+
+#agregar cuad de goto a main antes de las func -- pn 24
+def p_pN24(p):
+    ''' pN24 : '''
+    cuad.agregarCuad('GOTO','','','t'+str(cuad.contCuad))
+
+
+def p_pN25(p):
+    ''' pN25 : '''
+    cuad.PQuad[0]['left_operand'] = cuad.contQuadAux
 
 
 
@@ -346,25 +356,6 @@ def p_tipo(p):
             contadorDATASET = contadorVARID
         interruptorVARID = False
         contadorVARID = 0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def p_tipo_func(p):
     '''tipo_func : REGLA_INT
