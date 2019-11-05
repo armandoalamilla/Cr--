@@ -445,7 +445,7 @@ def p_escritura_aux(p):
 def p_pN19(p):
     ''' pN19 : '''
     cuad.PTypes.pop()
-    cuad.agregarCuad('PRINT','',cuad.PilaO.pop(),'t'+str(cuad.contCuad))
+    cuad.agregarCuad('PRINT','','',cuad.PilaO.pop())
 
 
 def p_condicion(p):
@@ -558,7 +558,7 @@ def p_lectura(p):
     ''' lectura : REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA
         | REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA
         '''
-    cuad.agregarCuad('READ','',p[3],'t'+str(cuad.contCuad))
+    cuad.agregarCuad('READ','','',p[3])
 def p_array(p):
     ''' array : ABREBRACK exp CIERRABRACK
         | ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK

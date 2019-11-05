@@ -14,13 +14,14 @@ VAR booleano:BOOL;
 MAIN
 {
   var11 = 3;
-  WHILE(3 > 5)
+  WHILE(3 != 5)
   {
     var11 = 3;
     entero2 = 5 * 8;
   };
 
-  PRINT(booleano);
+  PRINT(booleano,var11);
+  READ(var11);
 }
 
 END
