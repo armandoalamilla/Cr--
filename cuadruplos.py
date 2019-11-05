@@ -12,6 +12,9 @@ PTypes = []
 #pila para los quadruplos
 PQuad = []
 
+#Pila de saltos
+PJumps = []
+
 #contador cuadruplos
 contCuad = 0
 contQuadAux = 0
