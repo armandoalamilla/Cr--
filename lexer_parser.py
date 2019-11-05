@@ -530,6 +530,7 @@ def p_pN29(p):
         cuad.agregarCuad('GotoF',result,'','')
         cuad.PJumps.append(cuad.contQuadAux-1)
 
+#genera goto y llena el gotof
 def p_pN30(p):
     ''' pN30 : '''
     end = cuad.PJumps.pop()
