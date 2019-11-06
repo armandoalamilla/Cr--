@@ -219,8 +219,8 @@ def p_programa_modulos_aux(p):
 
 
 def p_modulos(p):
-    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque REGLA_RETURN ABREPAR logical_expresion CIERRAPAR pN35 pN21 
-                | REGLA_FUNCION pN8 pN34 DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque pN21 '''
+    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque REGLA_RETURN ABREPAR logical_expresion CIERRAPAR pN35 pN21 
+                | REGLA_FUNCION pN8 pN34 DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque pN21 '''
     global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
 
 def p_pN34(p):
@@ -234,6 +234,10 @@ def p_pN35(p):
     cuad.agregarCuad('RETURN','','',cuad.PilaO.pop())
 
 
+def p_pN36(p):
+    ''' pN36 : '''
+    global nombreFunc
+    directorio.funcionLista[nombreFunc]['cuadContador'] = cuad.contQuadAux
 
 
 def p_modulos_aux(p):

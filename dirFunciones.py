@@ -7,17 +7,19 @@ tipo = 'tipo'
 numParametrosDef = 'numParametrosDefinidos'
 numLocalVariables = 'numLocalVariables'
 paramDefinidos = 'paramDefinidos'
+cuadContador = 'cuadContador'
 
 
 
 def almacenaFuncion(nombreFunc2, scope2, tipo2):
-    global variables, name, scope, tipo, numParametrosDef
+    global variables, name, scope, tipo, numParametrosDef,cuadContador
  
     #print(checaFuncionDeclararada(nombreFunc))
     funcionLista[nombreFunc2] = {
         name : nombreFunc2,
         scope : scope2,
         tipo : tipo2,
+        cuadContador : '',
         numParametrosDef : {},
         paramDefinidos : {},
         numLocalVariables : {},
@@ -57,6 +59,8 @@ def almacenaNumVarLocales(nombreFunc,contadorINT,contadorFLOAT,contadorBOOL,cont
 
     funcionLista[nombreFunc][numLocalVariables] = {'INT' : contadorINT, 'FLOAT' : contadorFLOAT, 
     'CHAR' : contadorCHAR, 'BOOL' : contadorBOOL ,'DATASET' : contadorD}
+
+
         
     
     

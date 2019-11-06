@@ -3,6 +3,7 @@
         "name": "MAIN",
         "scope": "GLOBAL",
         "tipo": "VOID",
+        "cuadContador": "",
         "numParametrosDefinidos": {},
         "paramDefinidos": {},
         "numLocalVariables": {},
@@ -61,81 +62,11 @@
             }
         }
     },
-    "func1": {
-        "name": "func1",
-        "scope": "LOCAL",
-        "tipo": "VOID",
-        "numParametrosDefinidos": {
-            "INT": 1,
-            "FLOAT": 0,
-            "CHAR": 1,
-            "BOOL": 1,
-            "DATASET": 0
-        },
-        "paramDefinidos": {
-            "func1var1": {
-                "name": "func1var1",
-                "tipo": "CHAR"
-            },
-            "func1var2": {
-                "name": "func1var2",
-                "tipo": "BOOL"
-            },
-            "func1var3": {
-                "name": "func1var3",
-                "tipo": "INT"
-            }
-        },
-        "numLocalVariables": {
-            "INT": 2,
-            "FLOAT": 1,
-            "CHAR": 2,
-            "BOOL": 1,
-            "DATASET": 0
-        },
-        "variables": {
-            "func1var1": {
-                "name": "func1var1",
-                "tipo": "CHAR"
-            },
-            "func1var2": {
-                "name": "func1var2",
-                "tipo": "BOOL"
-            },
-            "func1var3": {
-                "name": "func1var3",
-                "tipo": "INT"
-            },
-            "a": {
-                "name": "a",
-                "tipo": "INT"
-            },
-            "z": {
-                "name": "z",
-                "tipo": "INT"
-            },
-            "algo": {
-                "name": "algo",
-                "tipo": "FLOAT"
-            },
-            "LALALA": {
-                "name": "LALALA",
-                "tipo": "CHAR"
-            },
-            "algo3": {
-                "name": "algo3",
-                "tipo": "CHAR"
-            },
-            "lala": {
-                "name": "lala",
-                "tipo": "BOOL"
-            }
-        }
-    },
     "func2": {
         "name": "func2",
         "scope": "LOCAL",
-        "tipo": "INT",
+        "tipo": "VOID",
+        "cuadContador": 1,
         "numParametrosDefinidos": {
             "INT": 1,
             "FLOAT": 0,

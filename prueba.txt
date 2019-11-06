@@ -10,18 +10,8 @@ VAR arrP3[6]:CHAR;
 VAR matrix4[6][7]:INT;
 VAR var11:INT;
 
-FUNC VOID:func1(func1var1 CHAR, func1var2 BOOL, func1var3 INT)
-VAR z,a:INT;
-VAR algo:FLOAT;
-VAR algo3,LALALA:CHAR;
-VAR lala:BOOL;
-{
-  z=a;
-  lala = 5.0 > 3.0;
 
-}
-
-FUNC INT:func2(func1var1 CHAR, func1var2 BOOL, func1var3 INT)
+FUNC VOID:func2(func1var1 CHAR, func1var2 BOOL, func1var3 INT)
 VAR zAR,a,z:INT;
 VAR algo:FLOAT;
 VAR algo3,LALALA:CHAR;
@@ -31,7 +21,6 @@ VAR lala:BOOL;
   lala = 5.0 > 3.0;
 
 }
-RETURN(zAR+3)
 
 
 MAIN 
