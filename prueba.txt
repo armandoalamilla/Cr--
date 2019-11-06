@@ -18,11 +18,25 @@ VAR lala:BOOL;
 {
   z=a;
   lala = 5.0 > 3.0;
+
 }
+
+FUNC INT:func2(func1var1 CHAR, func1var2 BOOL, func1var3 INT)
+VAR zAR,a,z:INT;
+VAR algo:FLOAT;
+VAR algo3,LALALA:CHAR;
+VAR lala:BOOL;
+{
+  z=a;
+  lala = 5.0 > 3.0;
+
+}
+RETURN(zAR+3)
 
 
 MAIN 
 {
+  func2(5);
   flota = 3.0 + 3.55 / flota2;
   entero = 2;
   entero2 = entero;

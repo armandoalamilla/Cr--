@@ -54,6 +54,7 @@ tempNombreVar = ''
 reserved = {
     'PROGRAM' : 'REGLA_PROGRAMA',
     'FUNC' : 'REGLA_FUNCION',
+    'RETURN' : 'REGLA_RETURN',
     'MAIN' : 'REGLA_MAIN',
     'IF' : 'REGLA_IF',
     'ELSE' : 'REGLA_ELSE',
@@ -218,8 +219,21 @@ def p_programa_modulos_aux(p):
 
 
 def p_modulos(p):
-    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque pN21'''
+    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque REGLA_RETURN ABREPAR logical_expresion CIERRAPAR pN35 pN21 
+                | REGLA_FUNCION pN8 pN34 DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 bloque pN21 '''
     global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
+
+def p_pN34(p):
+    ''' pN34 : REGLA_VOID '''
+    global tempTipo_modulos
+    tempTipo_modulos = p[1]
+
+def p_pN35(p):
+    ''' pN35 : '''
+    cuad.PTypes.pop()
+    cuad.agregarCuad('RETURN','','',cuad.PilaO.pop())
+
+
 
 
 def p_modulos_aux(p):
@@ -299,7 +313,7 @@ def p_pN10(p):
 #reiniciar contadores de cuads a 0 al terminar una funcion y genera el cuad ENDPROC -- pn 20
 def p_pN21(p):
     ''' pN21 : '''
-    cuad.agregarCuad('ENDPROC','','','t'+str(cuad.contCuad))
+    cuad.agregarCuad('ENDPROC','','','')
     cuad.contCuad = 0
 
 
@@ -361,8 +375,7 @@ def p_tipo_func(p):
     '''tipo_func : REGLA_INT
         | REGLA_FLOAT
         | REGLA_CHAR
-        | REGLA_BOOL
-        | REGLA_VOID '''
+        | REGLA_BOOL '''
     global tempTipo_modulos
     tempTipo_modulos = p[1]
     #print("tipo modulo",p[1])
@@ -428,6 +441,16 @@ def p_estatuto(p):
 
 def p_llamada_funcion(p):
     ''' llamada_funcion : pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA'''
+
+#checa que la funcion este declarada en el dir de funciones -- punto neuralgico 13
+def p_pN13(p):
+    ''' pN13 : ID '''
+    global nombreFunc
+    try:
+        directorio.funcionLista[p[1]]
+    except KeyError:
+        print('La funcion',p[1],'en',nombreFunc,'no esta declarada')
+        sys.exit()
 
 def p_llamada_funcion_aux(p):
     ''' llamada_funcion_aux : exp
@@ -660,23 +683,6 @@ def p_pN20(p):
         temTipoCTE = directorio.funcionLista[nombreFunc]['variables'][p[1]]['tipo']
 
 
-
-
-
-#checa que la funcion este declarada en el dir de funciones -- punto neuralgico 13
-def p_pN13(p):
-    ''' pN13 : ID '''
-    global nombreFunc
-    try:
-        directorio.funcionLista[p[1]]
-    except KeyError:
-        print('La funcion',p[1],'en',nombreFunc,'no esta declarada')
-        sys.exit()
-
-
-
-
-
 def p_var_cte_aux(p):
     ''' var_cte_aux : exp
                     | exp COMA var_cte_aux '''
@@ -802,7 +808,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-archivo = "pruebaSinFunc.txt"
+archivo = "prueba.txt"
 f = open(archivo, 'r')
 s = f.read()
 
