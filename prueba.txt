@@ -34,9 +34,9 @@ VAR lala:BOOL;
 RETURN(zAR+3)
 
 
-MAIN 
+MAIN
 {
-  func2(5);
+  func2(5,3);
   flota = 3.0 + 3.55 / flota2;
   entero = 2;
   entero2 = entero;
