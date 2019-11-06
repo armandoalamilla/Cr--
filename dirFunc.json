@@ -75,15 +75,15 @@
             "DATASET": 0
         },
         "paramDefinidos": {
-            "func1var1": {
+            "1": {
                 "name": "func1var1",
                 "tipo": "CHAR"
             },
-            "func1var2": {
+            "2": {
                 "name": "func1var2",
                 "tipo": "BOOL"
             },
-            "func1var3": {
+            "3": {
                 "name": "func1var3",
                 "tipo": "INT"
             }

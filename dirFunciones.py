@@ -9,6 +9,8 @@ numLocalVariables = 'numLocalVariables'
 paramDefinidos = 'paramDefinidos'
 cuadContador = 'cuadContador'
 
+contParams = 1
+
 
 
 def almacenaFuncion(nombreFunc2, scope2, tipo2):
@@ -38,10 +40,12 @@ def almacenaVarsEnFunc(nombreFunc, nombreVar, tipoVar):
     lista_vars.clear()
 
 def almacenaParmsEnFunc(nombreFunc, nommbreVar, tipoVar):
-    funcionLista[nombreFunc]['paramDefinidos'][nommbreVar] = {
+    global contParams
+    funcionLista[nombreFunc]['paramDefinidos'][contParams] = {
         'name' : nommbreVar,
         'tipo' : tipoVar,
     }
+    contParams += 1
 
 def checaFuncionDeclararada(nombreFunc):
    
