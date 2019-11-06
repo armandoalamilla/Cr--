@@ -31,6 +31,7 @@ contadorCHAR = 0
 contadorDATASET = 0
 contadorBOOL = 0
 contadorVARID = 0
+contadorParametros = 0
 
 interruptorVARID = False
 
@@ -219,7 +220,7 @@ def p_programa_modulos_aux(p):
 
 
 def p_modulos(p):
-    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque REGLA_RETURN ABREPAR logical_expresion CIERRAPAR pN35 pN21 
+    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque REGLA_RETURN ABREPAR logical_expresion CIERRAPAR pN35 pN21
                 | REGLA_FUNCION pN8 pN34 DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque pN21 '''
     global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
 
@@ -444,28 +445,40 @@ def p_estatuto(p):
         | lectura '''
 
 def p_llamada_funcion(p):
-    ''' llamada_funcion : pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA'''
+    ''' llamada_funcion : pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA pN38_LUCIA'''
 
 
 #checa que la funcion este declarada en el dir de funciones -- punto neuralgico 13
 def p_pN13(p):
     ''' pN13 : ID '''
-    global nombreFunc
+    global nombreFunc, contadorParametros, nombre
     try:
         directorio.funcionLista[p[1]]
     except KeyError:
         print('La funcion',p[1],'en',nombreFunc,'no esta declarada')
         sys.exit()
 
+    nombre = p[1]
     cuad.agregarCuad('ERA',p[1],'','')
+    contadorParametros = 1
 
 def p_llamada_funcion_aux(p):
-    ''' llamada_funcion_aux : exp pN35_LUCIA
-                            | exp COMA llamada_funcion_aux pN35_LUCIA'''
+    ''' llamada_funcion_aux : exp pN36_LUCIA
+                            | exp COMA pN37_LUCIA llamada_funcion_aux pN36_LUCIA'''
 def p_pN36_LUCIA(p):
-    ''' pN35_LUCIA : '''
-    cuad.PTypes.pop()
+    ''' pN36_LUCIA : '''
     cuad.agregarCuad('PARAM',cuad.PilaO.pop(),'','')
+
+def p_pN37_LUCIA(p):
+    ''' pN37_LUCIA : '''
+    global contadorParametros
+    contadorParametros = contadorParametros + 1
+
+def p_pN38_LUCIA(p):
+    ''' pN38_LUCIA : '''
+    global nombre
+    cuad.agregarCuad('GOSUB',nombre,'','')
+
 
 def p_escritura(p):
     ''' escritura : REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA '''
@@ -840,7 +853,6 @@ f.write(app_json)
 f.close()
 #g.close()
 #print(arrayNombreFunc)
-
 
 print(cuad.POper)
 print(cuad.PTypes)
