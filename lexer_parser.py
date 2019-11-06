@@ -446,6 +446,7 @@ def p_estatuto(p):
 def p_llamada_funcion(p):
     ''' llamada_funcion : pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA'''
 
+
 #checa que la funcion este declarada en el dir de funciones -- punto neuralgico 13
 def p_pN13(p):
     ''' pN13 : ID '''
@@ -456,9 +457,15 @@ def p_pN13(p):
         print('La funcion',p[1],'en',nombreFunc,'no esta declarada')
         sys.exit()
 
+    cuad.agregarCuad('ERA',p[1],'','')
+
 def p_llamada_funcion_aux(p):
-    ''' llamada_funcion_aux : exp
-                            | exp COMA llamada_funcion_aux'''
+    ''' llamada_funcion_aux : exp pN35_LUCIA
+                            | exp COMA llamada_funcion_aux pN35_LUCIA'''
+def p_pN36_LUCIA(p):
+    ''' pN35_LUCIA : '''
+    cuad.PTypes.pop()
+    cuad.agregarCuad('PARAM',cuad.PilaO.pop(),'','')
 
 def p_escritura(p):
     ''' escritura : REGLA_PRINT ABREPAR escritura_aux CIERRAPAR PUNTOYCOMA '''
