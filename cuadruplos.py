@@ -26,8 +26,7 @@ left_type = ''
 
 def agregarCuad(operator, left_operand, right_operand, result):
     PQuad.append({'operator':operator, 'left_operand':left_operand,'right_operand':right_operand, 'result':result})
-    global contCuad, contQuadAux
-    contCuad = contCuad + 1
+    global contCuad, contQuadAux    
     contQuadAux = contQuadAux + 1
     
 

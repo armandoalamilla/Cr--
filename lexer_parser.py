@@ -23,6 +23,8 @@ temTipoCTE = ''
 
 
 
+
+
 #contadores
 contadorScope = 0
 contadorINT = 0
@@ -204,7 +206,7 @@ def p_pN11(p):
 #agregar cuad de goto a main antes de las func -- pn 24
 def p_pN24(p):
     ''' pN24 : '''
-    cuad.agregarCuad('GOTO','','','t'+str(cuad.contCuad))
+    cuad.agregarCuad('GOTO','','','')
 
 
 def p_pN25(p):
@@ -220,7 +222,7 @@ def p_programa_modulos_aux(p):
 
 
 def p_modulos(p):
-    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque REGLA_RETURN ABREPAR logical_expresion CIERRAPAR pN35 pN21
+    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque pN21
                 | REGLA_FUNCION pN8 pN34 DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque pN21 '''
     global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
 
@@ -229,16 +231,13 @@ def p_pN34(p):
     global tempTipo_modulos
     tempTipo_modulos = p[1]
 
-def p_pN35(p):
-    ''' pN35 : '''
-    cuad.PTypes.pop()
-    cuad.agregarCuad('RETURN','','',cuad.PilaO.pop())
+
 
 
 def p_pN36(p):
     ''' pN36 : '''
     global nombreFunc
-    directorio.funcionLista[nombreFunc]['cuadContador'] = cuad.contQuadAux
+    directorio.funcionLista[nombreFunc]['cuadInicial'] = cuad.contQuadAux
 
 
 def p_modulos_aux(p):
@@ -419,6 +418,7 @@ def p_pN23_LUCIA(p):
             result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
             if result_type != 'error':
                 result = 't'+str(cuad.contCuad)
+                cuad.contCuad = cuad.contCuad + 1
                 cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
                 cuad.PilaO.append(result)
                 cuad.PTypes.append(result_type)
@@ -442,32 +442,62 @@ def p_estatuto(p):
         | escritura
         | ciclo
         | func_pred
-        | lectura '''
+        | lectura 
+        | retorno '''
+
+def p_retorno(p):
+    ''' retorno : REGLA_RETURN ABREPAR logical_expresion CIERRAPAR pN35 PUNTOYCOMA'''
+
+#generar cuadruplos de return 
+def p_pN35(p):
+    ''' pN35 : '''
+    cuad.PTypes.pop()
+    cuad.agregarCuad('RETURN','','',cuad.PilaO.pop())
 
 def p_llamada_funcion(p):
-    ''' llamada_funcion : pN13 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA pN38_LUCIA'''
+    ''' llamada_funcion : pN13 pN40 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA pN38_LUCIA'''
+
 
 
 #checa que la funcion este declarada en el dir de funciones -- punto neuralgico 13
 def p_pN13(p):
     ''' pN13 : ID '''
-    global nombreFunc, contadorParametros, nombre
+    global nombreFunc, nombre
     try:
         directorio.funcionLista[p[1]]
     except KeyError:
         print('La funcion',p[1],'en',nombreFunc,'no esta declarada')
         sys.exit()
-
     nombre = p[1]
-    cuad.agregarCuad('ERA',p[1],'','')
+
+#genera accion era, iniciar contadorParametros en 1, agregar pointer -- pN40
+def p_pN40(p):
+    ''' pN40 : '''
+    global nombre, contadorParametros    
+    cuad.agregarCuad('ERA',nombre,'','')
     contadorParametros = 1
+    directorio.funcionLista[nombre]['paramDefinidos'][contadorParametros]['tipo']
+  
+
+
 
 def p_llamada_funcion_aux(p):
     ''' llamada_funcion_aux : exp pN36_LUCIA
-                            | exp COMA pN37_LUCIA llamada_funcion_aux pN36_LUCIA'''
+                            | exp COMA pN36_LUCIA pN37_LUCIA llamada_funcion_aux '''
+
+
 def p_pN36_LUCIA(p):
     ''' pN36_LUCIA : '''
-    cuad.agregarCuad('PARAM',cuad.PilaO.pop(),'','')
+    global pointerParamModuleCall, contadorParametros, nombre
+    Argument = cuad.PilaO.pop()
+    ArgumentType = cuad.PTypes.pop()    
+
+    if ArgumentType == directorio.funcionLista[nombre]['paramDefinidos'][contadorParametros]['tipo']:
+        cuad.agregarCuad('PARAM',Argument,'','PARAM'+str(contadorParametros))
+    else:
+        print("Error de tipo en el",contadorParametros,"parametro en la llamade de",nombre)
+        sys.exit()
+    
 
 def p_pN37_LUCIA(p):
     ''' pN37_LUCIA : '''
@@ -539,7 +569,6 @@ def p_asignacion(p):
         operator = cuad.POper.pop()
         result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
         if result_type != 'error':
-            result = 't'+str(cuad.contCuad)
             cuad.agregarCuad(operator,cuad.right_operand,'',cuad.left_operand)
             cuad.PilaO.append(cuad.left_operand)
             cuad.PTypes.append(result_type)
@@ -747,6 +776,7 @@ def p_pN17(p):
             result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
             if result_type != 'error':
                 result = 't'+str(cuad.contCuad)
+                cuad.contCuad = cuad.contCuad + 1
                 cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
                 cuad.PilaO.append(result)
                 cuad.PTypes.append(result_type)
@@ -788,6 +818,7 @@ def p_pN18(p):
             result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
             if result_type != 'error':
                 result = 't'+str(cuad.contCuad)
+                cuad.contCuad = cuad.contCuad + 1
                 cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
                 cuad.PilaO.append(result)
                 cuad.PTypes.append(result_type)

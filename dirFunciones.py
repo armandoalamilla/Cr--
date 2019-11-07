@@ -7,7 +7,7 @@ tipo = 'tipo'
 numParametrosDef = 'numParametrosDefinidos'
 numLocalVariables = 'numLocalVariables'
 paramDefinidos = 'paramDefinidos'
-cuadContador = 'cuadContador'
+cuadInicial = 'cuadInicial'
 
 contParams = 1
 
@@ -21,7 +21,7 @@ def almacenaFuncion(nombreFunc2, scope2, tipo2):
         name : nombreFunc2,
         scope : scope2,
         tipo : tipo2,
-        cuadContador : '',
+        cuadInicial : '',
         numParametrosDef : {},
         paramDefinidos : {},
         numLocalVariables : {},

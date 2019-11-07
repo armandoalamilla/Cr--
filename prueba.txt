@@ -11,7 +11,7 @@ VAR matrix4[6][7]:INT;
 VAR var11:INT;
 
 
-FUNC VOID:func2(func1var1 CHAR, func1var2 BOOL, func1var3 INT)
+FUNC VOID:func2(func2var1 INT, func2var2 INT, func2var3 FLOAT)
 VAR zAR,a,z:INT;
 VAR algo:FLOAT;
 VAR algo3,LALALA:CHAR;
@@ -25,14 +25,12 @@ VAR lala:BOOL;
 
 MAIN
 {
-  func2(5,3);
+  func2(5+entero,3,3.0);
   flota = 3.0 + 3.55 / flota2;
-  entero = 2;
-  entero2 = entero;
-  READ(entero3);
-  lala = 'a' + 'b';
-  DATAalgo = lala + lala;
-  PRINT(entero,flota,3+5/entero,DATAalgo);
+  WHILE(5 < 3)
+  {
+    entero = 2 + entero;
+  };
 
 }
 
