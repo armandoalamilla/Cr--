@@ -62,13 +62,13 @@
             }
         }
     },
-    "func2": {
-        "name": "func2",
+    "func1": {
+        "name": "func1",
         "scope": "LOCAL",
-        "tipo": "VOID",
+        "tipo": "INT",
         "cuadInicial": 1,
         "numParametrosDefinidos": {
-            "INT": 2,
+            "INT": 1,
             "FLOAT": 1,
             "CHAR": 0,
             "BOOL": 0,
@@ -81,10 +81,6 @@
             },
             "2": {
                 "name": "func2var2",
-                "tipo": "INT"
-            },
-            "3": {
-                "name": "func2var3",
                 "tipo": "FLOAT"
             }
         },
@@ -102,10 +98,74 @@
             },
             "func2var2": {
                 "name": "func2var2",
+                "tipo": "FLOAT"
+            },
+            "z": {
+                "name": "z",
                 "tipo": "INT"
             },
-            "func2var3": {
-                "name": "func2var3",
+            "a": {
+                "name": "a",
+                "tipo": "INT"
+            },
+            "zAR": {
+                "name": "zAR",
+                "tipo": "INT"
+            },
+            "algo": {
+                "name": "algo",
+                "tipo": "FLOAT"
+            },
+            "LALALA": {
+                "name": "LALALA",
+                "tipo": "CHAR"
+            },
+            "algo3": {
+                "name": "algo3",
+                "tipo": "CHAR"
+            },
+            "lala": {
+                "name": "lala",
+                "tipo": "BOOL"
+            }
+        }
+    },
+    "func2": {
+        "name": "func2",
+        "scope": "LOCAL",
+        "tipo": "INT",
+        "cuadInicial": 5,
+        "numParametrosDefinidos": {
+            "INT": 1,
+            "FLOAT": 1,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "paramDefinidos": {
+            "1": {
+                "name": "func2var1",
+                "tipo": "INT"
+            },
+            "2": {
+                "name": "func2var2",
+                "tipo": "FLOAT"
+            }
+        },
+        "numLocalVariables": {
+            "INT": 3,
+            "FLOAT": 1,
+            "CHAR": 2,
+            "BOOL": 1,
+            "DATASET": 0
+        },
+        "variables": {
+            "func2var1": {
+                "name": "func2var1",
+                "tipo": "INT"
+            },
+            "func2var2": {
+                "name": "func2var2",
                 "tipo": "FLOAT"
             },
             "z": {

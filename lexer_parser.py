@@ -319,6 +319,8 @@ def p_pN21(p):
     ''' pN21 : '''
     cuad.agregarCuad('ENDPROC','','','')
     cuad.contCuad = 0
+    directorio.contParams = 1
+    
 
 
 
@@ -390,6 +392,9 @@ def p_tipo_func(p):
 def p_expresion(p):
     '''expresion : exp pN22_LUCIA exp pN23_LUCIA
                  | exp  '''
+    #print("expresion")
+    #print(cuad.PTypes)
+    #print(cuad.PilaO)
 
 #almacenar el simbolo de mayorque y menorque en la pila POper -- punto neuralgico 21
 def p_pN22_LUCIA(p):
@@ -483,7 +488,7 @@ def p_pN35(p):
     cuad.agregarCuad('RETURN','','',cuad.PilaO.pop())
 
 def p_llamada_funcion(p):
-    ''' llamada_funcion : pN13 pN40 ABREPAR llamada_funcion_aux CIERRAPAR PUNTOYCOMA pN38_LUCIA'''
+    ''' llamada_funcion : pN13 pN40 ABREPAR llamada_funcion_aux CIERRAPAR pN43 pN38_LUCIA PUNTOYCOMA '''
 
 
 
@@ -501,12 +506,22 @@ def p_pN13(p):
 #genera accion era, iniciar contadorParametros en 1, agregar pointer -- pN40
 def p_pN40(p):
     ''' pN40 : '''
-    global nombre, contadorParametros    
+    global nombre, contadorParametros  
+    print(nombre)
     cuad.agregarCuad('ERA',nombre,'','')
     contadorParametros = 1
     directorio.funcionLista[nombre]['paramDefinidos'][contadorParametros]['tipo']
-  
 
+#coherencia con el num de parametros
+def p_pN43(p):
+    ''' pN43 : '''
+    global contadorParametros
+    if len(directorio.funcionLista[nombre]['paramDefinidos']) != contadorParametros:
+        print("ERROR EN NUMERO DE PARAMETROS")
+        sys.exit()
+
+
+       
 
 
 def p_llamada_funcion_aux(p):
@@ -588,6 +603,9 @@ def p_asignacion(p):
         | pN12 array pN16 logical_expresion PUNTOYCOMA '''
     global nombreFunc
 
+    #print('p_asignacion')
+    #print(cuad.PTypes)
+    #print(cuad.PilaO)    
 
     if cuad.POper[len(cuad.POper)-1] == '=':
         cuad.right_operand = cuad.PilaO.pop()
@@ -734,14 +752,14 @@ def p_var_id(p):
 
 
 def p_var_cte(p):
-    ''' var_cte : pN20
-                | pN20 array
-                | pN13 ABREPAR var_cte_aux CIERRAPAR
-                | CTE_I
+    ''' var_cte : CTE_I
                 | CTE_F
                 | CTE_CHAR
                 | CTE_BOOL
                 | CTE_D
+                | pN20
+                | pN20 array
+                | pN13 pN45 pN40 ABREPAR llamada_funcion_aux CIERRAPAR pN43 pN38_LUCIA pN44 pN46
                 '''
     global tempCTE, tempType
 
@@ -762,6 +780,29 @@ def p_pN20(p):
         cuad.PilaO.append(p[1])
         tempNombreVar = p[1]
         temTipoCTE = directorio.funcionLista[nombreFunc]['variables'][p[1]]['tipo']
+
+def p_pN44(p):
+    ''' pN44 : '''
+    global nombre, temTipoCTE
+    #print('pN44')
+    #print(nombre,directorio.funcionLista[nombre]['tipo'])
+    #cuad.PilaO.append(nombre)
+    result = 't'+str(cuad.contCuad)
+    cuad.agregarCuad('=',nombre,'',result)
+    cuad.contCuad += 1
+    cuad.PilaO.append(result)
+    temTipoCTE = directorio.funcionLista[nombre]['tipo']
+    #print(cuad.PTypes)
+    #print(cuad.PilaO)
+
+def p_pN45(p):
+    ''' pN45 : '''
+    cuad.POper.append('(')
+
+def p_pN46(p):
+    ''' pN46 : '''
+    cuad.POper.pop()
+
 
 
 def p_var_cte_aux(p):
@@ -821,6 +862,9 @@ def p_pN17(p):
 def p_termino(p):
     ''' termino : factor pN18
                 | factor pN18 pN15 termino '''
+    #print("factor")
+    #print(cuad.PTypes)
+    #print(cuad.PilaO)
 
 #almacenar * o / en POper -- punto neuralgico 15
 def p_pN15(p):
@@ -859,6 +903,9 @@ def p_pN18(p):
 def p_factor(p):
     ''' factor : pN24_LUCIA logical_expresion CIERRAPAR pN25_LUCIA
                 | var_cte pN2 '''
+    #print("factor")
+    #print(cuad.PTypes)
+    #print(cuad.PilaO)
 
 
 #meter el tipo en la pila de operandos -- punto neuralgico 2
