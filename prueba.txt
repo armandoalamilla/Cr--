@@ -27,9 +27,19 @@ MAIN
 {
   func2(5+entero,3,3.0);
   flota = 3.0 + 3.55 / flota2;
-  WHILE(5 < 3)
+  IF(5 < 3 OR 3 > 5)
   {
-    entero = 2 + entero;
+    IF(2 > 3)
+    {
+       entero = 2 + entero;
+
+    }
+    ELSE {
+      entero = 2;
+    };
+
+    PRINT(entero);
+   
   };
 
 }

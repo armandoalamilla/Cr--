@@ -430,9 +430,37 @@ def p_pN23_LUCIA(p):
 
 def p_logical_expresion(p):
     '''logical_expresion : REGLA_NOT expresion
-        | expresion REGLA_AND expresion
-        | expresion REGLA_OR expresion
+        | expresion pN41 expresion pN42
         | expresion '''
+
+#almacenar operador en la pila
+def p_pN41(p):
+    '''pN41 : REGLA_AND 
+            | REGLA_OR '''
+    cuad.POper.append(p[1])
+
+#generar cuads para AND u OR
+def p_pN42(p):
+    ''' pN42 : '''
+    if cuad.POper[len(cuad.POper)-1] == 'AND' or cuad.POper[len(cuad.POper)-1] == 'OR':
+        cuad.right_operand = cuad.PilaO.pop()
+        cuad.right_type = cuad.PTypes.pop()
+        cuad.left_operand = cuad.PilaO.pop()
+        cuad.left_type = cuad.PTypes.pop()
+        operator = cuad.POper.pop()
+        result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
+        if result_type != 'error':
+            result = 't'+str(cuad.contCuad)
+            cuad.contCuad = cuad.contCuad + 1
+            cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
+            cuad.PilaO.append(result)
+            cuad.PTypes.append(result_type)
+        else:
+            print("HORROR DE TIPOS")
+            sys.exit()
+
+
+
 
 
 def p_estatuto(p):
