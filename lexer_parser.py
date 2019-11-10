@@ -2,6 +2,7 @@ import ply.lex as lex
 import ply.yacc as yacc
 import dirFunciones as directorio, cuadruplos as cuad
 import cuboSemantico as cubo
+import memoria as mem 
 import sys, json, os
 
 aprobado = True
@@ -185,9 +186,9 @@ lex.lex()
 
 def p_programa(p):
     '''programa : REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars REGLA_MAIN pN11 bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 pN24 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars pN24 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars pN47 REGLA_MAIN pN11 bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 pN47 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars pN47 pN24 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END
     '''
 
 # pN1: almacena el main en el dir de funciones
@@ -213,6 +214,36 @@ def p_pN25(p):
     ''' pN25 : '''
     cuad.PQuad[0]['left_operand'] = cuad.contQuadAux
 
+#almacenar dir de memorias en el dir de funciones -- pn 47
+def p_pN47(p):
+    ''' pN47 : '''
+    global nombreFunc
+    enteroGlobal = mem.Vgi
+    floatglobal = mem.Vgf
+    charGlobal = mem.Vgc
+    boolGlobal = mem.Vgb
+    datasetGlobal = mem.Vgd
+
+    for x in directorio.funcionLista[nombreFunc]['variables']:
+        if directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'INT':
+            directorio.almacenaDirMemoria(nombreFunc,x,enteroGlobal)
+            enteroGlobal += 1
+        elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'FLOAT':
+            directorio.almacenaDirMemoria(nombreFunc,x,floatglobal)
+            floatglobal += 1
+        elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'CHAR':
+            directorio.almacenaDirMemoria(nombreFunc,x,charGlobal)
+            charGlobal += 1
+        elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'BOOL':
+            directorio.almacenaDirMemoria(nombreFunc,x,boolGlobal)
+            boolGlobal += 1
+        elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'DATASET':
+            directorio.almacenaDirMemoria(nombreFunc,x,datasetGlobal)
+            datasetGlobal += 1
+
+
+            
+            
 
 
 
@@ -222,8 +253,8 @@ def p_programa_modulos_aux(p):
 
 
 def p_modulos(p):
-    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque pN21
-                | REGLA_FUNCION pN8 pN34 DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN10 pN36 bloque pN21 '''
+    ''' modulos : REGLA_FUNCION pN8 tipo_func DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN48 pN10 pN36 bloque pN21
+                | REGLA_FUNCION pN8 pN34 DOSPUNTOS pN4 pN3 ABREPAR modulos_aux CIERRAPAR pN7 pN8 pN9 vars pN48 pN10 pN36 bloque pN21 '''
     global idTemp_modulos, tempTipo_modulos, arrayNombreFunc
 
 def p_pN34(p):
@@ -238,6 +269,35 @@ def p_pN36(p):
     ''' pN36 : '''
     global nombreFunc
     directorio.funcionLista[nombreFunc]['cuadInicial'] = cuad.contQuadAux
+
+#almacena dir de vars locales en el dir de func -- pn48
+def p_pN48(p):
+    ''' pN48 : '''
+    global nombreFunc
+    enteroLocal = mem.Vli
+    floatLocal = mem.Vlf
+    charLocal = mem.Vlc
+    boolLocal = mem.Vlb
+    datasetLocal = mem.Vld
+
+    for x in directorio.funcionLista[nombreFunc]['variables']:
+        if directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'INT':
+            directorio.almacenaDirMemoria(nombreFunc,x,enteroLocal)
+            enteroLocal += 1
+        elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'FLOAT':
+            directorio.almacenaDirMemoria(nombreFunc,x,floatLocal)
+            floatLocal += 1
+        elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'CHAR':
+            directorio.almacenaDirMemoria(nombreFunc,x,charLocal)
+            charLocal += 1
+        elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'BOOL':
+            directorio.almacenaDirMemoria(nombreFunc,x,boolLocal)
+            boolLocal += 1
+        elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'DATASET':
+            directorio.almacenaDirMemoria(nombreFunc,x,datasetLocal)
+            datasetLocal += 1
+
+
 
 
 def p_modulos_aux(p):
@@ -343,6 +403,7 @@ def p_tipo(p):
     global contadorINT, contadorFLOAT, contadorCHAR, contadorDATASET, contadorBOOL, interruptorVARID, contadorVARID
 
     tempTipoVarFuncEntrada = p[1]
+    
 
     #print(contadorScope, arrayNombreFunc)
     #print(arrayNombreFunc,contadorScope)

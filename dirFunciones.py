@@ -34,10 +34,14 @@ def almacenaVarsEnFunc(nombreFunc, nombreVar, tipoVar):
     lista_vars[nombreVar] =  {
             'name' : nombreVar,
             'tipo' : tipoVar,
+            'dirMemoria' : ''
         }
 
     funcionLista[nombreFunc][variables].update(lista_vars)
     lista_vars.clear()
+
+def almacenaDirMemoria(nombreFunc, nombreVar,direccion):
+    funcionLista[nombreFunc]['variables'][nombreVar]['dirMemoria'] = direccion
 
 def almacenaParmsEnFunc(nombreFunc, nommbreVar, tipoVar):
     global contParams
