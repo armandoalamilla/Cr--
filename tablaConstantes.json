@@ -1,0 +1,55 @@
+{
+    "INT": {
+        "5": {
+            "direccion": 21000,
+            "nombre": 5
+        },
+        "1": {
+            "direccion": 21001,
+            "nombre": 1
+        },
+        "500": {
+            "direccion": 21002,
+            "nombre": 500
+        },
+        "3": {
+            "direccion": 21003,
+            "nombre": 3
+        }
+    },
+    "FLOAT": {
+        "5.0": {
+            "direccion": 23000,
+            "nombre": 5.0
+        },
+        "3.0": {
+            "direccion": 23001,
+            "nombre": 3.0
+        },
+        "2.0": {
+            "direccion": 23002,
+            "nombre": 2.0
+        }
+    },
+    "CHAR": {
+        "c": {
+            "direccion": 27000,
+            "nombre": "c"
+        },
+        "C://carpetaMAMALONA/wuuu.txt": {
+            "direccion": 27001,
+            "nombre": "C://carpetaMAMALONA/wuuu.txt"
+        },
+        "melapelan": {
+            "direccion": 27002,
+            "nombre": "melapelan"
+        }
+    },
+    "BOOL": {
+        "FALSE": {
+            "direccion": 25000,
+            "nombre": "FALSE"
+        }
+    },
+    "DATASET": {}
+}

@@ -28,5 +28,15 @@ Tgb = 47000
 Tgc = 49000
 Tgd = 51000
 
-tablaConstantes = {}
-tablaTemporales = {}
+tablaConstantes= {'INT': {}, 'FLOAT' : {}, 'CHAR': {}, 'BOOL': {}, 'DATASET': {}}
+tablaTemporales = {'INT': {}, 'FLOAT' : {}, 'CHAR': {}, 'BOOL': {}, 'DATASET': {}}
+
+def almacenaConstantes(tipo,direccion,nombre):
+    tablaConstantes[tipo][nombre] = {
+        'direccion' : direccion,
+        'nombre' : nombre
+    }
+
+#almacenaConstantes('INT',43000,5)
+
+#print(tablaConstantes['INT'])

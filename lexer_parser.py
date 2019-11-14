@@ -21,7 +21,7 @@ tempSigno = ''
 arrayNombreFunc = []
 
 temTipoCTE = ''
-
+constanteTemp = 0
 
 
 
@@ -35,6 +35,11 @@ contadorDATASET = 0
 contadorBOOL = 0
 contadorVARID = 0
 contadorParametros = 0
+contadorConstanteINT = mem.Cteint
+contadorConstanteFLOAT = mem.Ctefloat
+contadorConstanteCHAR = mem.Ctechar
+contadorConstanteBOOL = mem.Ctebool
+contadorConstanteDATASET = mem.Ctedataset
 
 interruptorVARID = False
 
@@ -135,14 +140,16 @@ t_IGUAL = r'\='
 
 tokens = tokens + list(reserved.values())
 
-def t_CTE_B(t):
-    r'TRUE|FALSE'
-    global temTipoCTE
+def t_CTE_BOOL(t):
+    r'(TRUE|FALSE)'
+    global temTipoCTE    
+    #t.value = bool(t.value)
     temTipoCTE = 'BOOL'
     return t
 
 def t_CTE_CHAR(t):
     r'(\'[^\']*\')'
+    t.value = t.value.strip("'")
     global temTipoCTE
     temTipoCTE = 'CHAR'
     return t
@@ -813,20 +820,78 @@ def p_var_id(p):
 
 
 def p_var_cte(p):
-    ''' var_cte : CTE_I
-                | CTE_F
-                | CTE_CHAR
-                | CTE_BOOL
-                | CTE_D
+    ''' var_cte : pN49
+                | pN50
+                | pN51
+                | pN52
+                | pN53
                 | pN20
                 | pN20 array
                 | pN13 pN45 pN40 ABREPAR llamada_funcion_aux CIERRAPAR pN43 pN38_LUCIA pN44 pN46
                 '''
-    global tempCTE, tempType
 
-    if p[1] != None:
-        cuad.PilaO.append(p[1])
-        #tempType = p[1]
+#almacenar las constantes enteras en memoria -- pN49
+def p_pN49(p):
+    ''' pN49 : CTE_I '''
+    global contadorConstanteINT
+    cuad.PilaO.append(p[1])
+    #verificar que la constante exista en memoria si no almacenarla
+    try:
+        mem.tablaConstantes['INT'][p[1]]
+    except KeyError:
+        mem.almacenaConstantes('INT',contadorConstanteINT,p[1])
+        contadorConstanteINT += 1
+
+#almacenar las constantes float en memoria -- pN50
+def p_pN50(p):
+    ''' pN50 : CTE_F '''
+    global contadorConstanteFLOAT
+    cuad.PilaO.append(p[1])
+    #verificar que la constante exista en memoria si no almacenarla
+    try:
+        mem.tablaConstantes['FLOAT'][p[1]]
+    except KeyError:
+        mem.almacenaConstantes('FLOAT',contadorConstanteFLOAT,p[1])
+        contadorConstanteFLOAT += 1
+
+#almacenar las constantes char en memoria -- pN51
+def p_pN51(p):
+    ''' pN51 : CTE_CHAR '''
+    global contadorConstanteCHAR
+    cuad.PilaO.append(p[1])
+    #verificar que la constante exista en memoria si no almacenarla
+    try:
+        mem.tablaConstantes['CHAR'][p[1]]
+    except KeyError:
+        mem.almacenaConstantes('CHAR',contadorConstanteCHAR,p[1])
+        contadorConstanteCHAR += 1
+
+#almacenar las constantes bool en memoria -- pN52
+def p_pN52(p):
+    ''' pN52 : CTE_BOOL '''
+    global contadorConstanteBOOL
+    cuad.PilaO.append(p[1])
+    #verificar que la constante exista en mem si no almacenarla
+    try:
+        mem.tablaConstantes['BOOL'][p[1]]
+    except KeyError:
+        mem.almacenaConstantes('BOOL',contadorConstanteBOOL,p[1])
+        contadorConstanteBOOL += 1
+
+def p_pN53(p):
+    ''' pN53 : CTE_D '''
+    global contadorConstanteDATASET
+    cuad.PilaO.append(p[1])
+    #verificar que la constante exista en mem si no almacenarla
+    try:
+        mem.tablaConstantes['DATASET'][p[1]]
+    except KeyError:
+        mem.almacenaConstantes('DATASET',contadorConstanteDATASET,p[1])
+        contadorConstanteDATASET += 1
+
+    
+
+
 
 def p_pN20(p):
     ''' pN20 : ID '''
@@ -1021,6 +1086,12 @@ f.close()
 #g.close()
 #print(arrayNombreFunc)
 
+app_json2 = json.dumps(mem.tablaConstantes, indent=4)
+
+lala = open("tablaConstantes.json", "w")
+lala.write(app_json2)
+lala.close()
+
 print(cuad.POper)
 print(cuad.PTypes)
 print(cuad.PilaO)
@@ -1029,6 +1100,7 @@ contador = 0
 for x in cuad.PQuad:
     print(contador,x)
     contador += 1
+
 
 
 
