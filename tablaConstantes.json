@@ -7,34 +7,13 @@
         "3": {
             "direccion": 21001,
             "valor": 3
-        },
-        "1": {
-            "direccion": 21002,
-            "valor": 1
-        },
-        "500": {
-            "direccion": 21003,
-            "valor": 500
         }
     },
-    "FLOAT": {
-        "2.0": {
-            "direccion": 23000,
-            "valor": 2.0
-        }
-    },
+    "FLOAT": {},
     "CHAR": {
         "c": {
             "direccion": 27000,
             "valor": "c"
-        },
-        "C://carpetaMAMALONA/wuuu.txt": {
-            "direccion": 27001,
-            "valor": "C://carpetaMAMALONA/wuuu.txt"
-        },
-        "melapelan": {
-            "direccion": 27002,
-            "valor": "melapelan"
         }
     },
     "BOOL": {

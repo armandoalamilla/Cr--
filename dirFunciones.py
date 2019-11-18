@@ -34,11 +34,13 @@ def almacenaVarsEnFunc(nombreFunc, nombreVar, tipoVar):
     lista_vars[nombreVar] =  {
             'name' : nombreVar,
             'tipo' : tipoVar,
-            'dirMemoria' : ''
+            'dirMemoria' : '',
+            'valor' : ''
         }
 
     funcionLista[nombreFunc][variables].update(lista_vars)
     lista_vars.clear()
+
 
 def almacenaDirMemoria(nombreFunc, nombreVar,direccion):
     funcionLista[nombreFunc]['variables'][nombreVar]['dirMemoria'] = direccion
@@ -67,6 +69,14 @@ def almacenaNumVarLocales(nombreFunc,contadorINT,contadorFLOAT,contadorBOOL,cont
 
     funcionLista[nombreFunc][numLocalVariables] = {'INT' : contadorINT, 'FLOAT' : contadorFLOAT, 
     'CHAR' : contadorCHAR, 'BOOL' : contadorBOOL ,'DATASET' : contadorD}
+
+def almacenaValorEnVar(nombreFunc,direcciom, valor):
+    for x in funcionLista[nombreFunc]['variables']:
+        if funcionLista[nombreFunc]['variables'][x]['dirMemoria'] == direcciom:
+            funcionLista[nombreFunc]['variables'][x]['valor'] = valor
+            
+
+
 
 
         

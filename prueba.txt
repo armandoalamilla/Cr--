@@ -10,7 +10,7 @@ VAR arrP3[6]:CHAR;
 VAR matrix4[6][7]:INT;
 VAR var11:INT;
 
-FUNC INT:func1(func2var1 INT, func2var2 FLOAT)
+FUNC INT:func1(func1var1 INT, func1var2 FLOAT)
 VAR zAR,a,z:INT;
 VAR algo:FLOAT;
 VAR algo3,LALALA:CHAR;
@@ -29,9 +29,8 @@ VAR lala:BOOL;
 
 MAIN
 {
-  DATAalgo = 'C://carpetaMAMALONA/wuuu.txt';
-  lala = 'melapelan';
-  entero = 3 + func1(1+500,2.0);
+  entero = 3;
+  PRINT(entero);
 
 }
 

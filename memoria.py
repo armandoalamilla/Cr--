@@ -40,6 +40,12 @@ def almacenaConstantes(tipo,direccion,nombre):
 def obtenerMemoria(tipo,nombre):
     return tablaConstantes[tipo][nombre]['direccion']
 
+def checarRangoMemoriaScope(direccion):
+    #checa si es del main/global
+    if (direccion >= 1000 and direccion < 3000) or (direccion >= 3000 and direccion < 5000) or (direccion >= 5000 and direccion < 7000) or (direccion >= 7000 and direccion <9000) or (direccion >= 9000 and direccion < 11000):
+        return 'MAIN'
+
+
 
 
 #almacenaConstantes('INT',43000,5)

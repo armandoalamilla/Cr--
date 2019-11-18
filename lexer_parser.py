@@ -4,6 +4,7 @@ import dirFunciones as directorio, cuadruplos as cuad
 import cuboSemantico as cubo
 import memoria as mem 
 import sys, json, os
+import maquinaVirtual as maqBoba
 
 aprobado = True
 
@@ -222,7 +223,7 @@ def p_pN24(p):
 
 def p_pN25(p):
     ''' pN25 : '''
-    cuad.PQuad[0]['left_operand'] = cuad.contQuadAux
+    cuad.PQuad[0]['result'] = cuad.contQuadAux
 
 #almacenar dir de memorias en el dir de funciones -- pn 47
 def p_pN47(p):
@@ -667,7 +668,7 @@ def p_pN28_LUCIA(p):
     cuad.agregarCuad('GOTO','','',falso)
     cuad.PJumps.append(cuad.contQuadAux - 1)
     #fill
-    cuad.PQuad[falso][''] = cuad.contQuadAux
+    cuad.PQuad[falso]['result'] = cuad.contQuadAux
 
 def p_asignacion(p):
     '''asignacion : pN12 pN16 obtieneMemoriaVARS logical_expresion PUNTOYCOMA
@@ -1103,6 +1104,7 @@ parser.parse(s)
 
 
 
+
 #imprimir dir de funciones
 app_json = json.dumps(directorio.funcionLista, indent=4)
 #pp_json2 = json.dumps(directorio.lista_vars, indent=4)
@@ -1129,7 +1131,7 @@ for x in cuad.PQuad:
     print(contador,x)
     contador += 1
 
-
+maqBoba.maquinaVirtual()
 
 
 if aprobado == True:
