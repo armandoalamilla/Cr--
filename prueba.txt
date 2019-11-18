@@ -16,7 +16,7 @@ VAR algo:FLOAT;
 VAR algo3,LALALA:CHAR;
 VAR lala:BOOL;
 {
-  z=5;
+  z=5*3;
   z=5;
   lala = FALSE;
   LALALA = 'c';
@@ -31,7 +31,7 @@ MAIN
 {
   DATAalgo = 'C://carpetaMAMALONA/wuuu.txt';
   lala = 'melapelan';
-  entero = 2 + func1(1+500,2.0);
+  entero = 3 + func1(1+500,2.0);
 
 }
 

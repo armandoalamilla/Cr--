@@ -34,11 +34,13 @@ tablaTemporales = {'INT': {}, 'FLOAT' : {}, 'CHAR': {}, 'BOOL': {}, 'DATASET': {
 def almacenaConstantes(tipo,direccion,nombre):
     tablaConstantes[tipo][nombre] = {
         'direccion' : direccion,
-        'nombre' : nombre
+        'valor' : nombre
     }
 
 def obtenerMemoria(tipo,nombre):
     return tablaConstantes[tipo][nombre]['direccion']
+
+
 
 #almacenaConstantes('INT',43000,5)
 
