@@ -143,7 +143,10 @@ tokens = tokens + list(reserved.values())
 def t_CTE_BOOL(t):
     r'(TRUE|FALSE)'
     global temTipoCTE    
-    #t.value = bool(t.value)
+    if t.value == 'TRUE':
+        t.value = True
+    else:
+        t.value = False
     temTipoCTE = 'BOOL'
     return t
 
@@ -667,8 +670,8 @@ def p_pN28_LUCIA(p):
     cuad.PQuad[falso][''] = cuad.contQuadAux
 
 def p_asignacion(p):
-    '''asignacion : pN12 pN16 logical_expresion PUNTOYCOMA
-        | pN12 array pN16 logical_expresion PUNTOYCOMA '''
+    '''asignacion : pN12 pN16 obtieneMemoriaVARS logical_expresion PUNTOYCOMA
+        | pN12 array pN16 obtieneMemoriaVARS logical_expresion PUNTOYCOMA '''
     global nombreFunc
 
     #print('p_asignacion')
@@ -820,12 +823,12 @@ def p_var_id(p):
 
 
 def p_var_cte(p):
-    ''' var_cte : pN49
-                | pN50
-                | pN51
-                | pN52
-                | pN53
-                | pN20
+    ''' var_cte : pN49 obtieneMemoriaCTE_I
+                | pN50 obtieneMemoriaCTE_F
+                | pN51 obtieneMemoriaCTE_CHAR
+                | pN52 obtieneMemoriaCTE_BOOL
+                | pN53 obtieneMemoriaCTE_D
+                | pN20 obtieneMemoriaVARS
                 | pN20 array
                 | pN13 pN45 pN40 ABREPAR llamada_funcion_aux CIERRAPAR pN43 pN38_LUCIA pN44 pN46
                 '''
@@ -842,6 +845,10 @@ def p_pN49(p):
         mem.almacenaConstantes('INT',contadorConstanteINT,p[1])
         contadorConstanteINT += 1
 
+def p_obtieneMemoriaCTE_I(p):
+    ''' obtieneMemoriaCTE_I : '''
+    cuad.PilaO.append(mem.obtenerMemoria('INT',cuad.PilaO.pop()))
+
 #almacenar las constantes float en memoria -- pN50
 def p_pN50(p):
     ''' pN50 : CTE_F '''
@@ -853,6 +860,10 @@ def p_pN50(p):
     except KeyError:
         mem.almacenaConstantes('FLOAT',contadorConstanteFLOAT,p[1])
         contadorConstanteFLOAT += 1
+
+def p_obtieneMemoriaCTE_F(p):
+    ''' obtieneMemoriaCTE_F : '''
+    cuad.PilaO.append(mem.obtenerMemoria('FLOAT',cuad.PilaO.pop()))
 
 #almacenar las constantes char en memoria -- pN51
 def p_pN51(p):
@@ -866,6 +877,10 @@ def p_pN51(p):
         mem.almacenaConstantes('CHAR',contadorConstanteCHAR,p[1])
         contadorConstanteCHAR += 1
 
+def p_obtieneMemoriaCTE_CHAR(p):
+    ''' obtieneMemoriaCTE_CHAR : '''
+    cuad.PilaO.append(mem.obtenerMemoria('CHAR',cuad.PilaO.pop()))
+
 #almacenar las constantes bool en memoria -- pN52
 def p_pN52(p):
     ''' pN52 : CTE_BOOL '''
@@ -878,6 +893,10 @@ def p_pN52(p):
         mem.almacenaConstantes('BOOL',contadorConstanteBOOL,p[1])
         contadorConstanteBOOL += 1
 
+def p_obtieneMemoriaCTE_BOOL(p):
+    ''' obtieneMemoriaCTE_BOOL : '''
+    cuad.PilaO.append(mem.obtenerMemoria('BOOL',cuad.PilaO.pop()))
+
 def p_pN53(p):
     ''' pN53 : CTE_D '''
     global contadorConstanteDATASET
@@ -888,6 +907,10 @@ def p_pN53(p):
     except KeyError:
         mem.almacenaConstantes('DATASET',contadorConstanteDATASET,p[1])
         contadorConstanteDATASET += 1
+
+def p_obtieneMemoriaCTE_D(p):
+    ''' obtieneMemoriaCTE_D : '''
+    cuad.PilaO.append(mem.obtenerMemoria('DATASET',cuad.PilaO.pop()))
 
     
 
@@ -906,6 +929,11 @@ def p_pN20(p):
         cuad.PilaO.append(p[1])
         tempNombreVar = p[1]
         temTipoCTE = directorio.funcionLista[nombreFunc]['variables'][p[1]]['tipo']
+
+def p_obtieneMemoriaVARS(p):
+    ''' obtieneMemoriaVARS : '''
+    global nombreFunc
+    cuad.PilaO.append(directorio.funcionLista[nombreFunc]['variables'][cuad.PilaO.pop()]['dirMemoria'])
 
 def p_pN44(p):
     ''' pN44 : '''

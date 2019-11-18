@@ -37,6 +37,9 @@ def almacenaConstantes(tipo,direccion,nombre):
         'nombre' : nombre
     }
 
+def obtenerMemoria(tipo,nombre):
+    return tablaConstantes[tipo][nombre]['direccion']
+
 #almacenaConstantes('INT',43000,5)
 
 #print(tablaConstantes['INT'])

@@ -4,30 +4,22 @@
             "direccion": 21000,
             "nombre": 5
         },
-        "1": {
+        "2": {
             "direccion": 21001,
+            "nombre": 2
+        },
+        "1": {
+            "direccion": 21002,
             "nombre": 1
         },
         "500": {
-            "direccion": 21002,
-            "nombre": 500
-        },
-        "3": {
             "direccion": 21003,
-            "nombre": 3
+            "nombre": 500
         }
     },
     "FLOAT": {
-        "5.0": {
-            "direccion": 23000,
-            "nombre": 5.0
-        },
-        "3.0": {
-            "direccion": 23001,
-            "nombre": 3.0
-        },
         "2.0": {
-            "direccion": 23002,
+            "direccion": 23000,
             "nombre": 2.0
         }
     },
@@ -46,9 +38,9 @@
         }
     },
     "BOOL": {
-        "FALSE": {
+        "false": {
             "direccion": 25000,
-            "nombre": "FALSE"
+            "nombre": false
         }
     },
     "DATASET": {}

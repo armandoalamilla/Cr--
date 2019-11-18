@@ -78,85 +78,8 @@
     "func1": {
         "name": "func1",
         "scope": "LOCAL",
-        "tipo": "VOID",
-        "cuadInicial": 1,
-        "numParametrosDefinidos": {
-            "INT": 1,
-            "FLOAT": 1,
-            "CHAR": 0,
-            "BOOL": 0,
-            "DATASET": 0
-        },
-        "paramDefinidos": {
-            "1": {
-                "name": "func2var1",
-                "tipo": "INT"
-            },
-            "2": {
-                "name": "func2var2",
-                "tipo": "FLOAT"
-            }
-        },
-        "numLocalVariables": {
-            "INT": 3,
-            "FLOAT": 1,
-            "CHAR": 2,
-            "BOOL": 1,
-            "DATASET": 0
-        },
-        "variables": {
-            "func2var1": {
-                "name": "func2var1",
-                "tipo": "INT",
-                "dirMemoria": 11000
-            },
-            "func2var2": {
-                "name": "func2var2",
-                "tipo": "FLOAT",
-                "dirMemoria": 13000
-            },
-            "z": {
-                "name": "z",
-                "tipo": "INT",
-                "dirMemoria": 11001
-            },
-            "a": {
-                "name": "a",
-                "tipo": "INT",
-                "dirMemoria": 11002
-            },
-            "zAR": {
-                "name": "zAR",
-                "tipo": "INT",
-                "dirMemoria": 11003
-            },
-            "algo": {
-                "name": "algo",
-                "tipo": "FLOAT",
-                "dirMemoria": 13001
-            },
-            "LALALA": {
-                "name": "LALALA",
-                "tipo": "CHAR",
-                "dirMemoria": 17000
-            },
-            "algo3": {
-                "name": "algo3",
-                "tipo": "CHAR",
-                "dirMemoria": 17001
-            },
-            "lala": {
-                "name": "lala",
-                "tipo": "BOOL",
-                "dirMemoria": 15000
-            }
-        }
-    },
-    "func2": {
-        "name": "func2",
-        "scope": "LOCAL",
         "tipo": "INT",
-        "cuadInicial": 5,
+        "cuadInicial": 1,
         "numParametrosDefinidos": {
             "INT": 1,
             "FLOAT": 1,
