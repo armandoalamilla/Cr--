@@ -16,7 +16,7 @@ VAR algo:FLOAT;
 VAR algo3,LALALA:CHAR;
 VAR lala:BOOL;
 {
-  z=5*3;
+  a=5+3;
   z=5;
   lala = FALSE;
   LALALA = 'c';
@@ -29,8 +29,10 @@ VAR lala:BOOL;
 
 MAIN
 {
-  entero = 3;
-  PRINT(entero);
+  entero = 3 + 5 / 1;
+  flota = 4.5 + 1.57 / 0.3 - 1.0;
+  PRINT(3+6/2,entero,flota);    
+  
 
 }
 

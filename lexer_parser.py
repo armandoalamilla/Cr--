@@ -42,6 +42,7 @@ contadorConstanteCHAR = mem.Ctechar
 contadorConstanteBOOL = mem.Ctebool
 contadorConstanteDATASET = mem.Ctedataset
 
+
 interruptorVARID = False
 
 
@@ -196,10 +197,10 @@ def t_error(t):
 lex.lex()
 
 def p_programa(p):
-    '''programa : REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars pN47 REGLA_MAIN pN11 bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 pN47 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END
-                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars pN47 pN24 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END
+    '''programa : REGLA_PROGRAMA ID DOSPUNTOS pN1 REGLA_MAIN pN11 bloque REGLA_END pN54
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars pN47 REGLA_MAIN pN11 bloque REGLA_END pN54
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 pN47 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END pN54
+                | REGLA_PROGRAMA ID DOSPUNTOS pN1 vars pN47 pN24 programa_modulos_aux pN25 REGLA_MAIN pN11 bloque REGLA_END pN54
     '''
 
 # pN1: almacena el main en el dir de funciones
@@ -252,8 +253,10 @@ def p_pN47(p):
             directorio.almacenaDirMemoria(nombreFunc,x,datasetGlobal)
             datasetGlobal += 1
 
-
-            
+#agrega el cuad cuando acaba el programa
+def p_pN54(p):
+    ''' pN54 : '''
+    cuad.agregarCuad('ENDPROGRAMA','','','')
             
 
 
@@ -391,6 +394,11 @@ def p_pN21(p):
     cuad.agregarCuad('ENDPROC','','','')
     cuad.contCuad = 0
     directorio.contParams = 1
+    mem.contadorTemporalINT = mem.Tgi
+    mem.contadorTemporalFLOAT = mem.Tgf
+    mem.contadorTemporalCHAR = mem.Tgc
+    mem.contadorTemporalBOOL = mem.Tgb
+    mem.contadorTemporalDATASET = mem.Tgd
     
 
 
@@ -494,7 +502,7 @@ def p_pN23_LUCIA(p):
             operator = cuad.POper.pop()
             result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
             if result_type != 'error':
-                result = 't'+str(cuad.contCuad)
+                result = mem.generaDirTemporal(result_type)
                 cuad.contCuad = cuad.contCuad + 1
                 cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
                 cuad.PilaO.append(result)
@@ -527,7 +535,7 @@ def p_pN42(p):
         operator = cuad.POper.pop()
         result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
         if result_type != 'error':
-            result = 't'+str(cuad.contCuad)
+            result = mem.generaDirTemporal(result_type)
             cuad.contCuad = cuad.contCuad + 1
             cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
             cuad.PilaO.append(result)
@@ -999,7 +1007,7 @@ def p_pN17(p):
             operator = cuad.POper.pop()
             result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
             if result_type != 'error':
-                result = 't'+str(cuad.contCuad)
+                result = mem.generaDirTemporal(result_type)
                 cuad.contCuad = cuad.contCuad + 1
                 cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
                 cuad.PilaO.append(result)
@@ -1044,7 +1052,7 @@ def p_pN18(p):
             operator = cuad.POper.pop()
             result_type = cubo.sem_cubo[cuad.left_type][cuad.right_type][operator]
             if result_type != 'error':
-                result = 't'+str(cuad.contCuad)
+                result = mem.generaDirTemporal(result_type)
                 cuad.contCuad = cuad.contCuad + 1
                 cuad.agregarCuad(operator,cuad.left_operand,cuad.right_operand,result)
                 cuad.PilaO.append(result)
@@ -1132,6 +1140,10 @@ for x in cuad.PQuad:
     contador += 1
 
 maqBoba.maquinaVirtual()
+app_json3 = json.dumps(mem.tablaMemoriaEjecución, indent=4)
+lala3 = open("memoriaEjecuta.json", "w")
+lala3.write(app_json3)
+lala3.close()
 
 
 if aprobado == True:
