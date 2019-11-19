@@ -747,10 +747,10 @@ def p_pN29(p):
     ''' pN29 : '''
     exp_type = cuad.PTypes.pop()
     if exp_type != 'BOOL':
-        print("HORROR DE TIPOS EN EL IF")
+        print("HORROR DE TIPOS EN EL WHILE")
     else:
         result = cuad.PilaO.pop()
-        cuad.agregarCuad('GotoF',result,'','')
+        cuad.agregarCuad('GOTOF',result,'','')
         cuad.PJumps.append(cuad.contQuadAux-1)
 
 #genera goto y llena el gotof
@@ -759,7 +759,7 @@ def p_pN30(p):
     end = cuad.PJumps.pop()
     print('end',end)
     retorna = cuad.PJumps.pop()
-    cuad.agregarCuad('Goto','','',retorna)
+    cuad.agregarCuad('GOTO','','',retorna)
     #fill
     cuad.PQuad[end]['result'] = cuad.contQuadAux
 

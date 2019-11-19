@@ -26,6 +26,18 @@
                 "dirMemoria": 1002,
                 "valor": ""
             },
+            "bool2": {
+                "name": "bool2",
+                "tipo": "BOOL",
+                "dirMemoria": 5000,
+                "valor": ""
+            },
+            "bool1": {
+                "name": "bool1",
+                "tipo": "BOOL",
+                "dirMemoria": 5001,
+                "valor": ""
+            },
             "flota2": {
                 "name": "flota2",
                 "tipo": "FLOAT",
@@ -50,10 +62,16 @@
                 "dirMemoria": 9001,
                 "valor": ""
             },
+            "char1": {
+                "name": "char1",
+                "tipo": "CHAR",
+                "dirMemoria": 7000,
+                "valor": ""
+            },
             "lala": {
                 "name": "lala",
                 "tipo": "CHAR",
-                "dirMemoria": 7000,
+                "dirMemoria": 7001,
                 "valor": ""
             },
             "arrP": {
@@ -71,7 +89,7 @@
             "arrP3": {
                 "name": "arrP3",
                 "tipo": "CHAR",
-                "dirMemoria": 7001,
+                "dirMemoria": 7002,
                 "valor": ""
             },
             "matrix4": {

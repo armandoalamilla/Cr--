@@ -11,34 +11,9 @@
         "1": {
             "direccion": 21002,
             "valor": 1
-        },
-        "6": {
-            "direccion": 21003,
-            "valor": 6
-        },
-        "2": {
-            "direccion": 21004,
-            "valor": 2
         }
     },
-    "FLOAT": {
-        "4.5": {
-            "direccion": 23000,
-            "valor": 4.5
-        },
-        "1.57": {
-            "direccion": 23001,
-            "valor": 1.57
-        },
-        "0.3": {
-            "direccion": 23002,
-            "valor": 0.3
-        },
-        "1.0": {
-            "direccion": 23003,
-            "valor": 1.0
-        }
-    },
+    "FLOAT": {},
     "CHAR": {
         "c": {
             "direccion": 27000,

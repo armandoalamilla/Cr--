@@ -1,8 +1,10 @@
 PROGRAM algo:
 
 VAR entero,entero2,entero3:INT;
+VAR bool1,bool2:BOOL;
 VAR flota,flota2:FLOAT;
 VAR d,DATAalgo:DATASET;
+VAR char1:CHAR;
 VAR lala:CHAR;
 VAR arrP[5]:INT;
 VAR arrP2[5]:FLOAT;
@@ -29,9 +31,20 @@ VAR lala:BOOL;
 
 MAIN
 {
-  entero = 3 + 5 / 1;
-  flota = 4.5 + 1.57 / 0.3 - 1.0;
-  PRINT(3+6/2,entero,flota);    
+  entero = 1;
+  entero2 = 1;
+  WHILE (entero < 5)
+  {
+    WHILE(entero2 < 3)
+    {
+      PRINT(entero2);
+      entero2 = entero2 + 1;
+    };
+    PRINT(entero);
+    entero = entero + 1;
+    
+  
+  };    
   
 
 }

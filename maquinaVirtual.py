@@ -36,6 +36,42 @@ def maquinaVirtual():
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado)
             cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == '>':
+            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand']) > mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'])
+            #print('suma es igual', resultado)
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado)
+            cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == '<':
+            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand']) < mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'])
+            #print('suma es igual', resultado)
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado)
+            cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == '==':
+            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand']) == mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'])
+            #print('suma es igual', resultado)
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado)
+            cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == '!=':
+            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand']) != mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'])
+            #print('suma es igual', resultado)
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado)
+            cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == '>=':
+            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand']) >= mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'])
+            #print('suma es igual', resultado)
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado)
+            cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == '<=':
+            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand']) <= mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'])
+            #print('suma es igual', resultado)
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado)
+            cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == 'GOTOF':
+            evalua = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'])
+            if not evalua:
+                cuadActual = cuad.PQuad[cuadActual]['result']
+            else:
+                cuadActual += 1
         else:
             cuadActual+=1
         
