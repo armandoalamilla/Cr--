@@ -781,7 +781,17 @@ def p_lectura(p):
     ''' lectura : REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA
         | REGLA_READ ABREPAR ID array CIERRAPAR PUNTOYCOMA
         '''
-    cuad.agregarCuad('READ','','',p[3])
+    global nombreFunc
+    try:
+        directorio.funcionLista[nombreFunc]['variables'][p[3]]
+    except KeyError:
+        print('La variable',p[3],'no esta declarada')
+        sys.exit()
+    else:
+        cuad.agregarCuad('READ','','',directorio.funcionLista[nombreFunc]['variables'][p[3]]['dirMemoria'])
+
+
+    
 def p_array(p):
     ''' array : ABREBRACK exp CIERRABRACK
         | ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK

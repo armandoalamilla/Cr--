@@ -8,186 +8,34 @@
         "paramDefinidos": {},
         "numLocalVariables": {},
         "variables": {
-            "entero3": {
-                "name": "entero3",
+            "iterador": {
+                "name": "iterador",
                 "tipo": "INT",
                 "dirMemoria": 1000,
                 "valor": ""
             },
-            "entero2": {
-                "name": "entero2",
+            "numero": {
+                "name": "numero",
                 "tipo": "INT",
                 "dirMemoria": 1001,
-                "valor": ""
-            },
-            "entero": {
-                "name": "entero",
-                "tipo": "INT",
-                "dirMemoria": 1002,
-                "valor": ""
-            },
-            "bool2": {
-                "name": "bool2",
-                "tipo": "BOOL",
-                "dirMemoria": 5000,
-                "valor": ""
-            },
-            "bool1": {
-                "name": "bool1",
-                "tipo": "BOOL",
-                "dirMemoria": 5001,
-                "valor": ""
-            },
-            "flota2": {
-                "name": "flota2",
-                "tipo": "FLOAT",
-                "dirMemoria": 3000,
-                "valor": ""
-            },
-            "flota": {
-                "name": "flota",
-                "tipo": "FLOAT",
-                "dirMemoria": 3001,
-                "valor": ""
-            },
-            "DATAalgo": {
-                "name": "DATAalgo",
-                "tipo": "DATASET",
-                "dirMemoria": 9000,
-                "valor": ""
-            },
-            "d": {
-                "name": "d",
-                "tipo": "DATASET",
-                "dirMemoria": 9001,
-                "valor": ""
-            },
-            "char1": {
-                "name": "char1",
-                "tipo": "CHAR",
-                "dirMemoria": 7000,
-                "valor": ""
-            },
-            "lala": {
-                "name": "lala",
-                "tipo": "CHAR",
-                "dirMemoria": 7001,
-                "valor": ""
-            },
-            "arrP": {
-                "name": "arrP",
-                "tipo": "INT",
-                "dirMemoria": 1003,
-                "valor": ""
-            },
-            "arrP2": {
-                "name": "arrP2",
-                "tipo": "FLOAT",
-                "dirMemoria": 3002,
-                "valor": ""
-            },
-            "arrP3": {
-                "name": "arrP3",
-                "tipo": "CHAR",
-                "dirMemoria": 7002,
-                "valor": ""
-            },
-            "matrix4": {
-                "name": "matrix4",
-                "tipo": "INT",
-                "dirMemoria": 1004,
-                "valor": ""
-            },
-            "var11": {
-                "name": "var11",
-                "tipo": "INT",
-                "dirMemoria": 1005,
-                "valor": ""
-            }
-        }
-    },
-    "func1": {
-        "name": "func1",
-        "scope": "LOCAL",
-        "tipo": "INT",
-        "cuadInicial": 1,
-        "numParametrosDefinidos": {
-            "INT": 1,
-            "FLOAT": 1,
-            "CHAR": 0,
-            "BOOL": 0,
-            "DATASET": 0
-        },
-        "paramDefinidos": {
-            "1": {
-                "name": "func1var1",
-                "tipo": "INT"
-            },
-            "2": {
-                "name": "func1var2",
-                "tipo": "FLOAT"
-            }
-        },
-        "numLocalVariables": {
-            "INT": 3,
-            "FLOAT": 1,
-            "CHAR": 2,
-            "BOOL": 1,
-            "DATASET": 0
-        },
-        "variables": {
-            "func1var1": {
-                "name": "func1var1",
-                "tipo": "INT",
-                "dirMemoria": 11000,
-                "valor": ""
-            },
-            "func1var2": {
-                "name": "func1var2",
-                "tipo": "FLOAT",
-                "dirMemoria": 13000,
                 "valor": ""
             },
             "z": {
                 "name": "z",
                 "tipo": "INT",
-                "dirMemoria": 11001,
+                "dirMemoria": 1002,
                 "valor": ""
             },
-            "a": {
-                "name": "a",
+            "y": {
+                "name": "y",
                 "tipo": "INT",
-                "dirMemoria": 11002,
+                "dirMemoria": 1003,
                 "valor": ""
             },
-            "zAR": {
-                "name": "zAR",
+            "x": {
+                "name": "x",
                 "tipo": "INT",
-                "dirMemoria": 11003,
-                "valor": ""
-            },
-            "algo": {
-                "name": "algo",
-                "tipo": "FLOAT",
-                "dirMemoria": 13001,
-                "valor": ""
-            },
-            "LALALA": {
-                "name": "LALALA",
-                "tipo": "CHAR",
-                "dirMemoria": 17000,
-                "valor": ""
-            },
-            "algo3": {
-                "name": "algo3",
-                "tipo": "CHAR",
-                "dirMemoria": 17001,
-                "valor": ""
-            },
-            "lala": {
-                "name": "lala",
-                "tipo": "BOOL",
-                "dirMemoria": 15000,
+                "dirMemoria": 1004,
                 "valor": ""
             }
         }

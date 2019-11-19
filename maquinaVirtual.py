@@ -11,6 +11,9 @@ def maquinaVirtual():
         elif cuad.PQuad[cuadActual]['operator'] == 'PRINT':
             print("IMPRIME CONSOLA:",mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result']))
             cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'READ':
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],input("INGRESA EL VALOR DE LA VAR: "))
+            cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == '=':
             direccionVar = cuad.PQuad[cuadActual]['result']
             valor = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'])

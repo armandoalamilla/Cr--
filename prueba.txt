@@ -1,50 +1,24 @@
 PROGRAM algo:
 
-VAR entero,entero2,entero3:INT;
-VAR bool1,bool2:BOOL;
-VAR flota,flota2:FLOAT;
-VAR d,DATAalgo:DATASET;
-VAR char1:CHAR;
-VAR lala:CHAR;
-VAR arrP[5]:INT;
-VAR arrP2[5]:FLOAT;
-VAR arrP3[6]:CHAR;
-VAR matrix4[6][7]:INT;
-VAR var11:INT;
-
-FUNC INT:func1(func1var1 INT, func1var2 FLOAT)
-VAR zAR,a,z:INT;
-VAR algo:FLOAT;
-VAR algo3,LALALA:CHAR;
-VAR lala:BOOL;
-{
-  a=5+3;
-  z=5;
-  lala = FALSE;
-  LALALA = 'c';
-  RETURN(z);
-
-}
-
-
-
+VAR x,y,z,numero,iterador:INT;
 
 MAIN
 {
-  entero = 1;
-  entero2 = 1;
-  WHILE (entero < 5)
+  iterador = 0;
+  x=0;
+  y=1;
+  z=0;
+  numero=10;
+  PRINT('SERIE TIO FIBO');
+  WHILE(iterador < numero)
   {
-    WHILE(entero2 < 3)
-    {
-      PRINT(entero2);
-      entero2 = entero2 + 1;
-    };
-    PRINT(entero);
-    entero = entero + 1;
-    
-  
-  };    
+    PRINT(x);
+    z = x + y;
+    x = y;
+    y = z;
+    iterador = iterador + 1;   
+  };
+   
   
 
 }

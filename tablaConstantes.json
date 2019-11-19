@@ -1,30 +1,25 @@
 {
     "INT": {
-        "5": {
+        "0": {
             "direccion": 21000,
-            "valor": 5
-        },
-        "3": {
-            "direccion": 21001,
-            "valor": 3
+            "valor": 0
         },
         "1": {
-            "direccion": 21002,
+            "direccion": 21001,
             "valor": 1
+        },
+        "10": {
+            "direccion": 21002,
+            "valor": 10
         }
     },
     "FLOAT": {},
     "CHAR": {
-        "c": {
+        "SERIE TIO FIBO": {
             "direccion": 27000,
-            "valor": "c"
+            "valor": "SERIE TIO FIBO"
         }
     },
-    "BOOL": {
-        "false": {
-            "direccion": 25000,
-            "valor": false
-        }
-    },
+    "BOOL": {},
     "DATASET": {}
 }
