@@ -1,6 +1,8 @@
 PROGRAM algo:
 
 VAR x,y,z,numero,iterador:INT;
+VAR flota:FLOAT;
+VAR lala:CHAR;
 
 MAIN
 {
@@ -19,6 +21,8 @@ MAIN
     iterador = iterador + 1;
   };
 
+  READ(lala);
+  PRINT(lala);
 }
 
 END
