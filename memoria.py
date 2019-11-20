@@ -6,6 +6,7 @@ Vgf = 3000
 Vgb = 5000
 Vgc = 7000
 Vgd = 9000
+VgV = 11000
 
 #variables locales
 Vli = 11000

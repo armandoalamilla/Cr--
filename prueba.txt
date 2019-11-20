@@ -4,25 +4,29 @@ VAR x,y,z,numero,iterador:INT;
 VAR flota:FLOAT;
 VAR lala:CHAR;
 
+FUNC VOID:func1(func1var1 INT, func1var2 INT)
+VAR z:INT;
+{
+  
+  z=5*3;
+
+}
+
+FUNC VOID:func2(func2var1 INT, func1var2 FLOAT)
+VAR z:INT;
+{
+  
+  z=5*3;
+
+}
+
 MAIN
 {
-  iterador = 0;
-  READ(x);
-  y=1;
-  z=0;
-  numero=10;
-  PRINT('SERIE TIO FIBO');
-  WHILE(iterador < numero)
-  {
-    PRINT(x);
-    z = x + y;
-    x = y;
-    y = z;
-    iterador = iterador + 1;
-  };
-
-  READ(lala);
-  PRINT(lala);
+    func1(3+5,3);
+    x = 3 * 5;
+    lala = 'ME EJECUTE UwU';
+    PRINT(x,lala);
+  
 }
 
 END

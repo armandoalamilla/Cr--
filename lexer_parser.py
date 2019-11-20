@@ -41,6 +41,12 @@ contadorConstanteFLOAT = mem.Ctefloat
 contadorConstanteCHAR = mem.Ctechar
 contadorConstanteBOOL = mem.Ctebool
 contadorConstanteDATASET = mem.Ctedataset
+enteroGlobal = mem.Vgi
+floatglobal = mem.Vgf
+charGlobal = mem.Vgc
+boolGlobal = mem.Vgb
+datasetGlobal = mem.Vgd
+voidGlobal = mem.VgV
 
 
 interruptorVARID = False
@@ -229,12 +235,8 @@ def p_pN25(p):
 #almacenar dir de memorias en el dir de funciones -- pn 47
 def p_pN47(p):
     ''' pN47 : '''
-    global nombreFunc
-    enteroGlobal = mem.Vgi
-    floatglobal = mem.Vgf
-    charGlobal = mem.Vgc
-    boolGlobal = mem.Vgb
-    datasetGlobal = mem.Vgd
+    global nombreFunc, enteroGlobal,floatglobal,charGlobal,boolGlobal,datasetGlobal
+    
 
     for x in directorio.funcionLista[nombreFunc]['variables']:
         if directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'INT':
@@ -324,11 +326,31 @@ def p_modulos_aux(p):
 def p_pN3(p):
     '''pN3 : '''
     global contadorScope, idTemp_modulos, tempTipo_modulos, arrayNombreFunc, nombreFunc
+    global enteroGlobal,floatglobal,charGlobal,boolGlobal,voidGlobal
     #print(contadorScope, p[4])
     #arrayNombreFunc.append(idTemp_modulos)
     scopeActual = 'LOCAL'
     #print(nombreFunc, tempTipo_modulos)
     directorio.almacenaFuncion(nombreFunc,scopeActual,tempTipo_modulos)
+    #almacena la funcion como var global
+    directorio.almacenaVarsEnFunc('MAIN',nombreFunc,tempTipo_modulos)
+    #asignar direccion segun el tipo de la var de la func    
+    if directorio.funcionLista['MAIN']['variables'][nombreFunc]['tipo'] == 'INT':
+        directorio.almacenaDirMemoria('MAIN',nombreFunc,enteroGlobal)
+        enteroGlobal += 1
+    elif directorio.funcionLista['MAIN']['variables'][nombreFunc]['tipo'] == 'FLOAT':
+        directorio.almacenaDirMemoria('MAIN',nombreFunc,floatglobal)
+        floatglobal += 1
+    elif directorio.funcionLista['MAIN']['variables'][nombreFunc]['tipo'] == 'CHAR':
+        directorio.almacenaDirMemoria('MAIN',nombreFunc,charGlobal)
+        charGlobal += 1
+    elif directorio.funcionLista['MAIN']['variables'][nombreFunc]['tipo'] == 'BOOL':
+        directorio.almacenaDirMemoria('MAIN',nombreFunc,boolGlobal)
+        boolGlobal += 1
+    elif directorio.funcionLista['MAIN']['variables'][nombreFunc]['tipo'] == 'VOID':
+        directorio.almacenaDirMemoria('MAIN',nombreFunc,voidGlobal)
+        voidGlobal += 1
+
 
 
 #almacenar ID de modulo -- punto neuralgico 4
