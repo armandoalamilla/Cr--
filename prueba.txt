@@ -5,7 +5,7 @@ VAR x,y,z,numero,iterador:INT;
 MAIN
 {
   iterador = 0;
-  x=0;
+  READ(x);
   y=1;
   z=0;
   numero=10;
@@ -16,10 +16,8 @@ MAIN
     z = x + y;
     x = y;
     y = z;
-    iterador = iterador + 1;   
+    iterador = iterador + 1;
   };
-   
-  
 
 }
 
