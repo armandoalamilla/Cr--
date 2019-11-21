@@ -66,7 +66,7 @@ def generaDirTemporal(tipo):
         return contadorTemporalDATASET - 1
 
 def almacenaMemoriaEjecucion(direccion,valor,contexto):
-    
+    #print()
     listaDir[direccion] = {'valor': valor}
     tablaMemoriaEjecución[contexto].update(listaDir)
     listaDir.clear()

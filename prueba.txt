@@ -1,36 +1,26 @@
 PROGRAM algo:
 
-VAR x,z,numero,iterador:INT;
-VAR flota,y:FLOAT;
-VAR lala:CHAR;
-VAR pruebaBOOL:BOOL;
-
-FUNC VOID:func1(ab CHAR, b FLOAT)
+VAR entero,a:INT;
+FUNC INT:TIOFIBO(n INT)
 VAR z:INT;
 {
-    PRINT(ab);
-  
-  
+  IF(n > 1)
+  {
+    RETURN(n * TIOFIBO(n-1));
+  }
+  ELSE {
+    RETURN(1);
+  };  
 
 }
 
-FUNC VOID:func2(ab FLOAT, b FLOAT)
-VAR z:INT;
-{
-  func1('ENTRE EN FUNC2',5.0);  
-  PRINT(ab);
-
-}
 
 MAIN
 {
-    x=45;
-    y=22.0;
-    lala = 'MIRAME ENTRE UWU';
-    func1(lala,2.5); 
-    func2(3.0,4.0);   
-    lala = 'UwU me la pelan';
-    PRINT(lala,x,y);
+   
+   entero = TIOFIBO(9);
+   PRINT(entero);
+   
     
   
 }

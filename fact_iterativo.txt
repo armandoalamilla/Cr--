@@ -1,0 +1,29 @@
+PROGRAM algo:
+
+VAR fact,i,num,nose:INT;
+
+
+FUNC INT:FACT(num INT,i INT,fact INT)
+VAR z:INT;
+{
+    WHILE(i < num+1)
+    {
+        fact = fact * i;
+        i = i + 1;
+    };
+    RETURN(fact);
+
+  
+}
+
+MAIN
+{
+    num = 5;
+    i=1;
+    fact=1;    
+    PRINT(FACT(num,i,fact));
+ 
+  
+}
+
+END

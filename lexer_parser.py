@@ -982,8 +982,9 @@ def p_pN44(p):
     #print('pN44')
     #print(nombre,directorio.funcionLista[nombre]['tipo'])
     #cuad.PilaO.append(nombre)
-    result = 't'+str(cuad.contCuad)
-    cuad.agregarCuad('=',nombre,'',result)
+    result_type = directorio.funcionLista['MAIN']['variables'][nombre]['tipo']
+    result = mem.generaDirTemporal(result_type)
+    cuad.agregarCuad('=',directorio.funcionLista['MAIN']['variables'][nombre]['dirMemoria'],'',result)
     cuad.contCuad += 1
     cuad.PilaO.append(result)
     temTipoCTE = directorio.funcionLista[nombre]['tipo']
@@ -1133,7 +1134,8 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-archivo = "prueba.txt"
+archivo = "fact_iterativo.txt"
+#archivo = "prueba.txt"
 f = open(archivo, 'r')
 s = f.read()
 

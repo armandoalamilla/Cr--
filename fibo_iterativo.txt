@@ -4,13 +4,9 @@ VAR x,y,z,numero,iterador:INT;
 VAR flota:FLOAT;
 VAR lala:CHAR;
 
-MAIN
+FUNC VOID:TIOFIBO(x INT, iterador INT, y INT, z INT, numero INT)
+VAR z:INT;
 {
-  x=0;
-  iterador = 0;
-  y=1;
-  z=0;
-  numero=10;
   PRINT('SERIE TIO FIBO');
   WHILE(iterador < numero)
   {
@@ -19,7 +15,20 @@ MAIN
     x = y;
     y = z;
     iterador = iterador + 1;
-  };
+  }; 
+
+}
+
+MAIN
+{
+  x=0;
+  iterador = 0;
+  y=1;
+  z=0;
+  numero=10;
+  TIOFIBO(x,iterador,y,z,numero);
+  
+  
 }
 
 END

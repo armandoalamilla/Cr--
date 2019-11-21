@@ -9,13 +9,15 @@ cuadActual = 0
 global direccionRead , valorRead, valorTipo, inputVal
 pilaContexto=['GLOBAL']
 pilaCuadActual = []
+pilaReturn = []
 mem.tablaMemoriaEjecución = {'GLOBAL' : {}}
 #print(mem.tablaMemoriaEjecución)
 contadorParam=1
 def maquinaVirtual():
-    global cuadActual, pilaContexto,contadorParam, pilaCuadActual
+    global cuadActual, pilaContexto,contadorParam, pilaCuadActual, pilaReturn
 
     while cuadActual < cuad.contQuadAux:
+        #print(mem.tablaMemoriaEjecución)
         if cuad.PQuad[cuadActual]['operator'] == 'GOTO':
             cuadActual = cuad.PQuad[cuadActual]['result']
         elif cuad.PQuad[cuadActual]['operator'] == 'PRINT':
@@ -160,10 +162,15 @@ def maquinaVirtual():
             else:
                 cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == 'GOSUB':
-            mem.tablaMemoriaEjecución[pilaContexto[len(pilaContexto)-1]].clear()
+            #mem.tablaMemoriaEjecución[pilaContexto[len(pilaContexto)-1]].clear()
             pilaContexto.pop()
             cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == 'ENDPROC':
             cuadActual = pilaCuadActual.pop()
+        elif cuad.PQuad[cuadActual]['operator'] == 'RETURN':
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            direccion = directorio.funcionLista['MAIN']['variables'][pilaContexto[len(pilaContexto)-1]]['dirMemoria']
+            mem.almacenaMemoriaEjecucion(direccion,result,pilaContexto[len(pilaContexto)-2])
+            cuadActual +=1
         else:
             cuadActual+=1
