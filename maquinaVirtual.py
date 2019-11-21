@@ -155,10 +155,15 @@ def maquinaVirtual():
             contadorParam +=1
             if cuad.PQuad[cuadActual+1]['operator'] == 'GOSUB':
                 contadorParam = 1
-                pilaCuadActual.append(cuadActual+2)
-            cuadActual+=1
+                pilaCuadActual.append(cuadActual+1)
+                cuadActual = directorio.funcionLista[pilaContexto[len(pilaContexto)-1]]['cuadInicial']
+            else:
+                cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == 'GOSUB':
+            mem.tablaMemoriaEjecución[pilaContexto[len(pilaContexto)-1]].clear()
             pilaContexto.pop()
             cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'ENDPROC':
+            cuadActual = pilaCuadActual.pop()
         else:
             cuadActual+=1

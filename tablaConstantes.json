@@ -1,30 +1,43 @@
 {
     "INT": {
-        "10": {
-            "direccion": 21000,
-            "valor": 10
-        },
-        "3": {
-            "direccion": 21001,
-            "valor": 3
-        },
-        "5": {
-            "direccion": 21002,
-            "valor": 5
-        },
         "45": {
-            "direccion": 21003,
+            "direccion": 21000,
             "valor": 45
-        },
-        "22": {
-            "direccion": 21004,
-            "valor": 22
         }
     },
-    "FLOAT": {},
+    "FLOAT": {
+        "5.0": {
+            "direccion": 23000,
+            "valor": 5.0
+        },
+        "22.0": {
+            "direccion": 23001,
+            "valor": 22.0
+        },
+        "2.5": {
+            "direccion": 23002,
+            "valor": 2.5
+        },
+        "3.0": {
+            "direccion": 23003,
+            "valor": 3.0
+        },
+        "4.0": {
+            "direccion": 23004,
+            "valor": 4.0
+        }
+    },
     "CHAR": {
-        "UwU me la pelan": {
+        "ENTRE EN FUNC2": {
             "direccion": 27000,
+            "valor": "ENTRE EN FUNC2"
+        },
+        "MIRAME ENTRE UWU": {
+            "direccion": 27001,
+            "valor": "MIRAME ENTRE UWU"
+        },
+        "UwU me la pelan": {
+            "direccion": 27002,
             "valor": "UwU me la pelan"
         }
     },

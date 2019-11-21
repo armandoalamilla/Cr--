@@ -1,32 +1,34 @@
 PROGRAM algo:
 
-VAR x,y,z,numero,iterador:INT;
-VAR flota:FLOAT;
+VAR x,z,numero,iterador:INT;
+VAR flota,y:FLOAT;
 VAR lala:CHAR;
 VAR pruebaBOOL:BOOL;
 
-FUNC VOID:func1(func1var1 INT, func1var2 INT)
+FUNC VOID:func1(ab CHAR, b FLOAT)
 VAR z:INT;
 {
+    PRINT(ab);
   
-  z=10*3;
-  PRINT(z);
+  
 
 }
 
-FUNC VOID:func2(func2var1 INT, func1var2 FLOAT)
+FUNC VOID:func2(ab FLOAT, b FLOAT)
 VAR z:INT;
 {
-  
-  z=5*3;
+  func1('ENTRE EN FUNC2',5.0);  
+  PRINT(ab);
 
 }
 
 MAIN
 {
     x=45;
-    y=22;
-    func1(x,y);    
+    y=22.0;
+    lala = 'MIRAME ENTRE UWU';
+    func1(lala,2.5); 
+    func2(3.0,4.0);   
     lala = 'UwU me la pelan';
     PRINT(lala,x,y);
     

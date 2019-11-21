@@ -134,9 +134,24 @@ def obtenerValordeMemoria(direccion,contexto):
     #checar variables globales void
     elif direccion >= 800 and direccion < 1000:
         return tablaMemoriaEjecución[contexto][direccion]['valor']
-    #checar variables locales void
+    #checar variables locales enteras
     elif direccion >= 11000 and direccion < 13000:
         return tablaMemoriaEjecución[contexto][direccion]['valor']
+    #checar variables locales float
+    elif direccion >= 13000 and direccion < 15000:
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
+    #checar variables locales bool
+    elif direccion >= 15000 and direccion < 17000:
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
+    #checar variables locales char
+    elif direccion >= 17000 and direccion < 19000:
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
+    #checar variables locales dataset
+    elif direccion >= 19000 and direccion < 21000:
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
+    
+
+
     
 
 
