@@ -8,34 +8,34 @@
         "paramDefinidos": {},
         "numLocalVariables": {},
         "variables": {
-            "nose": {
-                "name": "nose",
+            "i": {
+                "name": "i",
                 "tipo": "INT",
                 "dirMemoria": 1000,
                 "valor": ""
             },
-            "num": {
-                "name": "num",
+            "x": {
+                "name": "x",
                 "tipo": "INT",
                 "dirMemoria": 1001,
                 "valor": ""
             },
-            "i": {
-                "name": "i",
+            "entero": {
+                "name": "entero",
                 "tipo": "INT",
                 "dirMemoria": 1002,
                 "valor": ""
             },
-            "fact": {
-                "name": "fact",
-                "tipo": "INT",
-                "dirMemoria": 1003,
+            "prueba": {
+                "name": "prueba",
+                "tipo": "BOOL",
+                "dirMemoria": 5000,
                 "valor": ""
             },
             "FACT": {
                 "name": "FACT",
                 "tipo": "INT",
-                "dirMemoria": 1004,
+                "dirMemoria": 1003,
                 "valor": ""
             }
         }
@@ -46,7 +46,7 @@
         "tipo": "INT",
         "cuadInicial": 1,
         "numParametrosDefinidos": {
-            "INT": 3,
+            "INT": 1,
             "FLOAT": 0,
             "CHAR": 0,
             "BOOL": 0,
@@ -54,15 +54,7 @@
         },
         "paramDefinidos": {
             "1": {
-                "name": "num",
-                "tipo": "INT"
-            },
-            "2": {
-                "name": "i",
-                "tipo": "INT"
-            },
-            "3": {
-                "name": "fact",
+                "name": "n",
                 "tipo": "INT"
             }
         },
@@ -74,28 +66,16 @@
             "DATASET": 0
         },
         "variables": {
-            "num": {
-                "name": "num",
+            "n": {
+                "name": "n",
                 "tipo": "INT",
                 "dirMemoria": 11000,
-                "valor": ""
-            },
-            "i": {
-                "name": "i",
-                "tipo": "INT",
-                "dirMemoria": 11001,
-                "valor": ""
-            },
-            "fact": {
-                "name": "fact",
-                "tipo": "INT",
-                "dirMemoria": 11002,
                 "valor": ""
             },
             "z": {
                 "name": "z",
                 "tipo": "INT",
-                "dirMemoria": 11003,
+                "dirMemoria": 11001,
                 "valor": ""
             }
         }

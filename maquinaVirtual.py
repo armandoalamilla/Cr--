@@ -17,6 +17,8 @@ def maquinaVirtual():
     global cuadActual, pilaContexto,contadorParam, pilaCuadActual, pilaReturn
 
     while cuadActual < cuad.contQuadAux:
+        #print(cuadActual)
+        #print(pilaContexto)
         #print(mem.tablaMemoriaEjecución)
         if cuad.PQuad[cuadActual]['operator'] == 'GOTO':
             cuadActual = cuad.PQuad[cuadActual]['result']
@@ -135,6 +137,16 @@ def maquinaVirtual():
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == 'AND':
+            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) and mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            #print('suma es igual', resultado)
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
+            cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == 'OR':
+            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) or mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            #print('suma es igual', resultado)
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
+            cuadActual+=1        
         elif cuad.PQuad[cuadActual]['operator'] == 'GOTOF':
             evalua = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1])
             if not evalua:
@@ -143,8 +155,11 @@ def maquinaVirtual():
                 cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == 'ERA':
             #solicitar crear espeacio en memoria para la func
-            pilaContexto.append(cuad.PQuad[cuadActual]['left_operand'])
-            mem.generaMemoriaEjecucion(pilaContexto[len(pilaContexto)-1])
+            if cuad.PQuad[cuadActual]['left_operand'] != pilaContexto[len(pilaContexto)-1]:
+                pilaContexto.append(cuad.PQuad[cuadActual]['left_operand'])
+                mem.generaMemoriaEjecucion(pilaContexto[len(pilaContexto)-1])
+            else:            
+                pilaContexto.append(cuad.PQuad[cuadActual]['left_operand'])
             #print(mem.tablaMemoriaEjecución)
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == 'PARAM':
@@ -162,7 +177,9 @@ def maquinaVirtual():
             else:
                 cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == 'GOSUB':
-            #mem.tablaMemoriaEjecución[pilaContexto[len(pilaContexto)-1]].clear()
+            if cuad.PQuad[cuadActual]['left_operand'] != pilaContexto[len(pilaContexto)-2]:
+                mem.tablaMemoriaEjecución[pilaContexto[len(pilaContexto)-1]].clear()
+            
             pilaContexto.pop()
             cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == 'ENDPROC':

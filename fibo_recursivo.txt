@@ -1,0 +1,31 @@
+PROGRAM algo:
+
+VAR entero,x,i:INT;
+VAR prueba:BOOL;
+FUNC INT:FIBO(x INT)
+VAR z:INT;
+{
+  IF(x == 1 OR x== 0)
+  {
+    RETURN(x);
+  }
+  ELSE {
+    RETURN(FIBO(x-1) + FIBO(x-2));
+  };  
+
+}
+
+
+MAIN
+{
+  i=0;
+  x=10;
+  WHILE(i < x)
+  {
+    PRINT(FIBO(i));
+    i = i + 1;
+  };
+  
+}
+
+END

@@ -4,9 +4,13 @@
             "direccion": 21000,
             "valor": 1
         },
-        "5": {
+        "0": {
             "direccion": 21001,
-            "valor": 5
+            "valor": 0
+        },
+        "10": {
+            "direccion": 21002,
+            "valor": 10
         }
     },
     "FLOAT": {},
