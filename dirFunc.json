@@ -49,6 +49,124 @@
                 "tipo": "CHAR",
                 "dirMemoria": 7000,
                 "valor": ""
+            },
+            "pruebaBOOL": {
+                "name": "pruebaBOOL",
+                "tipo": "BOOL",
+                "dirMemoria": 5000,
+                "valor": ""
+            },
+            "func1": {
+                "name": "func1",
+                "tipo": "VOID",
+                "dirMemoria": 800,
+                "valor": ""
+            },
+            "func2": {
+                "name": "func2",
+                "tipo": "VOID",
+                "dirMemoria": 801,
+                "valor": ""
+            }
+        }
+    },
+    "func1": {
+        "name": "func1",
+        "scope": "LOCAL",
+        "tipo": "VOID",
+        "cuadInicial": 1,
+        "numParametrosDefinidos": {
+            "INT": 2,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "paramDefinidos": {
+            "1": {
+                "name": "func1var1",
+                "tipo": "INT"
+            },
+            "2": {
+                "name": "func1var2",
+                "tipo": "INT"
+            }
+        },
+        "numLocalVariables": {
+            "INT": 1,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "variables": {
+            "func1var1": {
+                "name": "func1var1",
+                "tipo": "INT",
+                "dirMemoria": 11000,
+                "valor": ""
+            },
+            "func1var2": {
+                "name": "func1var2",
+                "tipo": "INT",
+                "dirMemoria": 11001,
+                "valor": ""
+            },
+            "z": {
+                "name": "z",
+                "tipo": "INT",
+                "dirMemoria": 11002,
+                "valor": ""
+            }
+        }
+    },
+    "func2": {
+        "name": "func2",
+        "scope": "LOCAL",
+        "tipo": "VOID",
+        "cuadInicial": 5,
+        "numParametrosDefinidos": {
+            "INT": 1,
+            "FLOAT": 1,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "paramDefinidos": {
+            "1": {
+                "name": "func2var1",
+                "tipo": "INT"
+            },
+            "2": {
+                "name": "func1var2",
+                "tipo": "FLOAT"
+            }
+        },
+        "numLocalVariables": {
+            "INT": 1,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "variables": {
+            "func2var1": {
+                "name": "func2var1",
+                "tipo": "INT",
+                "dirMemoria": 11000,
+                "valor": ""
+            },
+            "func1var2": {
+                "name": "func1var2",
+                "tipo": "FLOAT",
+                "dirMemoria": 13000,
+                "valor": ""
+            },
+            "z": {
+                "name": "z",
+                "tipo": "INT",
+                "dirMemoria": 11001,
+                "valor": ""
             }
         }
     }

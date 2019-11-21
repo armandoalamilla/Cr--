@@ -6,7 +6,7 @@ Vgf = 3000
 Vgb = 5000
 Vgc = 7000
 Vgd = 9000
-VgV = 11000
+VgV = 800
 
 #variables locales
 Vli = 11000
@@ -34,7 +34,7 @@ contadorTemporalFLOAT = Tgf
 contadorTemporalCHAR = Tgc
 contadorTemporalBOOL = Tgb
 contadorTemporalDATASET = Tgd
-
+listaDir = {}
 tablaConstantes= {'INT': {}, 'FLOAT' : {}, 'CHAR': {}, 'BOOL': {}, 'DATASET': {}}
 tablaMemoriaEjecución = {}
 def almacenaConstantes(tipo,direccion,nombre):
@@ -65,10 +65,17 @@ def generaDirTemporal(tipo):
         contadorTemporalDATASET += 1
         return contadorTemporalDATASET - 1
 
-def almacenaMemoriaEjecucion(direccion,valor):
-    tablaMemoriaEjecución[direccion]= {'valor' : valor}
+def almacenaMemoriaEjecucion(direccion,valor,contexto):
+    
+    listaDir[direccion] = {'valor': valor}
+    tablaMemoriaEjecución[contexto].update(listaDir)
+    listaDir.clear()
+    #print(tablaMemoriaEjecución)
 
-def obtenerValordeMemoria(direccion):
+def generaMemoriaEjecucion(contexto):
+    tablaMemoriaEjecución[contexto] = {}
+
+def obtenerValordeMemoria(direccion,contexto):
     #checar constantes enteras
     if direccion >= 21000 and direccion < 23000:
         for a in tablaConstantes['INT']:
@@ -96,34 +103,41 @@ def obtenerValordeMemoria(direccion):
                 return tablaConstantes['DATASET'][a]['valor']
     #checa las temporales int
     elif direccion >= 43000 and direccion < 45000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     #checa las temporales float
     elif direccion >= 45000 and direccion < 47000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     #checa las temporales bool
     elif direccion >= 47000 and direccion < 49000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     #checa las temporales char
     elif direccion >= 49000 and direccion < 51000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     #checa las temporales dataset
     elif direccion >= 51000 and direccion < 53000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     #checar variables globales int
     elif direccion >= 1000 and direccion < 3000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     #checar variables globales float
     elif direccion >= 3000 and direccion < 5000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     #checar variables globales bool
     elif direccion >= 5000 and direccion < 7000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     #checar variables globales char
     elif direccion >= 7000 and direccion < 9000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     #checar variables globales dataset
     elif direccion >= 9000 and direccion < 11000:
-        return tablaMemoriaEjecución[direccion]['valor']
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
+    #checar variables globales void
+    elif direccion >= 800 and direccion < 1000:
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
+    #checar variables locales void
+    elif direccion >= 11000 and direccion < 13000:
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
+    
 
 
         

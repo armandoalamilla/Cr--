@@ -3,12 +3,14 @@ PROGRAM algo:
 VAR x,y,z,numero,iterador:INT;
 VAR flota:FLOAT;
 VAR lala:CHAR;
+VAR pruebaBOOL:BOOL;
 
 FUNC VOID:func1(func1var1 INT, func1var2 INT)
 VAR z:INT;
 {
   
-  z=5*3;
+  z=10*3;
+  PRINT(z);
 
 }
 
@@ -22,10 +24,12 @@ VAR z:INT;
 
 MAIN
 {
-    func1(3+5,3);
-    x = 3 * 5;
-    lala = 'ME EJECUTE UwU';
-    PRINT(x,lala);
+    x=45;
+    y=22;
+    func1(x,y);    
+    lala = 'UwU me la pelan';
+    PRINT(lala,x,y);
+    
   
 }
 

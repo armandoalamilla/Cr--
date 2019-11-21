@@ -1,23 +1,31 @@
 {
     "INT": {
-        "0": {
-            "direccion": 21000,
-            "valor": 0
-        },
-        "1": {
-            "direccion": 21001,
-            "valor": 1
-        },
         "10": {
-            "direccion": 21002,
+            "direccion": 21000,
             "valor": 10
+        },
+        "3": {
+            "direccion": 21001,
+            "valor": 3
+        },
+        "5": {
+            "direccion": 21002,
+            "valor": 5
+        },
+        "45": {
+            "direccion": 21003,
+            "valor": 45
+        },
+        "22": {
+            "direccion": 21004,
+            "valor": 22
         }
     },
     "FLOAT": {},
     "CHAR": {
-        "SERIE TIO FIBO": {
+        "UwU me la pelan": {
             "direccion": 27000,
-            "valor": "SERIE TIO FIBO"
+            "valor": "UwU me la pelan"
         }
     },
     "BOOL": {},
