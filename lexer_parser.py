@@ -1136,7 +1136,7 @@ parser = yacc.yacc()
 
 #archivo = "fact_iterativo.txt"
 #archivo = "fibo_iterativo.txt"
-archivo = "fact_recursivo.txt"
+#archivo = "fact_recursivo.txt"
 f = open(archivo, 'r')
 s = f.read()
 
