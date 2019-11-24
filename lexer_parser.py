@@ -1137,6 +1137,7 @@ parser = yacc.yacc()
 #archivo = "fact_iterativo.txt"
 #archivo = "fibo_iterativo.txt"
 #archivo = "fact_recursivo.txt"
+#archivo = "pruebaSinFunc.txt"
 f = open(archivo, 'r')
 s = f.read()
 
@@ -1174,7 +1175,7 @@ for x in cuad.PQuad:
     print(contador,x)
     contador += 1
 
-maqBoba.maquinaVirtual()
+#maqBoba.maquinaVirtual()
 app_json3 = json.dumps(mem.tablaMemoriaEjecución, indent=4)
 lala3 = open("memoriaEjecuta.json", "w")
 lala3.write(app_json3)

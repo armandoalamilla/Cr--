@@ -1,12 +1,16 @@
 {
     "INT": {
-        "1": {
+        "3": {
             "direccion": 21000,
-            "valor": 1
+            "valor": 3
         },
         "5": {
             "direccion": 21001,
             "valor": 5
+        },
+        "8": {
+            "direccion": 21002,
+            "valor": 8
         }
     },
     "FLOAT": {},

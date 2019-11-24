@@ -1,18 +1,18 @@
 import pandas as pd
-import pymongo
 
-myclient = pymongo.MongoClient('mongodb://localhost:27017/')
 
-collection_name = 'SalesRevenue'
-BD = 'Cr--'
-columna = 'Units Sold'
-mydb = myclient[BD]
-mycol = mydb[collection_name]
+path = 'csv/100 Sales Records.csv'
+par1 = 'Units Sold'
 
-data = pd.DataFrame(list(mycol.find()))
 
-#promedio= float(data[columna])
-data[columna] = data[columna].astype(float)
+def mode(path,par1):
+    data = pd.read_csv(path)
+    data[par1] = data[par1].astype(float)
+    #promedio= float(data[columna])
+    print('La moda de en la columna',par1,'es')
+    print(data[par1].mode())
 
-print('La moda de en la columna',columna,'es')
-print(data[columna].mode())
+mode(path,par1)
+    
+
+

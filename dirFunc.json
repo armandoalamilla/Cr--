@@ -8,94 +8,100 @@
         "paramDefinidos": {},
         "numLocalVariables": {},
         "variables": {
-            "nose": {
-                "name": "nose",
+            "a": {
+                "name": "a",
                 "tipo": "INT",
                 "dirMemoria": 1000,
                 "valor": ""
             },
-            "num": {
-                "name": "num",
+            "entero3": {
+                "name": "entero3",
                 "tipo": "INT",
                 "dirMemoria": 1001,
                 "valor": ""
             },
-            "i": {
-                "name": "i",
+            "entero2": {
+                "name": "entero2",
                 "tipo": "INT",
                 "dirMemoria": 1002,
                 "valor": ""
             },
-            "fact": {
-                "name": "fact",
+            "entero": {
+                "name": "entero",
                 "tipo": "INT",
                 "dirMemoria": 1003,
                 "valor": ""
             },
-            "FACT": {
-                "name": "FACT",
+            "flota3": {
+                "name": "flota3",
+                "tipo": "FLOAT",
+                "dirMemoria": 3000,
+                "valor": ""
+            },
+            "flota2": {
+                "name": "flota2",
+                "tipo": "FLOAT",
+                "dirMemoria": 3001,
+                "valor": ""
+            },
+            "flota": {
+                "name": "flota",
+                "tipo": "FLOAT",
+                "dirMemoria": 3002,
+                "valor": ""
+            },
+            "DATAalgo": {
+                "name": "DATAalgo",
+                "tipo": "DATASET",
+                "dirMemoria": 9000,
+                "valor": ""
+            },
+            "d": {
+                "name": "d",
+                "tipo": "DATASET",
+                "dirMemoria": 9001,
+                "valor": ""
+            },
+            "lala": {
+                "name": "lala",
+                "tipo": "CHAR",
+                "dirMemoria": 7000,
+                "valor": ""
+            },
+            "arrP": {
+                "name": "arrP",
                 "tipo": "INT",
                 "dirMemoria": 1004,
                 "valor": ""
-            }
-        }
-    },
-    "FACT": {
-        "name": "FACT",
-        "scope": "LOCAL",
-        "tipo": "INT",
-        "cuadInicial": 1,
-        "numParametrosDefinidos": {
-            "INT": 3,
-            "FLOAT": 0,
-            "CHAR": 0,
-            "BOOL": 0,
-            "DATASET": 0
-        },
-        "paramDefinidos": {
-            "1": {
-                "name": "num",
-                "tipo": "INT"
             },
-            "2": {
-                "name": "i",
-                "tipo": "INT"
-            },
-            "3": {
-                "name": "fact",
-                "tipo": "INT"
-            }
-        },
-        "numLocalVariables": {
-            "INT": 1,
-            "FLOAT": 0,
-            "CHAR": 0,
-            "BOOL": 0,
-            "DATASET": 0
-        },
-        "variables": {
-            "num": {
-                "name": "num",
-                "tipo": "INT",
-                "dirMemoria": 11000,
+            "arrP2": {
+                "name": "arrP2",
+                "tipo": "FLOAT",
+                "dirMemoria": 3003,
                 "valor": ""
             },
-            "i": {
-                "name": "i",
-                "tipo": "INT",
-                "dirMemoria": 11001,
+            "arrP3": {
+                "name": "arrP3",
+                "tipo": "CHAR",
+                "dirMemoria": 7001,
                 "valor": ""
             },
-            "fact": {
-                "name": "fact",
+            "matrix4": {
+                "name": "matrix4",
                 "tipo": "INT",
-                "dirMemoria": 11002,
+                "dirMemoria": 1005,
                 "valor": ""
             },
-            "z": {
-                "name": "z",
+            "var11": {
+                "name": "var11",
                 "tipo": "INT",
-                "dirMemoria": 11003,
+                "dirMemoria": 1006,
+                "valor": ""
+            },
+            "booleano": {
+                "name": "booleano",
+                "tipo": "BOOL",
+                "dirMemoria": 5000,
                 "valor": ""
             }
         }
