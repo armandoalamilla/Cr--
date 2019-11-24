@@ -2,12 +2,12 @@ import ply.lex as lex
 import ply.yacc as yacc
 import dirFunciones as directorio, cuadruplos as cuad
 import cuboSemantico as cubo
-import memoria as mem 
+import memoria as mem
 import sys, json, os
 import maquinaVirtual as maqBoba
 
 aprobado = True
-
+dimension = False
 
 varNombreTemp = []
 
@@ -150,7 +150,7 @@ tokens = tokens + list(reserved.values())
 
 def t_CTE_BOOL(t):
     r'(TRUE|FALSE)'
-    global temTipoCTE    
+    global temTipoCTE
     if t.value == 'TRUE':
         t.value = True
     else:
@@ -236,12 +236,21 @@ def p_pN25(p):
 def p_pN47(p):
     ''' pN47 : '''
     global nombreFunc, enteroGlobal,floatglobal,charGlobal,boolGlobal,datasetGlobal
-    
+    global AUX, nombreVar,dimension
+
 
     for x in directorio.funcionLista[nombreFunc]['variables']:
         if directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'INT':
-            directorio.almacenaDirMemoria(nombreFunc,x,enteroGlobal)
-            enteroGlobal += 1
+            if directorio.funcionLista[nombreFunc]['variables'][x]['dimension'] == True:
+                directorio.almacenaDirMemoria(nombreFunc,x,enteroGlobal)
+                enteroGlobal += directorio.funcionLista[nombreFunc]['variables'][x]['varsDim']['AUX']
+                print("entraaaaaa A TRUE")
+                print(enteroGlobal)
+            else:
+                directorio.almacenaDirMemoria(nombreFunc,x,enteroGlobal)
+                print("entraaaaaa a FALSE")
+                print(x)
+                enteroGlobal += 1
         elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'FLOAT':
             directorio.almacenaDirMemoria(nombreFunc,x,floatglobal)
             floatglobal += 1
@@ -259,7 +268,7 @@ def p_pN47(p):
 def p_pN54(p):
     ''' pN54 : '''
     cuad.agregarCuad('ENDPROGRAMA','','','')
-            
+
 
 
 
@@ -326,15 +335,15 @@ def p_modulos_aux(p):
 def p_pN3(p):
     '''pN3 : '''
     global contadorScope, idTemp_modulos, tempTipo_modulos, arrayNombreFunc, nombreFunc
-    global enteroGlobal,floatglobal,charGlobal,boolGlobal,voidGlobal
+    global enteroGlobal,floatglobal,charGlobal,boolGlobal,voidGlobal,dimension
     #print(contadorScope, p[4])
     #arrayNombreFunc.append(idTemp_modulos)
     scopeActual = 'LOCAL'
     #print(nombreFunc, tempTipo_modulos)
     directorio.almacenaFuncion(nombreFunc,scopeActual,tempTipo_modulos)
     #almacena la funcion como var global
-    directorio.almacenaVarsEnFunc('MAIN',nombreFunc,tempTipo_modulos)
-    #asignar direccion segun el tipo de la var de la func    
+    directorio.almacenaVarsEnFunc('MAIN',nombreFunc,tempTipo_modulos,dimension)
+    #asignar direccion segun el tipo de la var de la func
     if directorio.funcionLista['MAIN']['variables'][nombreFunc]['tipo'] == 'INT':
         directorio.almacenaDirMemoria('MAIN',nombreFunc,enteroGlobal)
         enteroGlobal += 1
@@ -364,9 +373,9 @@ def p_pN4(p):
 #NOTA IMPORTANTE, AGREGAR EN EL DIR FUNC LOS PARAMETROS COMO NUEVO ATRIBUTO <-- OJO
 def p_pN5(p):
     ''' pN5 : '''
-    global tempIdVarFuncEntrada, tempIdVarFuncEntrada
+    global tempIdVarFuncEntrada, tempIdVarFuncEntrada, dimension
     #print(tempIdVarFuncEntrada,tempTipoVarFuncEntrada)
-    directorio.almacenaVarsEnFunc(nombreFunc,tempIdVarFuncEntrada,tempTipoVarFuncEntrada)
+    directorio.almacenaVarsEnFunc(nombreFunc,tempIdVarFuncEntrada,tempTipoVarFuncEntrada,dimension)
     directorio.almacenaParmsEnFunc(nombreFunc,tempIdVarFuncEntrada,tempTipoVarFuncEntrada)
 
 
@@ -421,7 +430,7 @@ def p_pN21(p):
     mem.contadorTemporalCHAR = mem.Tgc
     mem.contadorTemporalBOOL = mem.Tgb
     mem.contadorTemporalDATASET = mem.Tgd
-    
+
 
 
 
@@ -442,15 +451,17 @@ def p_tipo(p):
         | REGLA_BOOL '''
     global varNombreTemp, contadorScope, arrayNombreFunc, contadorScope, nombreFunc, tempTipoVarFuncEntrada
     global contadorINT, contadorFLOAT, contadorCHAR, contadorDATASET, contadorBOOL, interruptorVARID, contadorVARID
+    global dimension
+    dimension = False
 
     tempTipoVarFuncEntrada = p[1]
-    
+
 
     #print(contadorScope, arrayNombreFunc)
     #print(arrayNombreFunc,contadorScope)
     for x in varNombreTemp:
         #print(x)
-        directorio.almacenaVarsEnFunc(nombreFunc,x,p[1])
+        directorio.almacenaVarsEnFunc(nombreFunc,x,p[1],dimension)
     varNombreTemp.clear()
 
     #contar el numero de tipos para paremetros - func
@@ -542,7 +553,7 @@ def p_logical_expresion(p):
 
 #almacenar operador en la pila
 def p_pN41(p):
-    '''pN41 : REGLA_AND 
+    '''pN41 : REGLA_AND
             | REGLA_OR '''
     cuad.POper.append(p[1])
 
@@ -577,13 +588,13 @@ def p_estatuto(p):
         | escritura
         | ciclo
         | func_pred
-        | lectura 
+        | lectura
         | retorno '''
 
 def p_retorno(p):
     ''' retorno : REGLA_RETURN ABREPAR logical_expresion CIERRAPAR pN35 PUNTOYCOMA'''
 
-#generar cuadruplos de return 
+#generar cuadruplos de return
 def p_pN35(p):
     ''' pN35 : '''
     cuad.PTypes.pop()
@@ -608,7 +619,7 @@ def p_pN13(p):
 #genera accion era, iniciar contadorParametros en 1, agregar pointer -- pN40
 def p_pN40(p):
     ''' pN40 : '''
-    global nombre, contadorParametros  
+    global nombre, contadorParametros
     print(nombre)
     cuad.agregarCuad('ERA',nombre,'','')
     contadorParametros = 1
@@ -623,7 +634,7 @@ def p_pN43(p):
         sys.exit()
 
 
-       
+
 
 
 def p_llamada_funcion_aux(p):
@@ -635,14 +646,14 @@ def p_pN36_LUCIA(p):
     ''' pN36_LUCIA : '''
     global pointerParamModuleCall, contadorParametros, nombre
     Argument = cuad.PilaO.pop()
-    ArgumentType = cuad.PTypes.pop()    
+    ArgumentType = cuad.PTypes.pop()
 
     if ArgumentType == directorio.funcionLista[nombre]['paramDefinidos'][contadorParametros]['tipo']:
         cuad.agregarCuad('PARAM',Argument,'','PARAM'+str(contadorParametros))
     else:
         print("Error de tipo en el",contadorParametros,"parametro en la llamade de",nombre)
         sys.exit()
-    
+
 
 def p_pN37_LUCIA(p):
     ''' pN37_LUCIA : '''
@@ -707,7 +718,7 @@ def p_asignacion(p):
 
     #print('p_asignacion')
     #print(cuad.PTypes)
-    #print(cuad.PilaO)    
+    #print(cuad.PilaO)
 
     if cuad.POper[len(cuad.POper)-1] == '=':
         cuad.right_operand = cuad.PilaO.pop()
@@ -813,7 +824,7 @@ def p_lectura(p):
         cuad.agregarCuad('READ','','',directorio.funcionLista[nombreFunc]['variables'][p[3]]['dirMemoria'])
 
 
-    
+
 def p_array(p):
     ''' array : ABREBRACK exp CIERRABRACK
         | ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK
@@ -829,11 +840,13 @@ def p_declaracionVar(p):
                         | ID ABREBRACK CTE_I CIERRABRACK ABREBRACK CTE_I CIERRABRACK DOSPUNTOS REGLA_CHAR PUNTOYCOMA
                         '''
     global nombreFunc, contadorINT, contadorFLOAT, contadorBOOL, contadorCHAR, contadorDATASET
+    global AUX, dimension
 
 
     if p[1] != None :
-        if p[5] == '[' : #verifica si es matrix
-            directorio.almacenaVarsEnFunc(nombreFunc,p[1],p[9])
+        if p[5] == '[' :
+            dimension = True
+            directorio.almacenaVarsEnFunc(nombreFunc,p[1],p[9],dimension)
             if p[9] == 'INT':
                 contadorINT = contadorINT + 1
             elif p[9] == 'FLOAT':
@@ -841,7 +854,29 @@ def p_declaracionVar(p):
             elif p[9] == 'CHAR':
                 contadorCHAR = contadorCHAR + 1
         else:   #verifica si es array
-            directorio.almacenaVarsEnFunc(nombreFunc,p[1],p[6])
+            dimension = True
+            directorio.almacenaVarsEnFunc(nombreFunc,p[1],p[6],dimension)
+
+            DIM = 1
+            R = 1
+            Ls = p[3]
+            Li = 1
+            R =(Ls-Li+1)*R
+            #DIM=+1
+            SUMA = 0
+            AUX = R
+            mDim = R/(Ls-Li+1)
+            #R = mDim
+            SUMA= SUMA + Li * mDim
+            K= -SUMA
+            print("Entra a ARRAY")
+            print(p[1])
+            print(AUX)
+            print(K)
+            directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['Li']= Li
+            directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['Ls']= Ls
+            directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['-k']= K
+            directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['AUX']= AUX
             if p[6] == 'INT':
                 contadorINT = contadorINT + 1
             elif p[6] == 'FLOAT':
@@ -849,6 +884,9 @@ def p_declaracionVar(p):
             elif p[6] == 'CHAR':
                 contadorCHAR = contadorCHAR + 1
 
+    else:
+        print("No entra a array")
+        dimension = False
 
 
 
@@ -953,7 +991,7 @@ def p_obtieneMemoriaCTE_D(p):
     ''' obtieneMemoriaCTE_D : '''
     cuad.PilaO.append(mem.obtenerMemoria('DATASET',cuad.PilaO.pop()))
 
-    
+
 
 
 
@@ -1138,7 +1176,7 @@ parser = yacc.yacc()
 #archivo = "fibo_iterativo.txt"
 #archivo = "fact_recursivo.txt"
 #archivo = "pruebaSinFunc.txt"
-f = open(archivo, 'r')
+f = open('pruebaSinFunc.txt', 'r')
 s = f.read()
 
 parser.parse(s)

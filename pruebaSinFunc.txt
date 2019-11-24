@@ -1,27 +1,17 @@
 PROGRAM algo:
 
-VAR entero,entero2,entero3,a:INT;
-VAR flota,flota2,flota3:FLOAT;
-VAR d,DATAalgo:DATASET;
-VAR lala:CHAR;
+
 VAR arrP[5]:INT;
-VAR arrP2[5]:FLOAT;
-VAR arrP3[6]:CHAR;
-VAR matrix4[6][7]:INT;
-VAR var11:INT;
-VAR booleano:BOOL;
+VAR entero:INT;
+VAR arrA[2]:INT;
+VAR entero2:INT;
+
+
+
 
 MAIN
 {
-  var11 = 3;
-  IF (3 != 5)
-  {
-    var11 = 3;
-    entero2 = 5 * 8;
-  };
-
-  PRINT(booleano,var11);
-  READ(var11);
+  entero = 5;
 }
 
 END
