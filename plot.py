@@ -5,10 +5,11 @@ url = "csv/microsoftStocks.csv"
 par1 = 'High'
 par2 = 'Low'
 par3 = 'Date'
-df = pd.read_csv(url)
+
 
 
 def plot(url,par1,par2,par3):
+    df = pd.read_csv(url)
     fig = go.Figure()
     fig.add_trace(go.Scatter(
                     x=df[par3],

@@ -8,23 +8,10 @@
         "paramDefinidos": {},
         "numLocalVariables": {},
         "variables": {
-            "arrP": {
-                "name": "arrP",
+            "nose": {
+                "name": "nose",
                 "tipo": "INT",
                 "dirMemoria": 1000,
-                "valor": "",
-                "dimension": true,
-                "varsDim": {
-                    "Li": 1,
-                    "Ls": 5,
-                    "-k": -1.0,
-                    "AUX": 5
-                }
-            },
-            "entero": {
-                "name": "entero",
-                "tipo": "INT",
-                "dirMemoria": 1005,
                 "valor": "",
                 "dimension": false,
                 "varsDim": {
@@ -34,23 +21,137 @@
                     "AUX": 0
                 }
             },
-            "arrA": {
-                "name": "arrA",
+            "num": {
+                "name": "num",
                 "tipo": "INT",
-                "dirMemoria": 1006,
+                "dirMemoria": 1001,
                 "valor": "",
-                "dimension": true,
+                "dimension": false,
                 "varsDim": {
-                    "Li": 1,
-                    "Ls": 2,
-                    "-k": -1.0,
-                    "AUX": 2
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
                 }
             },
-            "entero2": {
-                "name": "entero2",
+            "i": {
+                "name": "i",
                 "tipo": "INT",
-                "dirMemoria": 1008,
+                "dirMemoria": 1002,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "fact": {
+                "name": "fact",
+                "tipo": "INT",
+                "dirMemoria": 1003,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "FACT": {
+                "name": "FACT",
+                "tipo": "INT",
+                "dirMemoria": 1004,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            }
+        }
+    },
+    "FACT": {
+        "name": "FACT",
+        "scope": "LOCAL",
+        "tipo": "INT",
+        "cuadInicial": 1,
+        "numParametrosDefinidos": {
+            "INT": 3,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "paramDefinidos": {
+            "1": {
+                "name": "num",
+                "tipo": "INT"
+            },
+            "2": {
+                "name": "i",
+                "tipo": "INT"
+            },
+            "3": {
+                "name": "fact",
+                "tipo": "INT"
+            }
+        },
+        "numLocalVariables": {
+            "INT": 1,
+            "FLOAT": 0,
+            "CHAR": 0,
+            "BOOL": 0,
+            "DATASET": 0
+        },
+        "variables": {
+            "num": {
+                "name": "num",
+                "tipo": "INT",
+                "dirMemoria": 11000,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "i": {
+                "name": "i",
+                "tipo": "INT",
+                "dirMemoria": 11001,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "fact": {
+                "name": "fact",
+                "tipo": "INT",
+                "dirMemoria": 11002,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "z": {
+                "name": "z",
+                "tipo": "INT",
+                "dirMemoria": 11003,
                 "valor": "",
                 "dimension": false,
                 "varsDim": {

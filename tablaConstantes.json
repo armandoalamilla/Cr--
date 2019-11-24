@@ -1,7 +1,11 @@
 {
     "INT": {
-        "5": {
+        "1": {
             "direccion": 21000,
+            "valor": 1
+        },
+        "5": {
+            "direccion": 21001,
             "valor": 5
         }
     },
