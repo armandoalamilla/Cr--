@@ -3,10 +3,10 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 
-path = 'csv/100 Sales Records.csv'
-par1 = 'Region'
-par2 = 'Units Sold'
-grafico = 'piechart'
+path = 'csv/infoacad.csv'
+par1 = 'Carrera'
+par2 = 'Promedio'
+grafico = 'barchart'
 
 
 def average(path,par1,par2,grafico):
@@ -22,7 +22,7 @@ def average(path,par1,par2,grafico):
         fig.write_html('promedio.html', auto_open=True)
     elif grafico == 'barchart':
         fig = px.bar(algo, x=listaPar1, y=listaPar2)
-        fig.update_layout(title_text= collection_name + ': '+ par1 + '/' + par2 +'--- PROMEDIO')
+        fig.update_layout(title_text= par1 + '/' + par2 +'--- PROMEDIO')
         fig.write_html('promedio.html', auto_open=True)
     else:
         print("SOLO SE PUEDE GRAFICAR piechart o barchart")
