@@ -3,10 +3,10 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 
-path = 'csv/infoacad.csv'
-par1 = 'Carrera'
-par2 = 'Promedio'
-grafico = 'barchart'
+#path = 'csv/infoacad.csv'
+#par1 = 'Carrera'
+#par2 = 'Promedio'
+#grafico = 'barchart'
 
 
 def average(path,par1,par2,grafico):
@@ -27,7 +27,7 @@ def average(path,par1,par2,grafico):
     else:
         print("SOLO SE PUEDE GRAFICAR piechart o barchart")
 
-average(path,par1,par2,grafico)
+#average(path,par1,par2,grafico)
 
 
 

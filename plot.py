@@ -1,10 +1,10 @@
 import plotly.graph_objects as go
 import pandas as pd
 
-url = "csv/microsoftStocks.csv"
-par1 = 'High'
-par2 = 'Low'
-par3 = 'Date'
+#url = "csv/microsoftStocks.csv"
+#par1 = 'High'
+#par2 = 'Low'
+#par3 = 'Date'
 
 
 
@@ -29,6 +29,6 @@ def plot(url,par1,par2,par3):
     fig.update_layout(title_text=url)
     fig.write_html('plot.html', auto_open=True)
 
-plot(url,par1,par2,par3)
+#plot(url,par1,par2,par3)
 
 

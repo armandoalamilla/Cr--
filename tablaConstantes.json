@@ -1,16 +1,24 @@
 {
-    "INT": {
-        "1": {
-            "direccion": 21000,
-            "valor": 1
+    "INT": {},
+    "FLOAT": {},
+    "CHAR": {
+        "csv/appleStocks.csv": {
+            "direccion": 27000,
+            "valor": "csv/appleStocks.csv"
         },
-        "5": {
-            "direccion": 21001,
-            "valor": 5
+        "AAPL.Low": {
+            "direccion": 27001,
+            "valor": "AAPL.Low"
+        },
+        "AAPL.High": {
+            "direccion": 27002,
+            "valor": "AAPL.High"
+        },
+        "Date": {
+            "direccion": 27003,
+            "valor": "Date"
         }
     },
-    "FLOAT": {},
-    "CHAR": {},
     "BOOL": {},
     "DATASET": {}
 }

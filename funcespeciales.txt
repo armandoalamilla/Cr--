@@ -1,0 +1,10 @@
+PROGRAM algo:
+VAR path:DATASET;
+
+MAIN
+{
+  path = 'csv/appleStocks.csv';
+  PLOT(path,'AAPL.Low','AAPL.High','Date');
+}
+
+END

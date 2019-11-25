@@ -799,16 +799,64 @@ def p_pN30(p):
 
 
 def p_func_pred(p):
-    ''' func_pred : REGLA_AVERAGE ABREPAR ID COMA CTE_I CIERRAPAR
-        | REGLA_MEDIAN ABREPAR ID COMA CTE_I CIERRAPAR
-        | REGLA_MODE ABREPAR ID COMA CTE_I CIERRAPAR
-        | REGLA_PLOT ABREPAR ID COMA CTE_CHAR COMA CTE_CHAR CIERRAPAR
+    ''' func_pred : promedio
+        | median
+        | moda
+        | plot
         | REGLA_PIECHART ABREPAR ID CIERRAPAR
         | REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR
         | REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR
         | REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR
         | REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR
         '''
+
+def p_promedio(p):
+    ''' promedio : REGLA_AVERAGE ABREPAR promedio_agregarCuad1 COMA promedio_agregarCuadCHAR COMA promedio_agregarCuadCHAR COMA promedio_agregarCuadCHAR CIERRAPAR PUNTOYCOMA'''
+    
+
+def p_promedio_agregarCuad1(p):
+    ''' promedio_agregarCuad1 : pN20 obtieneMemoriaVARS'''
+    cuad.agregarCuad('AVERAGE','','',cuad.PilaO.pop())
+
+def p_promedio_agregarCuadCHAR(p):
+    ''' promedio_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR'''
+    cuad.agregarCuad('AVERAGE','','',cuad.PilaO.pop())
+
+def p_median(p):
+    ''' median : REGLA_MEDIAN ABREPAR median_agregarCuadID COMA median_agregarCuadCHAR COMA median_agregarCuadCHAR COMA median_agregarCuadCHAR CIERRAPAR PUNTOYCOMA'''
+
+def p_median_agregarCuadID(p):
+    ''' median_agregarCuadID : pN20 obtieneMemoriaVARS'''
+    cuad.agregarCuad('MEDIAN','','',cuad.PilaO.pop())
+
+def p_median_agregarCuadCHAR(p):
+    ''' median_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR'''
+    cuad.agregarCuad('MEDIAN','','',cuad.PilaO.pop())
+
+def p_moda(p):
+    ''' moda : REGLA_MODE ABREPAR moda_agregarCuadID COMA moda_agregarCuadCHAR CIERRAPAR PUNTOYCOMA'''
+
+def p_moda_agregarCuadID(p):
+    ''' moda_agregarCuadID : pN20 obtieneMemoriaVARS'''
+    cuad.agregarCuad('MODE','','',cuad.PilaO.pop())
+
+
+def p_moda_agregarCuadCHAR(p):
+    ''' moda_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR'''
+    cuad.agregarCuad('MODE','','',cuad.PilaO.pop())
+
+def p_plot(p):
+    ''' plot : REGLA_PLOT ABREPAR plot_agregarCuadID COMA plot_agregarCuadCHAR COMA plot_agregarCuadCHAR COMA plot_agregarCuadCHAR CIERRAPAR PUNTOYCOMA'''
+
+def p_plot_agregarCuadID(p):
+    ''' plot_agregarCuadID : pN20 obtieneMemoriaVARS'''
+    cuad.agregarCuad('PLOT','','',cuad.PilaO.pop())
+
+def p_plot_agregarCuadCHAR(p):
+    ''' plot_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR'''
+    cuad.agregarCuad('PLOT','','',cuad.PilaO.pop())
+
+
 
 def p_lectura(p):
     ''' lectura : REGLA_READ ABREPAR ID CIERRAPAR PUNTOYCOMA
@@ -1172,12 +1220,13 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-archivo = "fact_iterativo.txt"
+#archivo = "fact_iterativo.txt"
 #archivo = "fibo_iterativo.txt"
 #archivo = "fact_recursivo.txt"
 #archivo = "pruebaSinFunc.txt"
+archivo = 'funcespeciales.txt'
 
-f = open(input('Teclea el nombre del archivo: '), 'r')
+f = open(archivo, 'r')
 s = f.read()
 
 parser.parse(s)

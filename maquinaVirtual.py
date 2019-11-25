@@ -1,11 +1,16 @@
 import cuadruplos as cuad
 import memoria as mem
+import average as avg
+import median as median
+import plot as plot
 import dirFunciones as directorio
+import mode as mode
 from ast import literal_eval
 import sys
 
 cuadActual = 0
-
+contadorFuncEspeciales = 1
+pilaFuncionesEspeciales = []
 global direccionRead , valorRead, valorTipo, inputVal
 pilaContexto=['GLOBAL']
 pilaCuadActual = []
@@ -14,7 +19,7 @@ mem.tablaMemoriaEjecución = {'GLOBAL' : {}}
 #print(mem.tablaMemoriaEjecución)
 contadorParam=1
 def maquinaVirtual():
-    global cuadActual, pilaContexto,contadorParam, pilaCuadActual, pilaReturn
+    global cuadActual, pilaContexto,contadorParam, pilaCuadActual, pilaReturn, contadorFuncEspeciales, pilaFuncionesEspeciales
 
     while cuadActual < cuad.contQuadAux:
         #print(cuadActual)
@@ -189,5 +194,40 @@ def maquinaVirtual():
             direccion = directorio.funcionLista['MAIN']['variables'][pilaContexto[len(pilaContexto)-1]]['dirMemoria']
             mem.almacenaMemoriaEjecucion(direccion,result,pilaContexto[len(pilaContexto)-2])
             cuadActual +=1
+        elif cuad.PQuad[cuadActual]['operator'] == 'AVERAGE':
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            pilaFuncionesEspeciales.append(result)
+            if len(pilaFuncionesEspeciales) == 4:
+                print('PROCESANDO DATOS.....')
+                avg.average(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1],pilaFuncionesEspeciales[2],pilaFuncionesEspeciales[3])
+                pilaFuncionesEspeciales.clear()
+            cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'MEDIAN':
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            pilaFuncionesEspeciales.append(result)
+            if len(pilaFuncionesEspeciales) == 4:
+                print('PROCESANDO DATOS.....')
+                median.median(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1],pilaFuncionesEspeciales[2],pilaFuncionesEspeciales[3])
+                pilaFuncionesEspeciales.clear()
+            cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'MODE':
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            pilaFuncionesEspeciales.append(result)
+            if len(pilaFuncionesEspeciales) == 2:
+                print('PROCESANDO DATOS.....')
+                mode.mode(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1])
+                pilaFuncionesEspeciales.clear()
+            cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'PLOT':
+
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            pilaFuncionesEspeciales.append(result)
+            if len(pilaFuncionesEspeciales) == 4:
+                print('PROCESANDO DATOS.....')
+                plot.plot(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1],pilaFuncionesEspeciales[2],pilaFuncionesEspeciales[3])
+                pilaFuncionesEspeciales.clear()
+            cuadActual += 1        
+
+            
         else:
             cuadActual+=1
