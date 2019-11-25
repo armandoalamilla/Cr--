@@ -3,9 +3,9 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 
-path = 'csv/100 Sales Records.csv'
-par1 = 'Region'
-par2 = 'Units Sold'
+#path = 'csv/100 Sales Records.csv'
+#par1 = 'Region'
+#par2 = 'Units Sold'
 
 
 def pieChart(path,par1,par2):
@@ -20,7 +20,7 @@ def pieChart(path,par1,par2):
     fig.write_html('pastel.html', auto_open=True)
     
 
-pieChart(path,par1,par2)
+#pieChart(path,par1,par2)
 
 
 

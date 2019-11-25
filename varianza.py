@@ -3,10 +3,10 @@ import pymongo
 import plotly.graph_objects as go
 import plotly.express as px
 
-path = 'csv/100 Sales Records.csv'
-par1 = 'Item Type'
-par2 = 'Units Sold'
-grafico = 'barchart'
+#path = 'csv/100 Sales Records.csv'
+#par1 = 'Item Type'
+#par2 = 'Units Sold'
+#grafico = 'barchart'
 
 
 def varianza(path,par1,par2,grafico):
@@ -28,7 +28,7 @@ def varianza(path,par1,par2,grafico):
     else:
         print("SOLO SE PUEDE GRAFICAR piechart o barchart")
 
-varianza(path,par1,par2,grafico)
+#varianza(path,par1,par2,grafico)
 
 
 

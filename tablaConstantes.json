@@ -2,21 +2,13 @@
     "INT": {},
     "FLOAT": {},
     "CHAR": {
-        "csv/appleStocks.csv": {
+        "csv/microsoftStocks.csv": {
             "direccion": 27000,
-            "valor": "csv/appleStocks.csv"
+            "valor": "csv/microsoftStocks.csv"
         },
-        "AAPL.Low": {
+        "Close": {
             "direccion": 27001,
-            "valor": "AAPL.Low"
-        },
-        "AAPL.High": {
-            "direccion": 27002,
-            "valor": "AAPL.High"
-        },
-        "Date": {
-            "direccion": 27003,
-            "valor": "Date"
+            "valor": "Close"
         }
     },
     "BOOL": {},

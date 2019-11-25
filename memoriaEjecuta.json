@@ -1,7 +1,7 @@
 {
     "GLOBAL": {
         "9000": {
-            "valor": "csv/appleStocks.csv"
+            "valor": "csv/microsoftStocks.csv"
         }
     }
 }

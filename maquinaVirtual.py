@@ -5,6 +5,11 @@ import median as median
 import plot as plot
 import dirFunciones as directorio
 import mode as mode
+import pieChart as pie
+import varianza as varianza
+import desvestandar as std
+import distNormal as dN
+import basicViolin as violin
 from ast import literal_eval
 import sys
 
@@ -219,14 +224,54 @@ def maquinaVirtual():
                 pilaFuncionesEspeciales.clear()
             cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == 'PLOT':
-
             result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
             pilaFuncionesEspeciales.append(result)
             if len(pilaFuncionesEspeciales) == 4:
                 print('PROCESANDO DATOS.....')
                 plot.plot(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1],pilaFuncionesEspeciales[2],pilaFuncionesEspeciales[3])
                 pilaFuncionesEspeciales.clear()
-            cuadActual += 1        
+            cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'PIECHART':
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            pilaFuncionesEspeciales.append(result)
+            if len(pilaFuncionesEspeciales) == 3:
+                print('PROCESANDO DATOS.....')
+                pie.pieChart(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1],pilaFuncionesEspeciales[2])
+                pilaFuncionesEspeciales.clear()
+            cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'VARIANZA':
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            pilaFuncionesEspeciales.append(result)
+            if len(pilaFuncionesEspeciales) == 4:
+                print('PROCESANDO DATOS.....')
+                varianza.varianza(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1],pilaFuncionesEspeciales[2],pilaFuncionesEspeciales[3])
+                pilaFuncionesEspeciales.clear()
+            cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'DESVT':
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            pilaFuncionesEspeciales.append(result)
+            if len(pilaFuncionesEspeciales) == 4:
+                print('PROCESANDO DATOS.....')
+                std.std(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1],pilaFuncionesEspeciales[2],pilaFuncionesEspeciales[3])
+                pilaFuncionesEspeciales.clear()
+            cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'DISTN':
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            pilaFuncionesEspeciales.append(result)
+            if len(pilaFuncionesEspeciales) == 2:
+                print('PROCESANDO DATOS.....')
+                dN.distN(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1])
+                pilaFuncionesEspeciales.clear()
+            cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'BASICV':
+            result = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1])
+            pilaFuncionesEspeciales.append(result)
+            if len(pilaFuncionesEspeciales) == 2:
+                print('PROCESANDO DATOS.....')
+                violin.violin(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1])
+                pilaFuncionesEspeciales.clear()
+            cuadActual += 1
+
 
             
         else:

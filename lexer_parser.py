@@ -94,9 +94,9 @@ reserved = {
     'PLOT' : 'REGLA_PLOT',
     'PIECHART' : 'REGLA_PIECHART',
     'VARIANZA' : 'REGLA_VARIANZA',
-    'DESV_T' : 'REGLA_DESV_T',
-    'DIST_N' : 'REGLA_DIST_N',
-    'BASIC_V_P' : 'REGLA_BASIC_V_P',
+    'DESVT' : 'REGLA_DESV_T',
+    'DISTN' : 'REGLA_DIST_N',
+    'BASICV' : 'REGLA_BASIC_V_P',
     'VOID' : 'REGLA_VOID'
 }
 
@@ -803,11 +803,11 @@ def p_func_pred(p):
         | median
         | moda
         | plot
-        | REGLA_PIECHART ABREPAR ID CIERRAPAR
-        | REGLA_VARIANZA ABREPAR ID COMA CTE_I CIERRAPAR
-        | REGLA_DESV_T ABREPAR ID COMA CTE_I CIERRAPAR
-        | REGLA_DIST_N ABREPAR ID COMA CTE_I CIERRAPAR
-        | REGLA_BASIC_V_P ABREPAR ID COMA CTE_CHAR CIERRAPAR
+        | piechart
+        | varianza
+        | desvEstandar
+        | distN
+        | basicViolin
         '''
 
 def p_promedio(p):
@@ -855,6 +855,68 @@ def p_plot_agregarCuadID(p):
 def p_plot_agregarCuadCHAR(p):
     ''' plot_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR'''
     cuad.agregarCuad('PLOT','','',cuad.PilaO.pop())
+
+def p_piechart(p):
+    ''' piechart : REGLA_PIECHART ABREPAR  piechart_agregarCuadID COMA piechart_agregarCuadCHAR COMA piechart_agregarCuadCHAR CIERRAPAR PUNTOYCOMA'''
+
+def p_piechart_agregarCuadID(p):
+    ''' piechart_agregarCuadID : pN20 obtieneMemoriaVARS'''
+    cuad.agregarCuad('PIECHART','','',cuad.PilaO.pop())
+
+def p_piechart_agregarCuadCHAR(p):
+    ''' piechart_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR'''
+    cuad.agregarCuad('PIECHART','','',cuad.PilaO.pop())
+
+def p_varianza(p):
+    ''' varianza : REGLA_VARIANZA ABREPAR varianza_agregarCuadID COMA varianza_agregarCuadCHAR COMA varianza_agregarCuadCHAR COMA varianza_agregarCuadCHAR CIERRAPAR PUNTOYCOMA'''    
+
+def p_varianza_agregarCuadID(p):
+    ''' varianza_agregarCuadID : pN20 obtieneMemoriaVARS'''
+    cuad.agregarCuad('VARIANZA','','',cuad.PilaO.pop())
+
+def p_varianza_agregarCuadCHAR(p):
+    ''' varianza_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR'''
+    cuad.agregarCuad('VARIANZA','','',cuad.PilaO.pop())
+
+def p_desvEstandar(p):
+    ''' desvEstandar : REGLA_DESV_T ABREPAR desvEstandar_agregarCuadID COMA desvEstandar_agregarCuadCHAR COMA desvEstandar_agregarCuadCHAR COMA desvEstandar_agregarCuadCHAR CIERRAPAR PUNTOYCOMA'''
+
+def p_desvEstandar_agregarCuadID(p):
+    ''' desvEstandar_agregarCuadID : pN20 obtieneMemoriaVARS'''
+    cuad.agregarCuad('DESVT','','',cuad.PilaO.pop())
+
+def p_desvEstandar_agregarCuadCHAR(p):
+    ''' desvEstandar_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR'''
+    cuad.agregarCuad('DESVT','','',cuad.PilaO.pop())
+
+def p_distN(p):
+    ''' distN : REGLA_DIST_N ABREPAR distN_agregarCuadID COMA distN_agregarCuadCHAR CIERRAPAR PUNTOYCOMA '''
+
+def p_distN_agregarCuadID(p):
+    ''' distN_agregarCuadID : pN20 obtieneMemoriaVARS'''
+    cuad.agregarCuad('DISTN','','',cuad.PilaO.pop())
+
+def p_distN_agregarCuadCHAR(p):
+    ''' distN_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR'''
+    cuad.agregarCuad('DISTN','','',cuad.PilaO.pop())
+
+def p_basicViolin(p):
+    ''' basicViolin : REGLA_BASIC_V_P ABREPAR basicViolin_agregarCuadID COMA  basicViolin_agregarCuadCHAR CIERRAPAR PUNTOYCOMA '''
+
+def p_basicViolin_agregarCuadID(p):
+    ''' basicViolin_agregarCuadID : pN20 obtieneMemoriaVARS '''
+    cuad.agregarCuad('BASICV','','',cuad.PilaO.pop())
+
+def p_basicViolin_agregarCuadCHAR(p):
+    ''' basicViolin_agregarCuadCHAR : pN51 obtieneMemoriaCTE_CHAR '''
+    cuad.agregarCuad('BASICV','','',cuad.PilaO.pop())
+
+
+
+
+
+
+
 
 
 

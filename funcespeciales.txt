@@ -3,8 +3,8 @@ VAR path:DATASET;
 
 MAIN
 {
-  path = 'csv/appleStocks.csv';
-  PLOT(path,'AAPL.Low','AAPL.High','Date');
+  path = 'csv/microsoftStocks.csv';
+  BASICV(path,'Close');
 }
 
 END
