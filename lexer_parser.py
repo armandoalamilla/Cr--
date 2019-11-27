@@ -1338,7 +1338,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-#archivo = "fact_iterativo.txt"
+archivo = "fact_iterativo.txt"
 #archivo = "fibo_iterativo.txt"
 #archivo = "fibo_recursivo.txt"
 #archivo = "fact_recursivo.txt"

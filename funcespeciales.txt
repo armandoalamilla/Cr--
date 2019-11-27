@@ -3,8 +3,8 @@ VAR path:DATASET;
 
 MAIN
 {
-  path = 'csv/microsoftStocks.csv';
-  BASICV(path,'Close');
+  path = 'csv/100 Sales Records.csv';
+AVERAGE(path,'Region','Total Profit','piechart');
 }
 
 END

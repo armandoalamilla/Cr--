@@ -1,55 +1,22 @@
 {
-    "INT": {
-        "1": {
-            "direccion": 21000,
-            "valor": 1
-        },
-        "5": {
-            "direccion": 21001,
-            "valor": 5
-        },
-        "13": {
-            "direccion": 21002,
-            "valor": 13
-        },
-        "10": {
-            "direccion": 21003,
-            "valor": 10
-        },
-        "2": {
-            "direccion": 21004,
-            "valor": 2
-        },
-        "11": {
-            "direccion": 21005,
-            "valor": 11
-        },
-        "3": {
-            "direccion": 21006,
-            "valor": 3
-        },
-        "4": {
-            "direccion": 21007,
-            "valor": 4
-        },
-        "14": {
-            "direccion": 21008,
-            "valor": 14
-        },
-        "15": {
-            "direccion": 21009,
-            "valor": 15
-        }
-    },
+    "INT": {},
     "FLOAT": {},
     "CHAR": {
-        "SI ESTOY \u00f0\u0178\u02dc\u20ac": {
+        "csv/100 Sales Records.csv": {
             "direccion": 27000,
-            "valor": "SI ESTOY \u00f0\u0178\u02dc\u20ac"
+            "valor": "csv/100 Sales Records.csv"
         },
-        "NO ESTOY :(": {
+        "Region": {
             "direccion": 27001,
-            "valor": "NO ESTOY :("
+            "valor": "Region"
+        },
+        "Total Profit": {
+            "direccion": 27002,
+            "valor": "Total Profit"
+        },
+        "piechart": {
+            "direccion": 27003,
+            "valor": "piechart"
         }
     },
     "BOOL": {},
