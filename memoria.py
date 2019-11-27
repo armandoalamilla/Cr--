@@ -37,15 +37,26 @@ contadorTemporalDATASET = Tgd
 listaDir = {}
 tablaConstantes= {'INT': {}, 'FLOAT' : {}, 'CHAR': {}, 'BOOL': {}, 'DATASET': {}}
 tablaMemoriaEjecución = {}
+
+#esta funcion se encarga de almacenar las constantes en un diccionario 
+#se recibe el tipo, direccion y el nombre
+#se genera un diccionario con las constantes que se pusieron.
+#este modulo es usado por 
 def almacenaConstantes(tipo,direccion,nombre):
     tablaConstantes[tipo][nombre] = {
         'direccion' : direccion,
         'valor' : nombre
     }
 
+#esta funcion se encarga de retornar la dir de memoria de las constantes
+#se recibe el tipo y el nombre
+#se retorna la direccion de memoria
 def obtenerMemoria(tipo,nombre):
     return tablaConstantes[tipo][nombre]['direccion']
 
+#esta funcion se encarga de generar las direcciones temporales cuando se suma, resta, etc
+#se recibe el tipo
+#se retorna el contador
 def generaDirTemporal(tipo):
     global contadorTemporalINT, contadorTemporalFLOAT, contadorTemporalCHAR
     global contadorTemporalDATASET, contadorTemporalBOOL
@@ -65,16 +76,24 @@ def generaDirTemporal(tipo):
         contadorTemporalDATASET += 1
         return contadorTemporalDATASET - 1
 
+#esta funcion se encarga de almacenar la direccion y el valor en la mem de ejecucion
+#se recibe la direccion, valor y el contexto en el que se esta
+#se une el directorio de direcciones con la tabla de ejecución
 def almacenaMemoriaEjecucion(direccion,valor,contexto):
     #print()
     listaDir[direccion] = {'valor': valor}
     tablaMemoriaEjecución[contexto].update(listaDir)
     listaDir.clear()
     #print(tablaMemoriaEjecución)
-
+    
+#esta funcion genera el slot de memoria de ejecucion
+#se recibe el contexto
 def generaMemoriaEjecucion(contexto):
     tablaMemoriaEjecución[contexto] = {}
 
+#esta funcion obtiene el valor de memoria
+#recibe la direccion y contexto.
+#retorna el valor de memoria.
 def obtenerValordeMemoria(direccion,contexto):
     #print('obtener',direccion)
     #validar caso de arryas -- accesos indirectos

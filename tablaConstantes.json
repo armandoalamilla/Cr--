@@ -14,12 +14,7 @@
         }
     },
     "FLOAT": {},
-    "CHAR": {
-        "SERIE TIO FIBO": {
-            "direccion": 27000,
-            "valor": "SERIE TIO FIBO"
-        }
-    },
+    "CHAR": {},
     "BOOL": {},
     "DATASET": {}
 }

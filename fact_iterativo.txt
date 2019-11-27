@@ -18,7 +18,7 @@ VAR z:INT;
 
 MAIN
 {
-    num = 10;
+    num = 5;
     i=1;
     fact=1;    
     PRINT(FACT(num,i,fact));

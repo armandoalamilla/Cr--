@@ -639,7 +639,7 @@ def p_pN13(p):
 def p_pN40(p):
     ''' pN40 : '''
     global nombre, contadorParametros
-    print(nombre)
+    #print(nombre)
     cuad.agregarCuad('ERA',nombre,'','')
     contadorParametros = 1
     directorio.funcionLista[nombre]['paramDefinidos'][contadorParametros]['tipo']
@@ -740,8 +740,8 @@ def p_asignacion(p):
     #print(cuad.PilaO)
 
     if cuad.POper[len(cuad.POper)-1] == '=':
-        print(cuad.PTypes)
-        print(cuad.PilaO)
+        #print(cuad.PTypes)
+        #print(cuad.PilaO)
         cuad.right_operand = cuad.PilaO.pop()
         cuad.right_type = cuad.PTypes.pop()
         cuad.left_operand = cuad.PilaO.pop()
@@ -812,7 +812,7 @@ def p_pN29(p):
 def p_pN30(p):
     ''' pN30 : '''
     end = cuad.PJumps.pop()
-    print('end',end)
+    #print('end',end)
     retorna = cuad.PJumps.pop()
     cuad.agregarCuad('GOTO','','',retorna)
     #fill
@@ -991,7 +991,7 @@ def p_pN56(p):
     cuad.agregarCuad('+DirBASE',T,BASE,T2)
     cuad.PilaO.append('(' + str(T2) + ')')
     cuad.PTypes.append(tipo)
-    print('56',cuad.PTypes)
+    #print('56',cuad.PTypes)
     cuad.POper.pop()
 
 
@@ -1035,10 +1035,10 @@ def p_declaracionVar(p):
             R = mDim
             SUMA= SUMA + Li * mDim
             K= -SUMA
-            print("Entra a ARRAY")
-            print(p[1])
-            print(AUX)
-            print(K)
+            #print("Entra a ARRAY")
+            #print(p[1])
+            #print(AUX)
+            #print(K)
             directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['Li']= Li
             directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['Ls']= Ls
             directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['-k']= int(K)
@@ -1051,7 +1051,7 @@ def p_declaracionVar(p):
                 contadorCHAR = contadorCHAR + 1
 
     else:
-        print("No entra a array")
+        #print("No entra a array")
         dimension = False
 
 
@@ -1340,8 +1340,8 @@ parser = yacc.yacc()
 
 #archivo = "fact_iterativo.txt"
 #archivo = "fibo_iterativo.txt"
+#archivo = "fibo_recursivo.txt"
 #archivo = "fact_recursivo.txt"
-#archivo = "pruebaSinFunc.txt"
 #archivo = 'funcespeciales.txt'
 
 f = open(archivo, 'r')
@@ -1372,10 +1372,10 @@ lala = open("tablaConstantes.json", "w")
 lala.write(app_json2)
 lala.close()
 
-print(cuad.POper)
-print(cuad.PTypes)
-print(cuad.PilaO)
-print(cuad.PJumps)
+#print(cuad.POper)
+#print(cuad.PTypes)
+#print(cuad.PilaO)
+#print(cuad.PJumps)
 contador = 0
 for x in cuad.PQuad:
     print(contador,x)

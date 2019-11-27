@@ -8,8 +8,8 @@
         "paramDefinidos": {},
         "numLocalVariables": {},
         "variables": {
-            "iterador": {
-                "name": "iterador",
+            "i": {
+                "name": "i",
                 "tipo": "INT",
                 "dirMemoria": 1000,
                 "valor": "",
@@ -21,8 +21,8 @@
                     "AUX": 0
                 }
             },
-            "numero": {
-                "name": "numero",
+            "x": {
+                "name": "x",
                 "tipo": "INT",
                 "dirMemoria": 1001,
                 "valor": "",
@@ -34,8 +34,8 @@
                     "AUX": 0
                 }
             },
-            "z": {
-                "name": "z",
+            "entero": {
+                "name": "entero",
                 "tipo": "INT",
                 "dirMemoria": 1002,
                 "valor": "",
@@ -47,62 +47,23 @@
                     "AUX": 0
                 }
             },
-            "y": {
-                "name": "y",
+            "prueba": {
+                "name": "prueba",
+                "tipo": "BOOL",
+                "dirMemoria": 5000,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "FACT": {
+                "name": "FACT",
                 "tipo": "INT",
                 "dirMemoria": 1003,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "x": {
-                "name": "x",
-                "tipo": "INT",
-                "dirMemoria": 1004,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "flota": {
-                "name": "flota",
-                "tipo": "FLOAT",
-                "dirMemoria": 3000,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "lala": {
-                "name": "lala",
-                "tipo": "CHAR",
-                "dirMemoria": 7000,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "TIOFIBO": {
-                "name": "TIOFIBO",
-                "tipo": "VOID",
-                "dirMemoria": 800,
                 "valor": "",
                 "dimension": false,
                 "varsDim": {
@@ -114,13 +75,13 @@
             }
         }
     },
-    "TIOFIBO": {
-        "name": "TIOFIBO",
+    "FACT": {
+        "name": "FACT",
         "scope": "LOCAL",
-        "tipo": "VOID",
+        "tipo": "INT",
         "cuadInicial": 1,
         "numParametrosDefinidos": {
-            "INT": 5,
+            "INT": 1,
             "FLOAT": 0,
             "CHAR": 0,
             "BOOL": 0,
@@ -128,23 +89,7 @@
         },
         "paramDefinidos": {
             "1": {
-                "name": "x",
-                "tipo": "INT"
-            },
-            "2": {
-                "name": "iterador",
-                "tipo": "INT"
-            },
-            "3": {
-                "name": "y",
-                "tipo": "INT"
-            },
-            "4": {
-                "name": "z",
-                "tipo": "INT"
-            },
-            "5": {
-                "name": "numero",
+                "name": "n",
                 "tipo": "INT"
             }
         },
@@ -156,36 +101,10 @@
             "DATASET": 0
         },
         "variables": {
-            "x": {
-                "name": "x",
+            "n": {
+                "name": "n",
                 "tipo": "INT",
                 "dirMemoria": 11000,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "iterador": {
-                "name": "iterador",
-                "tipo": "INT",
-                "dirMemoria": 11001,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "y": {
-                "name": "y",
-                "tipo": "INT",
-                "dirMemoria": 11002,
                 "valor": "",
                 "dimension": false,
                 "varsDim": {
@@ -198,20 +117,7 @@
             "z": {
                 "name": "z",
                 "tipo": "INT",
-                "dirMemoria": 11003,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "numero": {
-                "name": "numero",
-                "tipo": "INT",
-                "dirMemoria": 11004,
+                "dirMemoria": 11001,
                 "valor": "",
                 "dimension": false,
                 "varsDim": {
