@@ -33,7 +33,8 @@ def maquinaVirtual():
         if cuad.PQuad[cuadActual]['operator'] == 'GOTO':
             cuadActual = cuad.PQuad[cuadActual]['result']
         elif cuad.PQuad[cuadActual]['operator'] == 'PRINT':
-            print("IMPRIME CONSOLA:",mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['result'],pilaContexto[len(pilaContexto)-1]))
+            direccionVar = cuad.PQuad[cuadActual]['result']            
+            print("IMPRIME CONSOLA:",mem.obtenerValordeMemoria(direccionVar,pilaContexto[len(pilaContexto)-1]))
             cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == 'READ':
             direccionRead = cuad.PQuad[cuadActual]['result']
@@ -93,14 +94,32 @@ def maquinaVirtual():
             mem.almacenaMemoriaEjecucion(direccionRead ,inputVal,pilaContexto[len(pilaContexto)-1])
             cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == '=':
+            
             direccionVar = cuad.PQuad[cuadActual]['result']
+            #checa si es dir indirecta -- arrays
+            if type(direccionVar) == str:
+               direccionVar = mem.obtenerValordeMemoria(direccionVar,pilaContexto[len(pilaContexto)-1])
+
             valor = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1])
+            
             mem.almacenaMemoriaEjecucion(direccionVar,valor,pilaContexto[len(pilaContexto)-1])
             cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == '+':
             resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) + mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
+            cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == '+k':
+            resultado = cuad.PQuad[cuadActual]['right_operand'] + mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1])
+            mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
+            cuadActual+=1
+        elif cuad.PQuad[cuadActual]['operator'] == '+DirBASE':
+            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) + cuad.PQuad[cuadActual]['right_operand']
+            #print('+DirBASE',resultado)
+            direccion = '(' + str(cuad.PQuad[cuadActual]['result']) + ')'
+            #print(direccion)
+            mem.almacenaMemoriaEjecucion(direccion,resultado,pilaContexto[len(pilaContexto)-1])
+            #print(mem.tablaMemoriaEjecución)
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '-':
             resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) - mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
@@ -271,6 +290,14 @@ def maquinaVirtual():
                 violin.violin(pilaFuncionesEspeciales[0],pilaFuncionesEspeciales[1])
                 pilaFuncionesEspeciales.clear()
             cuadActual += 1
+        elif cuad.PQuad[cuadActual]['operator'] == 'VER':
+            valor = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1])
+            if valor >= cuad.PQuad[cuadActual]['right_operand'] and valor <= cuad.PQuad[cuadActual]['result']:
+                pass
+            else:
+                print('HORROR: Numero fuera de los limites del arreglo')
+                return sys.exit()
+            cuadActual += 1  
 
 
             

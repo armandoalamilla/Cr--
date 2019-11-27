@@ -76,8 +76,19 @@ def generaMemoriaEjecucion(contexto):
     tablaMemoriaEjecución[contexto] = {}
 
 def obtenerValordeMemoria(direccion,contexto):
+    #print('obtener',direccion)
+    #validar caso de arryas -- accesos indirectos
+    if type(direccion) == str:
+        direccion = tablaMemoriaEjecución[contexto][direccion]['valor']
+        try:
+            obtenerValordeMemoria(direccion,contexto)
+        except KeyError:
+            return direccion
+        else:
+            return obtenerValordeMemoria(direccion,contexto)
+    
     #checar constantes enteras
-    if direccion >= 21000 and direccion < 23000:
+    elif direccion >= 21000 and direccion < 23000:
         for a in tablaConstantes['INT']:
             if tablaConstantes['INT'][a]['direccion'] == direccion:
                 return tablaConstantes['INT'][a]['valor']
@@ -149,6 +160,9 @@ def obtenerValordeMemoria(direccion,contexto):
     #checar variables locales dataset
     elif direccion >= 19000 and direccion < 21000:
         return tablaMemoriaEjecución[contexto][direccion]['valor']
+    
+    
+
     
 
 

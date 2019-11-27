@@ -1,14 +1,23 @@
 {
-    "INT": {},
+    "INT": {
+        "1": {
+            "direccion": 21000,
+            "valor": 1
+        },
+        "0": {
+            "direccion": 21001,
+            "valor": 0
+        },
+        "10": {
+            "direccion": 21002,
+            "valor": 10
+        }
+    },
     "FLOAT": {},
     "CHAR": {
-        "csv/microsoftStocks.csv": {
+        "SERIE TIO FIBO": {
             "direccion": 27000,
-            "valor": "csv/microsoftStocks.csv"
-        },
-        "Close": {
-            "direccion": 27001,
-            "valor": "Close"
+            "valor": "SERIE TIO FIBO"
         }
     },
     "BOOL": {},

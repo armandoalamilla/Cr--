@@ -8,7 +8,7 @@ import maquinaVirtual as maqBoba
 
 aprobado = True
 dimension = False
-
+idArray = ''
 varNombreTemp = []
 
 global varTipoActual, tipoTemp
@@ -244,18 +244,37 @@ def p_pN47(p):
             if directorio.funcionLista[nombreFunc]['variables'][x]['dimension'] == True:
                 directorio.almacenaDirMemoria(nombreFunc,x,enteroGlobal)
                 enteroGlobal += directorio.funcionLista[nombreFunc]['variables'][x]['varsDim']['AUX']
-                print("entraaaaaa A TRUE")
-                print(enteroGlobal)
+                #print("entraaaaaa A TRUE")
+                #print(enteroGlobal)
             else:
                 directorio.almacenaDirMemoria(nombreFunc,x,enteroGlobal)
-                print("entraaaaaa a FALSE")
-                print(x)
+                #print("entraaaaaa a FALSE")
+                #print(x)
                 enteroGlobal += 1
         elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'FLOAT':
-            directorio.almacenaDirMemoria(nombreFunc,x,floatglobal)
-            floatglobal += 1
+            if directorio.funcionLista[nombreFunc]['variables'][x]['dimension'] == True:
+                directorio.almacenaDirMemoria(nombreFunc,x,floatglobal)
+                floatglobal += directorio.funcionLista[nombreFunc]['variables'][x]['varsDim']['AUX']
+                #print("entraaaaaa A TRUE")
+                #print(enteroGlobal)
+            else:
+                directorio.almacenaDirMemoria(nombreFunc,x,floatglobal)
+                #print("entraaaaaa a FALSE")
+                #print(x)
+                floatglobal += 1
         elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'CHAR':
             directorio.almacenaDirMemoria(nombreFunc,x,charGlobal)
+            if directorio.funcionLista[nombreFunc]['variables'][x]['dimension'] == True:
+                directorio.almacenaDirMemoria(nombreFunc,x,charGlobal)
+                charGlobal += directorio.funcionLista[nombreFunc]['variables'][x]['varsDim']['AUX']
+                #print("entraaaaaa A TRUE")
+                #print(enteroGlobal)
+            else:
+                directorio.almacenaDirMemoria(nombreFunc,x,charGlobal)
+                #print("entraaaaaa a FALSE")
+                #print(x)
+                charGlobal += 1
+
             charGlobal += 1
         elif directorio.funcionLista[nombreFunc]['variables'][x]['tipo'] == 'BOOL':
             directorio.almacenaDirMemoria(nombreFunc,x,boolGlobal)
@@ -713,7 +732,7 @@ def p_pN28_LUCIA(p):
 
 def p_asignacion(p):
     '''asignacion : pN12 pN16 obtieneMemoriaVARS logical_expresion PUNTOYCOMA
-        | pN12 array pN16 obtieneMemoriaVARS logical_expresion PUNTOYCOMA '''
+        | pN12 obtieneMemoriaVARS array pN16 logical_expresion PUNTOYCOMA '''
     global nombreFunc
 
     #print('p_asignacion')
@@ -721,6 +740,8 @@ def p_asignacion(p):
     #print(cuad.PilaO)
 
     if cuad.POper[len(cuad.POper)-1] == '=':
+        print(cuad.PTypes)
+        print(cuad.PilaO)
         cuad.right_operand = cuad.PilaO.pop()
         cuad.right_type = cuad.PTypes.pop()
         cuad.left_operand = cuad.PilaO.pop()
@@ -762,6 +783,7 @@ def p_pN12(p):
         cuad.PilaO.append(p[1])
         tempNombreVar = p[1]
         cuad.PTypes.append(directorio.funcionLista[nombreFunc]['variables'][p[1]]['tipo'])
+
 
 
 
@@ -936,9 +958,43 @@ def p_lectura(p):
 
 
 def p_array(p):
-    ''' array : ABREBRACK exp CIERRABRACK
-        | ABREBRACK exp CIERRABRACK ABREBRACK exp CIERRABRACK
+    ''' array : pN55 exp pN56 CIERRABRACK 
+        | pN55 exp pN56 CIERRABRACK ABREBRACK exp CIERRABRACK
         '''
+
+#cuando entra al bracket en el vector pn55
+def p_pN55(p):
+    ''' pN55 : ABREBRACK '''
+    global idArray
+    idArray = cuad.PilaO.pop()
+    #cuad.PTypes.pop()
+    cuad.POper.append('(')
+
+def p_pN56(p):
+    ''' pN56 : '''
+    global nombreFunc, idArray, temTipoCTE
+    for x in directorio.funcionLista[nombreFunc]['variables']:
+        if directorio.funcionLista[nombreFunc]['variables'][x]['dirMemoria'] == idArray:
+            Li = directorio.funcionLista[nombreFunc]['variables'][x]['varsDim']['Li']
+            Ls = directorio.funcionLista[nombreFunc]['variables'][x]['varsDim']['Ls']
+            k = directorio.funcionLista[nombreFunc]['variables'][x]['varsDim']['-k']
+            BASE = directorio.funcionLista[nombreFunc]['variables'][x]['dirMemoria']
+    cuad.agregarCuad('VER',cuad.PilaO[len(cuad.PilaO)-1],Li,Ls)
+    aux1 = cuad.PilaO.pop()
+    #sacar el tipo que viene de exp
+    cuad.PTypes.pop()
+    
+    temTipoCTE = tipo = cuad.PTypes.pop()
+    T = mem.generaDirTemporal(tipo)
+    cuad.agregarCuad('+k',aux1,k,T)
+    T2 = mem.generaDirTemporal(tipo)
+    cuad.agregarCuad('+DirBASE',T,BASE,T2)
+    cuad.PilaO.append('(' + str(T2) + ')')
+    cuad.PTypes.append(tipo)
+    print('56',cuad.PTypes)
+    cuad.POper.pop()
+
+
 
 def p_declaracionVar(p):
     ''' declaracionVar : var_id DOSPUNTOS tipo PUNTOYCOMA
@@ -976,7 +1032,7 @@ def p_declaracionVar(p):
             SUMA = 0
             AUX = R
             mDim = R/(Ls-Li+1)
-            #R = mDim
+            R = mDim
             SUMA= SUMA + Li * mDim
             K= -SUMA
             print("Entra a ARRAY")
@@ -985,7 +1041,7 @@ def p_declaracionVar(p):
             print(K)
             directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['Li']= Li
             directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['Ls']= Ls
-            directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['-k']= K
+            directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['-k']= int(K)
             directorio.funcionLista[nombreFunc]['variables'][p[1]]['varsDim']['AUX']= AUX
             if p[6] == 'INT':
                 contadorINT = contadorINT + 1
@@ -1018,7 +1074,7 @@ def p_var_cte(p):
                 | pN52 obtieneMemoriaCTE_BOOL
                 | pN53 obtieneMemoriaCTE_D
                 | pN20 obtieneMemoriaVARS
-                | pN20 array
+                | pN20 obtieneMemoriaVARS array
                 | pN13 pN45 pN40 ABREPAR llamada_funcion_aux CIERRAPAR pN43 pN38_LUCIA pN44 pN46
                 '''
 
@@ -1286,7 +1342,7 @@ parser = yacc.yacc()
 #archivo = "fibo_iterativo.txt"
 #archivo = "fact_recursivo.txt"
 #archivo = "pruebaSinFunc.txt"
-archivo = 'funcespeciales.txt'
+#archivo = 'funcespeciales.txt'
 
 f = open(archivo, 'r')
 s = f.read()

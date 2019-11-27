@@ -1,7 +1,20 @@
 {
     "GLOBAL": {
-        "9000": {
-            "valor": "csv/microsoftStocks.csv"
+        "1004": {
+            "valor": 0
+        },
+        "1000": {
+            "valor": 0
+        },
+        "1003": {
+            "valor": 1
+        },
+        "1002": {
+            "valor": 0
+        },
+        "1001": {
+            "valor": 10
         }
-    }
+    },
+    "TIOFIBO": {}
 }
