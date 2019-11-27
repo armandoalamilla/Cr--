@@ -1343,6 +1343,7 @@ parser = yacc.yacc()
 #archivo = "fibo_recursivo.txt"
 #archivo = "fact_recursivo.txt"
 #archivo = 'funcespeciales.txt'
+#archivo = 'find.txt'
 
 f = open(archivo, 'r')
 s = f.read()

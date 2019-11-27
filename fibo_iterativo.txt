@@ -1,8 +1,7 @@
 PROGRAM algo:
 
 VAR x,y,z,numero,iterador:INT;
-VAR flota:FLOAT;
-VAR lala:CHAR;
+
 
 FUNC VOID:TIOFIBO(x INT, iterador INT, y INT, z INT, numero INT)
 VAR z:INT;

@@ -8,103 +8,23 @@
         "paramDefinidos": {},
         "numLocalVariables": {},
         "variables": {
-            "i": {
-                "name": "i",
+            "arrA": {
+                "name": "arrA",
                 "tipo": "INT",
                 "dirMemoria": 1000,
                 "valor": "",
-                "dimension": false,
+                "dimension": true,
                 "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
+                    "Li": 1,
+                    "Ls": 5,
+                    "-k": -1,
+                    "AUX": 5
                 }
             },
-            "x": {
-                "name": "x",
-                "tipo": "INT",
-                "dirMemoria": 1001,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "entero": {
-                "name": "entero",
-                "tipo": "INT",
-                "dirMemoria": 1002,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "prueba": {
-                "name": "prueba",
-                "tipo": "BOOL",
-                "dirMemoria": 5000,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            },
-            "FACT": {
-                "name": "FACT",
-                "tipo": "INT",
-                "dirMemoria": 1003,
-                "valor": "",
-                "dimension": false,
-                "varsDim": {
-                    "Li": 0,
-                    "Ls": 0,
-                    "-k": 0,
-                    "AUX": 0
-                }
-            }
-        }
-    },
-    "FACT": {
-        "name": "FACT",
-        "scope": "LOCAL",
-        "tipo": "INT",
-        "cuadInicial": 1,
-        "numParametrosDefinidos": {
-            "INT": 1,
-            "FLOAT": 0,
-            "CHAR": 0,
-            "BOOL": 0,
-            "DATASET": 0
-        },
-        "paramDefinidos": {
-            "1": {
-                "name": "n",
-                "tipo": "INT"
-            }
-        },
-        "numLocalVariables": {
-            "INT": 1,
-            "FLOAT": 0,
-            "CHAR": 0,
-            "BOOL": 0,
-            "DATASET": 0
-        },
-        "variables": {
             "n": {
                 "name": "n",
                 "tipo": "INT",
-                "dirMemoria": 11000,
+                "dirMemoria": 1005,
                 "valor": "",
                 "dimension": false,
                 "varsDim": {
@@ -114,10 +34,23 @@
                     "AUX": 0
                 }
             },
-            "z": {
-                "name": "z",
+            "busca": {
+                "name": "busca",
                 "tipo": "INT",
-                "dirMemoria": 11001,
+                "dirMemoria": 1006,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "i": {
+                "name": "i",
+                "tipo": "INT",
+                "dirMemoria": 1007,
                 "valor": "",
                 "dimension": false,
                 "varsDim": {

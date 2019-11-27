@@ -1,0 +1,34 @@
+PROGRAM algo:
+
+VAR arrA[5]:INT;
+VAR i,busca,n:INT;
+
+MAIN
+{
+    i = 1;
+    n = 5;
+    busca = 13;
+    arrA[1] = 10;
+    arrA[2] = 11;
+    arrA[3] = 13;
+    arrA[4] = 14;
+    arrA[5] = 15;
+
+    WHILE(i <= 5)
+    {
+        IF(busca == arrA[i])
+        {
+            PRINT('SI ESTOY :)');
+        }
+        ELSE {
+            PRINT('NO ESTOY :(');
+        };
+        i = i + 1;
+
+    };
+
+ 
+  
+}
+
+END

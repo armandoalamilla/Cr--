@@ -4,17 +4,54 @@
             "direccion": 21000,
             "valor": 1
         },
-        "0": {
+        "5": {
             "direccion": 21001,
-            "valor": 0
+            "valor": 5
+        },
+        "13": {
+            "direccion": 21002,
+            "valor": 13
         },
         "10": {
-            "direccion": 21002,
+            "direccion": 21003,
             "valor": 10
+        },
+        "2": {
+            "direccion": 21004,
+            "valor": 2
+        },
+        "11": {
+            "direccion": 21005,
+            "valor": 11
+        },
+        "3": {
+            "direccion": 21006,
+            "valor": 3
+        },
+        "4": {
+            "direccion": 21007,
+            "valor": 4
+        },
+        "14": {
+            "direccion": 21008,
+            "valor": 14
+        },
+        "15": {
+            "direccion": 21009,
+            "valor": 15
         }
     },
     "FLOAT": {},
-    "CHAR": {},
+    "CHAR": {
+        "SI ESTOY \u00f0\u0178\u02dc\u20ac": {
+            "direccion": 27000,
+            "valor": "SI ESTOY \u00f0\u0178\u02dc\u20ac"
+        },
+        "NO ESTOY :(": {
+            "direccion": 27001,
+            "valor": "NO ESTOY :("
+        }
+    },
     "BOOL": {},
     "DATASET": {}
 }
