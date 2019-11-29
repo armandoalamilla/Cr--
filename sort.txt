@@ -38,7 +38,7 @@ MAIN
     };
 
     i=1;    
-    WHILE(i <= n)
+    WHILE(i <= n-1)
     {
         PRINT(arrA[i]);
         i = i + 1;
