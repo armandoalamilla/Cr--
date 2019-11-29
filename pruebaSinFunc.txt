@@ -10,9 +10,10 @@ VAR i,j,n,temp:INT;
 MAIN
 {
   arrA[1] = 1;
-  arrA[1] = 2;
+  arrA[2] = 2;
   arrA[1] = 3;
-  PRINT(arrA[1]);
+  j = arrA[1];
+  PRINT(j);
   
 }
 

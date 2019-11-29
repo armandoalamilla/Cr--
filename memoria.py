@@ -98,13 +98,7 @@ def obtenerValordeMemoria(direccion,contexto):
     #print('obtener',direccion)
     #validar caso de arryas -- accesos indirectos
     if type(direccion) == str:
-        direccion = tablaMemoriaEjecución[contexto][direccion]['valor']
-        try:
-            obtenerValordeMemoria(direccion,contexto)
-        except KeyError:
-            return direccion
-        else:
-            return obtenerValordeMemoria(direccion,contexto)
+        return tablaMemoriaEjecución[contexto][direccion]['valor']
     
     #checar constantes enteras
     elif direccion >= 21000 and direccion < 23000:
@@ -181,6 +175,8 @@ def obtenerValordeMemoria(direccion,contexto):
         return tablaMemoriaEjecución[contexto][direccion]['valor']
     
     
+def cambiaDireccion(direccion,contexto):
+    return obtenerValordeMemoria(direccion,contexto)
 
     
 

@@ -1,24 +1,52 @@
 {
-    "INT": {},
-    "FLOAT": {},
-    "CHAR": {
-        "csv/100 Sales Records.csv": {
-            "direccion": 27000,
-            "valor": "csv/100 Sales Records.csv"
+    "INT": {
+        "1": {
+            "direccion": 21000,
+            "valor": 1
         },
-        "Region": {
-            "direccion": 27001,
-            "valor": "Region"
+        "11": {
+            "direccion": 21001,
+            "valor": 11
         },
-        "Total Profit": {
-            "direccion": 27002,
-            "valor": "Total Profit"
+        "3": {
+            "direccion": 21002,
+            "valor": 3
         },
-        "piechart": {
-            "direccion": 27003,
-            "valor": "piechart"
+        "2": {
+            "direccion": 21003,
+            "valor": 2
+        },
+        "4": {
+            "direccion": 21004,
+            "valor": 4
+        },
+        "5": {
+            "direccion": 21005,
+            "valor": 5
+        },
+        "6": {
+            "direccion": 21006,
+            "valor": 6
+        },
+        "8": {
+            "direccion": 21007,
+            "valor": 8
+        },
+        "7": {
+            "direccion": 21008,
+            "valor": 7
+        },
+        "10": {
+            "direccion": 21009,
+            "valor": 10
+        },
+        "9": {
+            "direccion": 21010,
+            "valor": 9
         }
     },
+    "FLOAT": {},
+    "CHAR": {},
     "BOOL": {},
     "DATASET": {}
 }

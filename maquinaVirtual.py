@@ -33,7 +33,9 @@ def maquinaVirtual():
         if cuad.PQuad[cuadActual]['operator'] == 'GOTO':
             cuadActual = cuad.PQuad[cuadActual]['result']
         elif cuad.PQuad[cuadActual]['operator'] == 'PRINT':
-            direccionVar = cuad.PQuad[cuadActual]['result']            
+            direccionVar = cuad.PQuad[cuadActual]['result']
+            if type(direccionVar) == str:
+               direccionVar = mem.cambiaDireccion(direccionVar,pilaContexto[len(pilaContexto)-1])         
             print("IMPRIME CONSOLA:",mem.obtenerValordeMemoria(direccionVar,pilaContexto[len(pilaContexto)-1]))
             cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == 'READ':
@@ -98,14 +100,30 @@ def maquinaVirtual():
             direccionVar = cuad.PQuad[cuadActual]['result']
             #checa si es dir indirecta -- arrays
             if type(direccionVar) == str:
-               direccionVar = mem.obtenerValordeMemoria(direccionVar,pilaContexto[len(pilaContexto)-1])
+               direccionVar = mem.cambiaDireccion(direccionVar,pilaContexto[len(pilaContexto)-1])
+            left_operand =  cuad.PQuad[cuadActual]['left_operand']
 
-            valor = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1])
+            if type(left_operand) == str:
+                left_operand= mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+
+            
+
+            valor = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1])
             
             mem.almacenaMemoriaEjecucion(direccionVar,valor,pilaContexto[len(pilaContexto)-1])
             cuadActual += 1
         elif cuad.PQuad[cuadActual]['operator'] == '+':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) + mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) + mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
@@ -122,60 +140,159 @@ def maquinaVirtual():
             #print(mem.tablaMemoriaEjecución)
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '-':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) - mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) - mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '*':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) * mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) * mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '/':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) / mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) / mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '>':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) > mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) > mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '<':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) < mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) < mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '==':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) == mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) == mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '!=':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) != mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) != mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '>=':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) >= mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) >= mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == '<=':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) <= mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) <= mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == 'AND':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) and mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) and mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
             cuadActual+=1
         elif cuad.PQuad[cuadActual]['operator'] == 'OR':
-            resultado = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1]) or mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['right_operand'],pilaContexto[len(pilaContexto)-1])
+            left_operand = cuad.PQuad[cuadActual]['left_operand']
+            right_operand = cuad.PQuad[cuadActual]['right_operand']
+
+            if type(left_operand) == str:
+                left_operand = mem.cambiaDireccion(left_operand,pilaContexto[len(pilaContexto)-1])
+
+            if type(right_operand) == str:
+                right_operand = mem.cambiaDireccion(right_operand,pilaContexto[len(pilaContexto)-1])
+                
+            resultado = mem.obtenerValordeMemoria(left_operand,pilaContexto[len(pilaContexto)-1]) or mem.obtenerValordeMemoria(right_operand,pilaContexto[len(pilaContexto)-1])
             #print('suma es igual', resultado)
             mem.almacenaMemoriaEjecucion(cuad.PQuad[cuadActual]['result'],resultado,pilaContexto[len(pilaContexto)-1])
-            cuadActual+=1        
+            cuadActual+=1       
         elif cuad.PQuad[cuadActual]['operator'] == 'GOTOF':
             evalua = mem.obtenerValordeMemoria(cuad.PQuad[cuadActual]['left_operand'],pilaContexto[len(pilaContexto)-1])
             if not evalua:

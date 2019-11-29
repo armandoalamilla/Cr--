@@ -8,10 +8,62 @@
         "paramDefinidos": {},
         "numLocalVariables": {},
         "variables": {
-            "path": {
-                "name": "path",
-                "tipo": "DATASET",
-                "dirMemoria": 9000,
+            "arrA": {
+                "name": "arrA",
+                "tipo": "INT",
+                "dirMemoria": 1000,
+                "valor": "",
+                "dimension": true,
+                "varsDim": {
+                    "Li": 1,
+                    "Ls": 10,
+                    "-k": -1,
+                    "AUX": 10
+                }
+            },
+            "temp": {
+                "name": "temp",
+                "tipo": "INT",
+                "dirMemoria": 1010,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "n": {
+                "name": "n",
+                "tipo": "INT",
+                "dirMemoria": 1011,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "j": {
+                "name": "j",
+                "tipo": "INT",
+                "dirMemoria": 1012,
+                "valor": "",
+                "dimension": false,
+                "varsDim": {
+                    "Li": 0,
+                    "Ls": 0,
+                    "-k": 0,
+                    "AUX": 0
+                }
+            },
+            "i": {
+                "name": "i",
+                "tipo": "INT",
+                "dirMemoria": 1013,
                 "valor": "",
                 "dimension": false,
                 "varsDim": {

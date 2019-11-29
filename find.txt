@@ -7,7 +7,7 @@ MAIN
 {
     i = 1;
     n = 5;
-    busca = 13;
+    busca = 15;
     arrA[1] = 10;
     arrA[2] = 11;
     arrA[3] = 13;
@@ -15,9 +15,10 @@ MAIN
     arrA[5] = 15;
 
     WHILE(i <= 5)
-    {
+    {    
         IF(busca == arrA[i])
         {
+            
             PRINT('SI ESTOY :)');
         }
         ELSE {
