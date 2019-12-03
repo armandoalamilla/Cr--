@@ -8,16 +8,16 @@ MAIN
     i = 1;
     j=1;
     n = 11;
-    arrA[1] = 3;
-    arrA[2] = 1;
-    arrA[3] = 4;
-    arrA[4] = 5;
-    arrA[5] = 2;
-    arrA[6] = 8;
-    arrA[7] = 10;
-    arrA[8] = 9;
-    arrA[9] = 7;
-    arrA[10] = 6;
+    arrA[1] = 22;
+    arrA[2] = 3;
+    arrA[3] = 15;
+    arrA[4] = 4;
+    arrA[5] = 7;
+    arrA[6] = 9;
+    arrA[7] = 17;
+    arrA[8] = 89;
+    arrA[9] = 123;
+    arrA[10] = 3;
 
     WHILE(i < n)
     {

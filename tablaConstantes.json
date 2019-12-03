@@ -8,41 +8,61 @@
             "direccion": 21001,
             "valor": 11
         },
-        "3": {
+        "22": {
             "direccion": 21002,
-            "valor": 3
+            "valor": 22
         },
         "2": {
             "direccion": 21003,
             "valor": 2
         },
-        "4": {
+        "3": {
             "direccion": 21004,
+            "valor": 3
+        },
+        "15": {
+            "direccion": 21005,
+            "valor": 15
+        },
+        "4": {
+            "direccion": 21006,
             "valor": 4
         },
         "5": {
-            "direccion": 21005,
-            "valor": 5
-        },
-        "6": {
-            "direccion": 21006,
-            "valor": 6
-        },
-        "8": {
             "direccion": 21007,
-            "valor": 8
+            "valor": 5
         },
         "7": {
             "direccion": 21008,
             "valor": 7
         },
-        "10": {
+        "6": {
             "direccion": 21009,
-            "valor": 10
+            "valor": 6
         },
         "9": {
             "direccion": 21010,
             "valor": 9
+        },
+        "17": {
+            "direccion": 21011,
+            "valor": 17
+        },
+        "8": {
+            "direccion": 21012,
+            "valor": 8
+        },
+        "89": {
+            "direccion": 21013,
+            "valor": 89
+        },
+        "123": {
+            "direccion": 21014,
+            "valor": 123
+        },
+        "10": {
+            "direccion": 21015,
+            "valor": 10
         }
     },
     "FLOAT": {},
